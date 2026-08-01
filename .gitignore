@@ -1,0 +1,14 @@
+# Yerel Claude Code araçları — projeye ait değil
+.claude/
+
+node_modules
+dist
+dist-ssr
+dev-dist
+*.local
+.env
+.env.local
+.env.*.local
+.DS_Store
+*.log
+.vite

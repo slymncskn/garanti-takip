@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Garanti Takip">
+  <rect width="64" height="64" rx="14" fill="#24413f" />
+  <g stroke-linecap="round" stroke-width="5">
+    <line x1="14" y1="21" x2="50" y2="21" stroke="#3c5855" />
+    <line x1="14" y1="32" x2="50" y2="32" stroke="#3c5855" />
+    <line x1="14" y1="43" x2="50" y2="43" stroke="#3c5855" />
+    <line x1="14" y1="21" x2="26" y2="21" stroke="#4fbf94" />
+    <line x1="14" y1="32" x2="38" y2="32" stroke="#e2b45c" />
+    <line x1="14" y1="43" x2="47" y2="43" stroke="#ef6f70" />
+  </g>
+</svg>
