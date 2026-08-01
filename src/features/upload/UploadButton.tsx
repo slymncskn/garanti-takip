@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useUploads } from '@/hooks/useUploads'
+import { useI18n } from '@/i18n'
 import { cn } from '@/lib/cn'
 
 /**
@@ -9,6 +10,7 @@ import { cn } from '@/lib/cn'
 export function UploadButton() {
   const [open, setOpen] = useState(false)
   const { addFiles, busy } = useUploads()
+  const { t } = useI18n()
 
   const cameraRef = useRef<HTMLInputElement>(null)
   const galleryRef = useRef<HTMLInputElement>(null)
@@ -74,17 +76,17 @@ export function UploadButton() {
         {open && (
           <div
             role="menu"
-            aria-label="Fiş ekle"
+            aria-label={t('upload.add')}
             className="mb-1 flex w-56 flex-col overflow-hidden rounded-card border border-line bg-surface shadow-lg"
           >
             <SheetItem onClick={() => pick(cameraRef.current)}>
-              Fotoğraf çek
+              {t('upload.camera')}
             </SheetItem>
             <SheetItem onClick={() => pick(galleryRef.current)}>
-              Galeriden seç
+              {t('upload.gallery')}
             </SheetItem>
             <SheetItem onClick={() => pick(fileRef.current)}>
-              Dosya seç (PDF)
+              {t('upload.file')}
             </SheetItem>
           </div>
         )}
@@ -93,7 +95,7 @@ export function UploadButton() {
           type="button"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
-          aria-label={open ? 'Kapat' : 'Fiş ekle'}
+          aria-label={open ? t('upload.close') : t('upload.add')}
           className={cn(
             'flex size-14 items-center justify-center rounded-full bg-accent text-white shadow-lg',
             'transition-transform duration-150 active:scale-95',

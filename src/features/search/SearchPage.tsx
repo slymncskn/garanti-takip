@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useDebounce } from '@/hooks/useDebounce'
 import { useProductSearch } from '@/hooks/useProducts'
+import { useI18n } from '@/i18n'
 import { ProductCard } from '@/components/ProductCard'
 import { EmptyState, ErrorNote } from '@/components/ui/EmptyState'
 import { Skeleton } from '@/components/ui/Spinner'
@@ -13,6 +14,7 @@ export function SearchPage() {
   const [term, setTerm] = useState('')
   const debounced = useDebounce(term, 300)
   const { data, isLoading, isError, refetch } = useProductSearch(debounced)
+  const { t } = useI18n()
 
   const results = data ?? []
   const searching = debounced.trim() !== ''
@@ -20,14 +22,14 @@ export function SearchPage() {
   return (
     <div>
       <label htmlFor="search" className="sr-only">
-        Ürün ara
+        {t('search.label')}
       </label>
       <input
         id="search"
         type="search"
         value={term}
         onChange={(e) => setTerm(e.target.value)}
-        placeholder="Ürün, marka, satıcı ya da seri no"
+        placeholder={t('search.placeholder')}
         autoComplete="off"
         autoCapitalize="none"
         spellCheck={false}
@@ -37,14 +39,15 @@ export function SearchPage() {
       <div className="mt-5">
         {isError ? (
           <ErrorNote
-            description="Arama yapılamadı. Bağlantını kontrol edip tekrar dene."
+            title={t('common.error')}
+            description={t('search.error')}
             action={
               <button
                 type="button"
                 onClick={() => void refetch()}
                 className="min-h-11 text-[14px] font-medium text-ink underline underline-offset-4"
               >
-                Tekrar dene
+                {t('dash.retry')}
               </button>
             }
           />
@@ -55,17 +58,17 @@ export function SearchPage() {
           </div>
         ) : results.length === 0 ? (
           <EmptyState
-            title={searching ? 'Eşleşen ürün yok' : 'Ne arıyorsun?'}
+            title={searching ? t('search.emptyTitle') : t('search.idleTitle')}
             description={
               searching
-                ? `“${debounced}” için sonuç bulamadım. Markayı ya da ürünün kısa adını yazmayı dene.`
-                : 'Ürün adı, marka, satıcı veya seri numarasıyla arayabilirsin. Türkçe karakterleri yazmasan da bulur.'
+                ? t('search.emptyBody', { term: debounced })
+                : t('search.idleBody')
             }
           />
         ) : (
           <>
             <p className="tabular mb-3 text-[13px] text-ink-faint">
-              {results.length} sonuç
+              {t('search.results', { count: results.length })}
             </p>
             <div className="flex flex-col gap-2">
               {results.map((product) => (

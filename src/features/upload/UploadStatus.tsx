@@ -1,12 +1,14 @@
 import { useUploads } from '@/hooks/useUploads'
+import { useI18n, type DictKey } from '@/i18n'
 import { Spinner } from '@/components/ui/Spinner'
+import type { UploadItem } from '@/hooks/useUploads'
 
-const labels = {
-  preparing: 'Küçültülüyor…',
-  uploading: 'Yükleniyor…',
-  done: 'Yüklendi, okunuyor',
-  error: 'Yüklenemedi',
-} as const
+const labels: Record<UploadItem['status'], DictKey> = {
+  preparing: 'upload.preparing',
+  uploading: 'upload.uploading',
+  done: 'upload.done',
+  error: 'upload.error',
+}
 
 /**
  * Yükleme kuyruğunun görünen yüzü. İşlem arka planda sürdüğü için kullanıcı
@@ -14,6 +16,8 @@ const labels = {
  */
 export function UploadStatus() {
   const { items, dismiss } = useUploads()
+  const { t } = useI18n()
+
   if (items.length === 0) return null
 
   return (
@@ -36,7 +40,7 @@ export function UploadStatus() {
               {item.fileName}
             </p>
             <p className="truncate text-[13px] text-ink-soft">
-              {item.message ?? labels[item.status]}
+              {t(item.messageKey ?? labels[item.status])}
             </p>
           </div>
 
@@ -46,7 +50,7 @@ export function UploadStatus() {
               onClick={() => dismiss(item.id)}
               className="min-h-11 shrink-0 px-2 text-[13px] font-medium text-ink-soft"
             >
-              Kapat
+              {t('upload.dismiss')}
             </button>
           )}
         </div>

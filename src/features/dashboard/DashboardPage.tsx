@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useI18n, type DictKey } from '@/i18n'
 import { splitProducts, useProducts } from '@/hooks/useProducts'
 import { ProductCard } from '@/components/ProductCard'
 import { PendingReceipts } from './PendingReceipts'
@@ -12,15 +13,16 @@ import type { ProductRow } from '@/types/app'
 
 type Filter = 'all' | 'active' | 'soon' | 'expired'
 
-const filters: Array<{ id: Filter; label: string }> = [
-  { id: 'all', label: 'Hepsi' },
-  { id: 'active', label: 'Sürüyor' },
-  { id: 'soon', label: 'Yaklaşan' },
-  { id: 'expired', label: 'Dolmuş' },
+const filters: Array<{ id: Filter; label: DictKey }> = [
+  { id: 'all', label: 'dash.filter.all' },
+  { id: 'active', label: 'dash.filter.active' },
+  { id: 'soon', label: 'dash.filter.soon' },
+  { id: 'expired', label: 'dash.filter.expired' },
 ]
 
 export function DashboardPage() {
   const { data, isLoading, isError, refetch } = useProducts()
+  const { t } = useI18n()
   const [filter, setFilter] = useState<Filter>('all')
 
   const { awaitingConfirmation, expiringSoon, all } = useMemo(
@@ -43,10 +45,11 @@ export function DashboardPage() {
   if (isError) {
     return (
       <ErrorNote
-        description="Ürünler getirilemedi. Bağlantını kontrol edip tekrar dene."
+        title={t('common.error')}
+        description={t('dash.loadError')}
         action={
           <Button size="sm" variant="secondary" onClick={() => void refetch()}>
-            Tekrar dene
+            {t('dash.retry')}
           </Button>
         }
       />
@@ -62,7 +65,7 @@ export function DashboardPage() {
       {awaitingConfirmation.length > 0 && (
         <section className="mb-8">
           <SectionTitle tone="attention" count={awaitingConfirmation.length}>
-            Onay bekliyor
+            {t('dash.awaiting')}
           </SectionTitle>
           <div className="flex flex-col gap-2">
             {groupByReceipt(awaitingConfirmation).map(
@@ -72,11 +75,10 @@ export function DashboardPage() {
                   className="border-soon/40 bg-soon-soft/40 p-4"
                 >
                   <p className="font-display text-[15px] font-semibold text-ink">
-                    {products[0]?.merchant ?? 'Yeni fiş'}
+                    {products[0]?.merchant ?? t('dash.newReceipt')}
                   </p>
                   <p className="mt-1 text-[13px] leading-relaxed text-ink-soft">
-                    {products.length} ürün okundu. Bilgileri kontrol edip
-                    onaylayana kadar hatırlatma gelmez.
+                    {t('dash.awaitingBody', { count: products.length })}
                   </p>
                   <ul className="mt-3 flex flex-col gap-1">
                     {products.slice(0, 3).map((p) => (
@@ -86,12 +88,12 @@ export function DashboardPage() {
                     ))}
                     {products.length > 3 && (
                       <li className="text-[13px] text-ink-faint">
-                        ve {products.length - 3} tane daha
+                        {t('dash.andMore', { count: products.length - 3 })}
                       </li>
                     )}
                   </ul>
                   <Link to={`/onay/${receiptId}`} className="mt-4 block">
-                    <Button full>Kontrol et ve onayla</Button>
+                    <Button full>{t('dash.review')}</Button>
                   </Link>
                 </Card>
               ),
@@ -103,7 +105,7 @@ export function DashboardPage() {
       {expiringSoon.length > 0 && (
         <section className="mb-8">
           <SectionTitle count={expiringSoon.length}>
-            Süresi yaklaşanlar
+            {t('dash.expiring')}
           </SectionTitle>
           <div className="flex flex-col gap-2">
             {expiringSoon.map((product) => (
@@ -114,7 +116,7 @@ export function DashboardPage() {
       )}
 
       <section>
-        <SectionTitle count={filtered.length}>Tüm ürünler</SectionTitle>
+        <SectionTitle count={filtered.length}>{t('dash.all')}</SectionTitle>
 
         {all.length > 0 && (
           <div className="mb-3 flex flex-wrap gap-1.5">
@@ -131,7 +133,7 @@ export function DashboardPage() {
                     : 'bg-sunken text-ink-soft hover:text-ink',
                 )}
               >
-                {f.label}
+                {t(f.label)}
               </button>
             ))}
           </div>
@@ -139,11 +141,11 @@ export function DashboardPage() {
 
         {filtered.length === 0 ? (
           <EmptyState
-            title={hasAnything ? 'Bu filtrede ürün yok' : 'Henüz ürün yok'}
+            title={
+              hasAnything ? t('dash.emptyFilterTitle') : t('dash.emptyTitle')
+            }
             description={
-              hasAnything
-                ? 'Başka bir filtre dene ya da yeni bir fiş yükle.'
-                : 'Sağ alttaki artıya dokunup ilk fişini yükle. Ürünleri okuyup garanti sürelerini takip etmeye başlayalım.'
+              hasAnything ? t('dash.emptyFilterBody') : t('dash.emptyBody')
             }
           />
         ) : (

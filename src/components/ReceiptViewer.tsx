@@ -1,4 +1,5 @@
 import { useSignedUrl } from '@/hooks/useReceiptStatus'
+import { useI18n } from '@/i18n'
 import { Skeleton } from '@/components/ui/Spinner'
 import { cn } from '@/lib/cn'
 
@@ -16,6 +17,7 @@ export function ReceiptViewer({
   className?: string
 }) {
   const { data: url, isLoading, isError } = useSignedUrl(filePath)
+  const { t } = useI18n()
 
   if (!filePath) return null
 
@@ -31,7 +33,7 @@ export function ReceiptViewer({
           className,
         )}
       >
-        Fiş görüntülenemedi. Sayfayı yenilemeyi dene.
+        {t('receipt.viewError')}
       </div>
     )
   }
@@ -44,7 +46,7 @@ export function ReceiptViewer({
         <object data={url} type="application/pdf" className="h-80 w-full">
           <div className="px-4 py-6 text-center">
             <p className="text-[14px] text-ink-soft">
-              PDF burada gösterilemiyor.
+              {t('receipt.pdfFallback')}
             </p>
             <a
               href={url}
@@ -52,7 +54,7 @@ export function ReceiptViewer({
               rel="noreferrer"
               className="mt-2 inline-block text-[14px] font-medium text-accent underline underline-offset-4"
             >
-              Yeni sekmede aç
+              {t('receipt.openNewTab')}
             </a>
           </div>
         </object>
@@ -69,11 +71,11 @@ export function ReceiptViewer({
         'block overflow-hidden rounded-card border border-line bg-sunken',
         className,
       )}
-      aria-label="Fişi büyüt"
+      aria-label={t('receipt.zoom')}
     >
       <img
         src={url}
-        alt="Yüklenen fiş"
+        alt={t('receipt.alt')}
         loading="lazy"
         className="max-h-[70vh] w-full object-contain"
       />

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDeleteProduct, useProduct } from '@/hooks/useProducts'
+import { useI18n } from '@/i18n'
 import { TimeBar } from '@/components/TimeBar'
 import { ReceiptViewer } from '@/components/ReceiptViewer'
 import { Button } from '@/components/ui/Button'
@@ -22,13 +23,17 @@ export function ProductDetailPage() {
   const navigate = useNavigate()
   const { data: product, isLoading, isError } = useProduct(id)
   const remove = useDeleteProduct()
+  const { t } = useI18n()
   const [confirming, setConfirming] = useState(false)
 
   if (isLoading) return <Skeleton className="h-96" />
 
   if (isError || !product) {
     return (
-      <ErrorNote description="Bu ürünü bulamadım. Listeden tekrar seçmeyi dene." />
+      <ErrorNote
+        title={t('common.error')}
+        description={t('product.notFound')}
+      />
     )
   }
 
@@ -41,7 +46,7 @@ export function ProductDetailPage() {
           <StatusBadge status={product.warranty_status} />
           {!product.is_confirmed && (
             <span className="rounded-full bg-soon-soft px-2 py-0.5 text-[12px] font-medium text-soon">
-              Onay bekliyor
+              {t('product.awaiting')}
             </span>
           )}
         </div>
@@ -72,26 +77,34 @@ export function ProductDetailPage() {
       </Card>
 
       <Card className="divide-y divide-line">
-        <Row label="Alım tarihi" value={formatLongDate(product.purchase_date)} mono />
         <Row
-          label="Garanti"
+          label={t('product.purchaseDate')}
+          value={formatLongDate(product.purchase_date)}
+          mono
+        />
+        <Row
+          label={t('product.warranty')}
           value={warrantyMonthsLabel(product.warranty_months)}
         />
         <Row
-          label="Garanti bitişi"
+          label={t('product.warrantyEnd')}
           value={formatLongDate(product.warranty_end)}
           mono
         />
-        <Row label="Fiyat" value={formatMoney(product.price)} mono />
-        {product.category && <Row label="Kategori" value={product.category} />}
+        <Row label={t('product.price')} value={formatMoney(product.price)} mono />
+        {product.category && (
+          <Row label={t('product.category')} value={product.category} />
+        )}
         {product.serial_number && (
-          <Row label="Seri no" value={product.serial_number} mono />
+          <Row label={t('product.serial')} value={product.serial_number} mono />
         )}
       </Card>
 
       {product.notes && (
         <Card className="p-4">
-          <p className="mb-1 text-[13px] font-medium text-ink-faint">Not</p>
+          <p className="mb-1 text-[13px] font-medium text-ink-faint">
+            {t('product.notes')}
+          </p>
           <p className="whitespace-pre-wrap text-[15px] leading-relaxed text-ink">
             {product.notes}
           </p>
@@ -100,7 +113,9 @@ export function ProductDetailPage() {
 
       {product.file_path && (
         <section>
-          <p className="mb-2 text-[13px] font-medium text-ink-faint">Fiş</p>
+          <p className="mb-2 text-[13px] font-medium text-ink-faint">
+            {t('receipt.label')}
+          </p>
           <ReceiptViewer filePath={product.file_path} />
         </section>
       )}
@@ -108,7 +123,7 @@ export function ProductDetailPage() {
       <div className="flex gap-2">
         <Link to={`/urun/${product.id}/duzenle`} className="flex-1">
           <Button variant="secondary" full>
-            Düzenle
+            {t('product.edit')}
           </Button>
         </Link>
         <Button
@@ -116,15 +131,15 @@ export function ProductDetailPage() {
           onClick={() => setConfirming(true)}
           disabled={remove.isPending}
         >
-          Sil
+          {t('product.delete')}
         </Button>
       </div>
 
       {confirming && (
         <Card className="border-critical/25 bg-critical-soft/50 p-4">
-          <p className="font-medium text-ink">Bu ürün silinsin mi?</p>
+          <p className="font-medium text-ink">{t('product.deleteAsk')}</p>
           <p className="mt-1 text-[14px] text-ink-soft">
-            Geri alınamaz. Fiş dosyası yerinde kalır.
+            {t('product.deleteBody')}
           </p>
           <div className="mt-3 flex gap-2">
             <Button
@@ -137,10 +152,10 @@ export function ProductDetailPage() {
               }
             >
               {remove.isPending && <Spinner />}
-              Evet, sil
+              {t('product.deleteYes')}
             </Button>
             <Button variant="ghost" onClick={() => setConfirming(false)}>
-              Vazgeç
+              {t('product.cancel')}
             </Button>
           </div>
         </Card>

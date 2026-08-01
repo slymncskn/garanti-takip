@@ -9,12 +9,14 @@ import {
 import { useQueryClient } from '@tanstack/react-query'
 import { uploadReceipt } from '@/api/receipts'
 import { validateFile } from '@/lib/image'
+import type { DictKey } from '@/i18n/dictionary'
 
 export interface UploadItem {
   id: string
   fileName: string
   status: 'preparing' | 'uploading' | 'done' | 'error'
-  message?: string
+  /** Sözlük anahtarı; metne çeviri gösterildiği yerde yapılır. */
+  messageKey?: DictKey
   receiptId?: string
 }
 
@@ -51,7 +53,7 @@ export function UploadProvider({ children }: { children: ReactNode }) {
         if (problem) {
           setItems((prev) => [
             ...prev,
-            { id, fileName: file.name, status: 'error', message: problem },
+            { id, fileName: file.name, status: 'error', messageKey: problem },
           ])
           continue
         }
@@ -71,14 +73,8 @@ export function UploadProvider({ children }: { children: ReactNode }) {
             setTimeout(() => {
               setItems((prev) => prev.filter((item) => item.id !== id))
             }, 4000)
-          } catch (error) {
-            patch(id, {
-              status: 'error',
-              message:
-                error instanceof Error
-                  ? 'Yükleme tamamlanamadı. Bağlantını kontrol edip tekrar dene.'
-                  : 'Yükleme tamamlanamadı.',
-            })
+          } catch {
+            patch(id, { status: 'error', messageKey: 'upload.failedBody' })
           }
         })()
       }

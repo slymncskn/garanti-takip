@@ -1,10 +1,12 @@
+import { useI18n } from '@/i18n'
 import { cn } from '@/lib/cn'
 
 export function Spinner({ className }: { className?: string }) {
+  const { t } = useI18n()
   return (
     <span
       role="status"
-      aria-label="Yükleniyor"
+      aria-label={t('common.loading')}
       className={cn(
         'inline-block size-4 animate-spin rounded-full border-2 border-current border-t-transparent',
         className,

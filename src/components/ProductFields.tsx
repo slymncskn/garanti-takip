@@ -1,5 +1,6 @@
 import { TextAreaField, TextField } from '@/components/ui/Field'
 import { WarrantyPicker } from './WarrantyPicker'
+import { useI18n } from '@/i18n'
 import { formatDate } from '@/lib/format'
 import type { ProductDraft } from '@/types/app'
 
@@ -15,6 +16,8 @@ export function ProductFields({
   showMerchant?: boolean
   merchant?: string | null
 }) {
+  const { t } = useI18n()
+
   const set = <K extends keyof ProductDraft>(key: K, value: ProductDraft[K]) =>
     onChange({ ...draft, [key]: value })
 
@@ -23,21 +26,21 @@ export function ProductFields({
   return (
     <div className="flex flex-col gap-4">
       <TextField
-        label="Ürün adı"
+        label={t('fields.name')}
         required
         value={draft.name}
         onChange={(e) => set('name', e.target.value)}
-        placeholder="Örn. Çamaşır makinesi"
+        placeholder={t('fields.namePlaceholder')}
       />
 
       <div className="grid grid-cols-2 gap-3">
         <TextField
-          label="Marka"
+          label={t('fields.brand')}
           value={draft.brand}
           onChange={(e) => set('brand', e.target.value)}
         />
         <TextField
-          label="Kategori"
+          label={t('fields.category')}
           value={draft.category}
           onChange={(e) => set('category', e.target.value)}
         />
@@ -45,13 +48,14 @@ export function ProductFields({
 
       {showMerchant && merchant && (
         <p className="text-[13px] text-ink-faint">
-          Satıcı: <span className="text-ink-soft">{merchant}</span>
+          {t('fields.merchant')}:{' '}
+          <span className="text-ink-soft">{merchant}</span>
         </p>
       )}
 
       <div className="grid grid-cols-2 gap-3">
         <TextField
-          label="Alım tarihi"
+          label={t('fields.purchaseDate')}
           type="date"
           numeric
           required
@@ -59,7 +63,7 @@ export function ProductFields({
           onChange={(e) => set('purchase_date', e.target.value)}
         />
         <TextField
-          label="Fiyat"
+          label={t('fields.price')}
           inputMode="decimal"
           numeric
           placeholder="0,00"
@@ -75,7 +79,7 @@ export function ProductFields({
 
       {warrantyEnd && (
         <p className="rounded-xl bg-sunken px-3 py-2.5 text-[13px] text-ink-soft">
-          Garanti bitişi:{' '}
+          {t('fields.warrantyEndPreview')}{' '}
           <span className="tabular font-medium text-ink">
             {formatDate(warrantyEnd)}
           </span>
@@ -83,16 +87,16 @@ export function ProductFields({
       )}
 
       <TextField
-        label="Seri numarası"
+        label={t('fields.serial')}
         value={draft.serial_number}
         onChange={(e) => set('serial_number', e.target.value)}
       />
 
       <TextAreaField
-        label="Not"
+        label={t('fields.notes')}
         value={draft.notes}
         onChange={(e) => set('notes', e.target.value)}
-        placeholder="Servis telefonu, nerede durduğu, aklında kalsın istediğin her şey"
+        placeholder={t('fields.notesPlaceholder')}
       />
     </div>
   )

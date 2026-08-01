@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useConfirmReceipt, useProductsByReceipt } from '@/hooks/useProducts'
 import { useReceipt } from '@/hooks/useReceiptStatus'
+import { useI18n } from '@/i18n'
 import { ReceiptViewer } from '@/components/ReceiptViewer'
 import { ProductFields } from '@/components/ProductFields'
 import { Button } from '@/components/ui/Button'
@@ -25,6 +26,7 @@ export function ReviewPage() {
   const receipt = useReceipt(receiptId)
   const products = useProductsByReceipt(receiptId)
   const confirm = useConfirmReceipt(receiptId ?? '')
+  const { t } = useI18n()
 
   const [drafts, setDrafts] = useState<ProductDraft[] | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -41,7 +43,7 @@ export function ReviewPage() {
 
   if (receipt.isError || !receipt.data) {
     return (
-      <ErrorNote description="Bu fişi bulamadım. Ana sayfadan tekrar dene." />
+      <ErrorNote title={t('common.error')} description={t('review.notFound')} />
     )
   }
 
@@ -50,11 +52,11 @@ export function ReviewPage() {
   if (status === 'pending' || status === 'processing') {
     return (
       <EmptyState
-        title="Fiş hâlâ okunuyor"
-        description="Birkaç dakika sürebilir. Hazır olduğunda ana sayfada onay bekleyenler arasında görünecek."
+        title={t('review.stillReading')}
+        description={t('review.stillReadingBody')}
         action={
           <Link to="/">
-            <Button variant="secondary">Ana sayfaya dön</Button>
+            <Button variant="secondary">{t('review.backHome')}</Button>
           </Link>
         }
       />
@@ -65,11 +67,11 @@ export function ReviewPage() {
     return (
       <div className="flex flex-col gap-4">
         <EmptyState
-          title="Fiş okunamadı"
-          description="Bu fişten bilgi çıkaramadım. Ürünü elle ekleyebilir ya da fişi tekrar yükleyebilirsin."
+          title={t('receipt.failed')}
+          description={t('review.failedBody')}
           action={
             <Link to="/yeni">
-              <Button>Elle ekle</Button>
+              <Button>{t('receipt.manual')}</Button>
             </Link>
           }
         />
@@ -102,13 +104,13 @@ export function ReviewPage() {
 
   async function onConfirm() {
     if (list.length === 0) {
-      setError('En az bir ürün olmalı.')
+      setError(t('review.needOne'))
       return
     }
     for (const draft of list) {
       const problem = validateDraft(draft)
       if (problem) {
-        setError(problem)
+        setError(t(problem))
         return
       }
     }
@@ -118,7 +120,7 @@ export function ReviewPage() {
       await confirm.mutateAsync(list)
       navigate('/', { replace: true })
     } catch {
-      setError('Kaydedilemedi. Bağlantını kontrol edip tekrar dene.')
+      setError(t('review.saveFailed'))
     }
   }
 
@@ -126,12 +128,14 @@ export function ReviewPage() {
     <div className="pb-24">
       <header className="mb-5">
         <h1 className="font-display text-[22px] font-bold tracking-tight text-ink">
-          {status === 'confirmed' ? 'Onaylanmış fiş' : 'Okunanı kontrol et'}
+          {status === 'confirmed'
+            ? t('review.titleConfirmed')
+            : t('review.title')}
         </h1>
         <p className="mt-1 text-[14px] leading-relaxed text-ink-soft">
           {status === 'confirmed'
-            ? 'Bu fiş zaten onaylandı. Ürünleri düzenleyip yeniden kaydedebilirsin.'
-            : 'Fişin yanında duruyor. Yanlış okunan bir yer varsa düzelt, doğruysa doğrudan onayla.'}
+            ? t('review.subtitleConfirmed')
+            : t('review.subtitle')}
         </p>
       </header>
 
@@ -146,8 +150,8 @@ export function ReviewPage() {
         <div className="flex flex-col gap-4">
           {list.length === 0 && (
             <EmptyState
-              title="Bu fişte ürün yok"
-              description="Fişten ürün çıkaramadım. Aşağıdan elle ekleyebilirsin."
+              title={t('review.noProducts')}
+              description={t('review.noProductsBody')}
             />
           )}
 
@@ -155,14 +159,14 @@ export function ReviewPage() {
             <Card key={draft.id ?? `new-${index}`} className="p-4">
               <div className="mb-4 flex items-center justify-between">
                 <span className="tabular text-[13px] font-medium text-ink-faint">
-                  Ürün {index + 1}
+                  {t('review.product', { n: index + 1 })}
                 </span>
                 <button
                   type="button"
                   onClick={() => remove(index)}
                   className="min-h-11 px-2 text-[13px] font-medium text-ink-faint transition-colors hover:text-critical"
                 >
-                  Kaldır
+                  {t('review.remove')}
                 </button>
               </div>
 
@@ -176,7 +180,7 @@ export function ReviewPage() {
           ))}
 
           <Button variant="secondary" full onClick={add}>
-            Ürün ekle
+            {t('review.addProduct')}
           </Button>
         </div>
       </div>
@@ -193,7 +197,7 @@ export function ReviewPage() {
       <div className="fixed bottom-0 left-0 right-0 z-30 border-t border-line bg-paper/95 backdrop-blur safe-bottom">
         <div className="mx-auto flex max-w-2xl items-center gap-3 px-4 pt-3">
           <p className="tabular flex-1 text-[13px] text-ink-faint">
-            {list.length} ürün
+            {t('review.count', { count: list.length })}
           </p>
           <Button
             size="lg"
@@ -202,7 +206,7 @@ export function ReviewPage() {
             className="min-w-40"
           >
             {confirm.isPending && <Spinner />}
-            Onayla
+            {t('review.confirm')}
           </Button>
         </div>
       </div>

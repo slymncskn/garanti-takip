@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useOpenReceipts, useRetryReceipt } from '@/hooks/useReceiptStatus'
+import { useI18n } from '@/i18n'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { Spinner } from '@/components/ui/Spinner'
@@ -12,6 +13,7 @@ import { formatDate } from '@/lib/format'
 export function PendingReceipts() {
   const { data } = useOpenReceipts()
   const retry = useRetryReceipt()
+  const { t } = useI18n()
 
   const working = (data ?? []).filter(
     (r) => r.status === 'pending' || r.status === 'processing',
@@ -26,10 +28,12 @@ export function PendingReceipts() {
         <Card key={receipt.id} className="flex items-center gap-3 px-4 py-3.5">
           <Spinner className="shrink-0 text-ink-faint" />
           <div className="min-w-0">
-            <p className="text-[14px] font-medium text-ink">Fiş okunuyor</p>
+            <p className="text-[14px] font-medium text-ink">
+              {t('receipt.reading')}
+            </p>
             <p className="tabular text-[13px] text-ink-faint">
-              {formatDate(receipt.created_at.slice(0, 10))} · birkaç dakika
-              sürebilir
+              {formatDate(receipt.created_at.slice(0, 10))} ·{' '}
+              {t('receipt.readingHint')}
             </p>
           </div>
         </Card>
@@ -40,11 +44,13 @@ export function PendingReceipts() {
           key={receipt.id}
           className="border-critical/25 bg-critical-soft/50 px-4 py-3.5"
         >
-          <p className="text-[14px] font-medium text-ink">Fiş okunamadı</p>
+          <p className="text-[14px] font-medium text-ink">
+            {t('receipt.failed')}
+          </p>
           <p className="mt-1 text-[13px] leading-relaxed text-ink-soft">
             {receipt.retry_count >= 3
-              ? 'Birkaç kez denedik, olmadı. Ürünü elle ekleyebilirsin.'
-              : 'Tekrar deneyebilir ya da bilgileri elle girebilirsin.'}
+              ? t('receipt.failedGiveUp')
+              : t('receipt.failedRetry')}
           </p>
           <div className="mt-3 flex flex-wrap gap-2">
             {receipt.retry_count < 3 && (
@@ -54,12 +60,12 @@ export function PendingReceipts() {
                 disabled={retry.isPending}
                 onClick={() => retry.mutate(receipt.id)}
               >
-                Tekrar dene
+                {t('receipt.retry')}
               </Button>
             )}
             <Link to="/yeni">
               <Button size="sm" variant="ghost">
-                Elle ekle
+                {t('receipt.manual')}
               </Button>
             </Link>
           </div>

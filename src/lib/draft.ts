@@ -1,4 +1,5 @@
 import { todayInput, toDateInput } from './format'
+import type { DictKey } from '@/i18n/dictionary'
 import type { ProductDraft, ProductRow } from '@/types/app'
 
 export function rowToDraft(row: ProductRow): ProductDraft {
@@ -29,9 +30,12 @@ export function emptyDraft(purchaseDate?: string | null): ProductDraft {
   }
 }
 
-/** Kaydetmeden önceki tek zorunlu kontrol; sorun yoksa null. */
-export function validateDraft(draft: ProductDraft): string | null {
-  if (draft.name.trim() === '') return 'Ürün adı boş kalamaz.'
-  if (!draft.purchase_date) return 'Alım tarihi gerekli.'
+/**
+ * Kaydetmeden önceki tek zorunlu kontrol.
+ * Metin değil sözlük anahtarı döner — çeviriyi çağıran ekran yapar.
+ */
+export function validateDraft(draft: ProductDraft): DictKey | null {
+  if (draft.name.trim() === '') return 'form.nameRequired'
+  if (!draft.purchase_date) return 'form.dateRequired'
   return null
 }

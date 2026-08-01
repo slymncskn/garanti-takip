@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom'
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClient } from '@/lib/queryClient'
+import { I18nProvider } from '@/i18n'
 import { AuthProvider, useAuth } from '@/hooks/useAuth'
 import { UploadProvider } from '@/hooks/useUploads'
 import { AppShell } from '@/components/AppShell'
@@ -22,7 +23,9 @@ import { Spinner } from '@/components/ui/Spinner'
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthProvider>
+      {/* Dil en dışta: alt katmanlardaki her metin ve biçimlendirici buna bağlı. */}
+      <I18nProvider>
+        <AuthProvider>
         <UploadProvider>
           {/* GitHub Pages alt dizinde servis ediyor; basename olmadan
               yollar /garanti-takip/ önekini kaybeder. */}
@@ -49,9 +52,10 @@ export default function App() {
 
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
-          </BrowserRouter>
-        </UploadProvider>
-      </AuthProvider>
+            </BrowserRouter>
+          </UploadProvider>
+        </AuthProvider>
+      </I18nProvider>
     </QueryClientProvider>
   )
 }

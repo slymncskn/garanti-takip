@@ -1,9 +1,12 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAuth } from '@/hooks/useAuth'
+import { AuthError, useAuth } from '@/hooks/useAuth'
+import { useI18n } from '@/i18n'
 import { Button } from '@/components/ui/Button'
 import { TextField } from '@/components/ui/Field'
 import { Spinner } from '@/components/ui/Spinner'
+import { LanguageToggle } from '@/components/LanguageToggle'
+import { Credit } from '@/components/Credit'
 
 /**
  * E-postadaki sıfırlama bağlantısı buraya düşer. Supabase istemcisi
@@ -12,6 +15,7 @@ import { Spinner } from '@/components/ui/Spinner'
  */
 export function ResetPasswordPage() {
   const { session, updatePassword } = useAuth()
+  const { t } = useI18n()
   const navigate = useNavigate()
   const [password, setPassword] = useState('')
   const [repeat, setRepeat] = useState('')
@@ -21,11 +25,11 @@ export function ResetPasswordPage() {
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (password.length < 6) {
-      setError('Şifre en az 6 karakter olmalı.')
+      setError(t('reset.tooShort'))
       return
     }
     if (password !== repeat) {
-      setError('İki şifre birbirini tutmuyor.')
+      setError(t('reset.mismatch'))
       return
     }
 
@@ -35,24 +39,27 @@ export function ResetPasswordPage() {
       await updatePassword(password)
       navigate('/', { replace: true })
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Şifre değiştirilemedi.')
+      setError(err instanceof AuthError ? t(err.key) : t('reset.failed'))
     } finally {
       setBusy(false)
     }
   }
 
   return (
-    <div className="flex min-h-dvh flex-col justify-center bg-paper px-5 py-10">
-      <div className="mx-auto w-full max-w-sm">
+    <div className="flex min-h-dvh flex-col bg-paper px-5 py-6">
+      <div className="flex justify-end">
+        <LanguageToggle />
+      </div>
+
+      <div className="mx-auto flex w-full max-w-sm flex-1 flex-col justify-center">
         <h1 className="font-display text-[24px] font-bold tracking-tight text-ink">
-          Yeni şifre belirle
+          {t('reset.title')}
         </h1>
 
         {!session ? (
           <>
             <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">
-              Bu bağlantının süresi dolmuş görünüyor. Giriş ekranından yeni bir
-              sıfırlama bağlantısı isteyebilirsin.
+              {t('reset.expired')}
             </p>
             <Button
               variant="secondary"
@@ -60,13 +67,13 @@ export function ResetPasswordPage() {
               className="mt-5"
               onClick={() => navigate('/giris', { replace: true })}
             >
-              Girişe dön
+              {t('login.back')}
             </Button>
           </>
         ) : (
           <form onSubmit={onSubmit} className="mt-6 flex flex-col gap-4">
             <TextField
-              label="Yeni şifre"
+              label={t('reset.new')}
               type="password"
               autoComplete="new-password"
               required
@@ -74,7 +81,7 @@ export function ResetPasswordPage() {
               onChange={(e) => setPassword(e.target.value)}
             />
             <TextField
-              label="Yeni şifre (tekrar)"
+              label={t('reset.repeat')}
               type="password"
               autoComplete="new-password"
               required
@@ -93,11 +100,13 @@ export function ResetPasswordPage() {
 
             <Button type="submit" size="lg" full disabled={busy}>
               {busy && <Spinner />}
-              Şifreyi kaydet
+              {t('reset.submit')}
             </Button>
           </form>
         )}
       </div>
+
+      <Credit withEmail className="pt-8" />
     </div>
   )
 }

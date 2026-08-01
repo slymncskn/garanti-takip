@@ -1,3 +1,5 @@
+import type { DictKey } from '@/i18n/dictionary'
+
 /** Uzun kenar hedefi. OCR doğruluğu bu boyutta düşmüyor. */
 const MAX_EDGE = 1600
 const JPEG_QUALITY = 0.85
@@ -113,17 +115,17 @@ export function buildStoragePath(userId: string, extension: string): string {
   return `${userId}/${Date.now()}-${random}.${extension}`
 }
 
-/** Kullanıcıya gösterilecek dosya doğrulaması; sorun yoksa null. */
-export function validateFile(file: File): string | null {
-  if (file.size > MAX_FILE_BYTES) {
-    return 'Dosya 10 MB’tan büyük. Daha küçük bir fotoğraf dene.'
-  }
+/**
+ * Dosya doğrulaması. Metin değil sözlük anahtarı döner — çeviriyi gösteren
+ * bileşen yapar. Sorun yoksa null.
+ */
+export function validateFile(file: File): DictKey | null {
+  if (file.size > MAX_FILE_BYTES) return 'upload.tooBig'
+
   const type = file.type.toLowerCase()
   const ok =
     ACCEPTED_TYPES.includes(type as (typeof ACCEPTED_TYPES)[number]) ||
     type.startsWith('image/')
-  if (!ok) {
-    return 'Bu dosya tipini okuyamıyorum. Fotoğraf ya da PDF yükle.'
-  }
-  return null
+
+  return ok ? null : 'upload.badType'
 }

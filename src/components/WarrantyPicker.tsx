@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useI18n } from '@/i18n'
 import { cn } from '@/lib/cn'
 import { warrantyMonthsLabel } from '@/lib/format'
 
@@ -15,12 +16,13 @@ export function WarrantyPicker({
   value: number
   onChange: (months: number) => void
 }) {
+  const { t } = useI18n()
   const [custom, setCustom] = useState(!presets.includes(value))
 
   return (
     <div className="flex flex-col gap-2">
       <span className="text-[13px] font-medium text-ink-soft">
-        Garanti süresi
+        {t('warranty.label')}
       </span>
 
       <div className="flex flex-wrap gap-1.5">
@@ -42,7 +44,7 @@ export function WarrantyPicker({
                   : 'bg-sunken text-ink-soft hover:text-ink',
               )}
             >
-              <span className="tabular">{months}</span> ay
+              <span className="tabular">{months}</span> {t('warranty.months')}
             </button>
           )
         })}
@@ -58,7 +60,7 @@ export function WarrantyPicker({
               : 'bg-sunken text-ink-soft hover:text-ink',
           )}
         >
-          Özel
+          {t('warranty.custom')}
         </button>
       </div>
 
@@ -71,14 +73,16 @@ export function WarrantyPicker({
             inputMode="numeric"
             value={value}
             onChange={(e) => onChange(Number(e.target.value))}
-            aria-label="Garanti süresi (ay)"
+            aria-label={t('warranty.label')}
             className="tabular w-28 min-h-11 rounded-xl border border-line-strong bg-surface px-3 py-2 focus:border-accent"
           />
-          <span className="text-[14px] text-ink-soft">ay (0–240)</span>
+          <span className="text-[14px] text-ink-soft">
+            {t('warranty.customHint')}
+          </span>
         </div>
       ) : (
         <p className="text-[13px] text-ink-faint">
-          {warrantyMonthsLabel(value)} garanti
+          {t('warranty.summary', { label: warrantyMonthsLabel(value) })}
         </p>
       )}
     </div>

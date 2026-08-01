@@ -186,6 +186,10 @@ Veri erişimini UI bileşenlerine dağıtma. Tek bir veri katmanı kur:
 
 ```
 src/
+  i18n/
+    dictionary.ts      // tr + en metinleri, anahtarlar birebir eşleşir
+    locale.ts          // etkin dil (biçimlendiriciler buradan okur)
+    index.tsx          // I18nProvider + useI18n
   lib/
     supabase.ts        // client (anon key)
     image.ts           // canvas ile yeniden boyutlandırma
@@ -275,7 +279,11 @@ Tüm alanlar, fiş görseli, kalan süre, düzenle ve sil. Elle ürün ekleme de
 
 **Kalite tabanı:** mobil öncelikli (ana kullanım telefondan olacak), klavye odağı görünür, `prefers-reduced-motion` desteklenir, dokunma hedefleri ≥44 px.
 
-**Metin dili:** Arayüz tamamen Türkçe. Sistem terimleriyle değil, kullanıcının diliyle konuş — "OCR işlemi başarısız" değil, "Fiş okunamadı, bilgileri elle girebilirsin". Boş ekranlar davet edici olsun, hatalar ne yapılacağını söylesin.
+**Metin dili:** Varsayılan Türkçe, İngilizce seçeneği var (üst çubuktaki TR/EN anahtarı, tercih `localStorage`'da). Sistem terimleriyle değil, kullanıcının diliyle konuş — "OCR işlemi başarısız" değil, "Fiş okunamadı, bilgileri elle girebilirsin". Boş ekranlar davet edici olsun, hatalar ne yapılacağını söylesin. Bu ton her iki dilde de korunmalı.
+
+> Arayüzde sabit metin bırakma. Tüm metinler `src/i18n/dictionary.ts` içinde; İngilizce sözlük Türkçe sözlükle birebir aynı anahtarları taşımak zorunda, tip kontrolü bunu zorluyor. Hata döndüren saf fonksiyonlar (`validateDraft`, `validateFile`, auth hataları) metin değil **sözlük anahtarı** döndürür; çeviriyi gösteren bileşen yapar.
+>
+> Tarih, para ve "42 gün kaldı" biçimlendiricileri `lib/format.ts` içinde ve etkin dili `i18n/locale.ts`'ten okurlar — bileşenlerden dil parametresi geçirilmez.
 
 ---
 
@@ -316,7 +324,9 @@ Aynı dört değişken GitHub deposunda **Settings · Secrets and variables · A
 
 ## 12. Kapsam dışı
 
-Bunları yapma, istenmedi: çoklu kullanıcı yönetimi, ekip/paylaşım özellikleri, ödeme, ürün kategorisi otomatik sınıflandırma, garanti belgesi oluşturma, push bildirimi (hatırlatma e-posta ile gidiyor), tema değiştirici, çoklu dil.
+Bunları yapma, istenmedi: çoklu kullanıcı yönetimi, ekip/paylaşım özellikleri, ödeme, ürün kategorisi otomatik sınıflandırma, garanti belgesi oluşturma, push bildirimi (hatırlatma e-posta ile gidiyor), tema değiştirici.
+
+> Not: "çoklu dil" başlangıçta bu listedeydi; sonradan Türkçe/İngilizce seçeneği istendi ve eklendi (§9). Hatırlatma e-postaları hâlâ yalnızca Türkçe — n8n'deki `Maili Hazirla` node'u dil bilmiyor.
 
 ---
 

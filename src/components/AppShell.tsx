@@ -2,10 +2,13 @@ import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { UploadButton } from '@/features/upload/UploadButton'
 import { UploadStatus } from '@/features/upload/UploadStatus'
 import { useAuth } from '@/hooks/useAuth'
+import { useI18n } from '@/i18n'
+import { LanguageToggle } from '@/components/LanguageToggle'
 import { cn } from '@/lib/cn'
 
 export function AppShell() {
   const { signOut } = useAuth()
+  const { t } = useI18n()
   const { pathname } = useLocation()
 
   // Onay ve form ekranlarının kendi alt aksiyonu var; yükleme düğmesi
@@ -15,16 +18,20 @@ export function AppShell() {
   return (
     <div className="min-h-dvh bg-paper">
       <header className="sticky top-0 z-30 border-b border-line bg-paper/90 backdrop-blur safe-top">
-        <div className="mx-auto flex h-14 max-w-2xl items-center justify-between px-4">
-          <Link
-            to="/"
-            className="font-display text-[17px] font-bold tracking-tight text-ink"
-          >
-            Garanti<span className="text-ink-faint">Takip</span>
+        <div className="mx-auto flex h-16 max-w-2xl items-center justify-between px-4">
+          <Link to="/" className="min-w-0 leading-none">
+            <span className="block font-display text-[17px] font-bold tracking-tight text-ink">
+              Garanti<span className="text-ink-faint">Takip</span>
+            </span>
+            <span className="mt-1 block truncate text-[10px] font-medium tracking-wide text-ink-faint">
+              {t('app.credit')}
+            </span>
           </Link>
 
           <nav className="flex items-center gap-1">
-            <IconLink to="/ara" label="Ara">
+            <LanguageToggle className="mr-1" />
+
+            <IconLink to="/ara" label={t('nav.search')}>
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -42,7 +49,7 @@ export function AppShell() {
             <button
               type="button"
               onClick={() => void signOut()}
-              aria-label="Çıkış yap"
+              aria-label={t('nav.signOut')}
               className="flex size-11 items-center justify-center rounded-xl text-ink-faint transition-colors hover:bg-sunken hover:text-ink"
             >
               <svg

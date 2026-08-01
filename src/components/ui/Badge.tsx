@@ -18,7 +18,7 @@ export function StatusBadge({
         statusStyles[status].chip,
       )}
     >
-      {children ?? statusLabel[status]}
+      {children ?? statusLabel(status)}
     </span>
   )
 }

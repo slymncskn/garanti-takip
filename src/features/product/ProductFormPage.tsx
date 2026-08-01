@@ -5,6 +5,7 @@ import {
   useProduct,
   useUpdateProduct,
 } from '@/hooks/useProducts'
+import { useI18n } from '@/i18n'
 import { ProductFields } from '@/components/ProductFields'
 import { Button } from '@/components/ui/Button'
 import { ErrorNote } from '@/components/ui/EmptyState'
@@ -24,6 +25,7 @@ export function ProductFormPage() {
   const existing = useProduct(id)
   const create = useCreateProduct()
   const update = useUpdateProduct(id ?? '')
+  const { t } = useI18n()
 
   const [draft, setDraft] = useState<ProductDraft>(() => emptyDraft())
   const [error, setError] = useState<string | null>(null)
@@ -39,7 +41,9 @@ export function ProductFormPage() {
   if (isEdit && existing.isLoading) return <Skeleton className="h-96" />
 
   if (isEdit && (existing.isError || (existing.isSuccess && !existing.data))) {
-    return <ErrorNote description="Bu ürünü bulamadım." />
+    return (
+      <ErrorNote title={t('common.error')} description={t('form.notFound')} />
+    )
   }
 
   const busy = create.isPending || update.isPending
@@ -48,7 +52,7 @@ export function ProductFormPage() {
     e.preventDefault()
     const problem = validateDraft(draft)
     if (problem) {
-      setError(problem)
+      setError(t(problem))
       return
     }
 
@@ -62,7 +66,7 @@ export function ProductFormPage() {
         navigate(`/urun/${newId}`, { replace: true })
       }
     } catch {
-      setError('Kaydedilemedi. Bağlantını kontrol edip tekrar dene.')
+      setError(t('form.saveFailed'))
     }
   }
 
@@ -70,11 +74,11 @@ export function ProductFormPage() {
     <form onSubmit={onSubmit} className="flex flex-col gap-5 pb-8">
       <header>
         <h1 className="font-display text-[22px] font-bold tracking-tight text-ink">
-          {isEdit ? 'Ürünü düzenle' : 'Ürün ekle'}
+          {isEdit ? t('form.editTitle') : t('form.newTitle')}
         </h1>
         {!isEdit && (
           <p className="mt-1 text-[14px] leading-relaxed text-ink-soft">
-            Fişi olmayan bir ürünü de takibe alabilirsin.
+            {t('form.newSubtitle')}
           </p>
         )}
       </header>
@@ -93,7 +97,7 @@ export function ProductFormPage() {
       <div className="flex gap-2">
         <Button type="submit" size="lg" disabled={busy} className="flex-1">
           {busy && <Spinner />}
-          Kaydet
+          {t('form.save')}
         </Button>
         <Button
           type="button"
@@ -101,7 +105,7 @@ export function ProductFormPage() {
           size="lg"
           onClick={() => navigate(-1)}
         >
-          Vazgeç
+          {t('form.cancel')}
         </Button>
       </div>
     </form>

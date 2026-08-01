@@ -8,6 +8,18 @@ import {
 } from 'react'
 import type { Session, User } from '@supabase/supabase-js'
 import { supabase } from '@/lib/supabase'
+import type { DictKey } from '@/i18n/dictionary'
+
+/** Hata metnini değil sözlük anahtarını taşır; çeviriyi ekran yapar. */
+export class AuthError extends Error {
+  readonly key: DictKey
+
+  constructor(key: DictKey) {
+    super(key)
+    this.name = 'AuthError'
+    this.key = key
+  }
+}
 
 interface AuthState {
   session: Session | null
@@ -62,7 +74,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           email: email.trim(),
           password,
         })
-        if (error) throw new Error(authMessage(error.message))
+        if (error) throw new AuthError(authKey(error.message))
       },
       async signOut() {
         await supabase.auth.signOut()
@@ -75,11 +87,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           email.trim(),
           { redirectTo },
         )
-        if (error) throw new Error(authMessage(error.message))
+        if (error) throw new AuthError(authKey(error.message))
       },
       async updatePassword(password) {
         const { error } = await supabase.auth.updateUser({ password })
-        if (error) throw new Error(authMessage(error.message))
+        if (error) throw new AuthError(authKey(error.message))
         setRecovery(false)
       },
     }),
@@ -96,23 +108,17 @@ export function useAuth(): AuthState {
   return ctx
 }
 
-/** Supabase'in İngilizce hatalarını kullanıcının diline çevirir. */
-function authMessage(raw: string): string {
+/** Supabase'in ham hata metnini sözlük anahtarına eşler. */
+function authKey(raw: string): DictKey {
   const message = raw.toLowerCase()
-  if (message.includes('invalid login credentials')) {
-    return 'E-posta ya da şifre hatalı.'
-  }
-  if (message.includes('email not confirmed')) {
-    return 'Bu e-posta henüz doğrulanmamış.'
-  }
+  if (message.includes('invalid login credentials')) return 'auth.badCredentials'
+  if (message.includes('email not confirmed')) return 'auth.notConfirmed'
   if (message.includes('rate limit') || message.includes('too many')) {
-    return 'Çok fazla deneme oldu. Birkaç dakika sonra tekrar dene.'
+    return 'auth.rateLimited'
   }
-  if (message.includes('password should be at least')) {
-    return 'Şifre en az 6 karakter olmalı.'
-  }
+  if (message.includes('password should be at least')) return 'auth.weakPassword'
   if (message.includes('failed to fetch') || message.includes('network')) {
-    return 'Bağlantı kurulamadı. İnterneti kontrol et.'
+    return 'auth.offline'
   }
-  return 'Bir şeyler ters gitti. Tekrar dene.'
+  return 'auth.generic'
 }
