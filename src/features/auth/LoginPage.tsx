@@ -127,7 +127,7 @@ export function LoginPage() {
         )}
       </div>
 
-      <Credit withEmail className="pt-8" />
+      <Credit className="pt-8" />
     </div>
   )
 }

@@ -8,7 +8,6 @@
 export const tr = {
   'app.name': 'GarantiTakip',
   'app.credit': 'Created By Süleyman Coşkun',
-  'app.email': 's.coskun@outlook.com',
 
   'lang.switch': 'Dili değiştir',
 
@@ -213,7 +212,6 @@ export type DictKey = keyof typeof tr
 export const en: Record<DictKey, string> = {
   'app.name': 'GarantiTakip',
   'app.credit': 'Created By Süleyman Coşkun',
-  'app.email': 's.coskun@outlook.com',
 
   'lang.switch': 'Change language',
 

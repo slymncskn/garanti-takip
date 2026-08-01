@@ -106,7 +106,7 @@ export function ResetPasswordPage() {
         )}
       </div>
 
-      <Credit withEmail className="pt-8" />
+      <Credit className="pt-8" />
     </div>
   )
 }
