@@ -11,13 +11,11 @@ Backend (Supabase + n8n) kuruludur; bu repo yalnızca PWA'yı içerir.
 npm install
 ```
 
-`.env.local` hazır; anon key dolu. Kalan tek boş değer:
+`.env.local` hazır — yalnızca iki değer var, ikisi de dolu:
+`VITE_SUPABASE_URL` ve `VITE_SUPABASE_ANON_KEY`.
 
-| Değişken | Nereden |
-|---|---|
-| `VITE_N8N_WEBHOOK_SECRET` | n8n'deki `Garanti Webhook Secret` (Header Auth) değeri |
-
-`service_role` anahtarı buraya asla girmez.
+n8n bilgileri istemciye girmez; webhook bildirimi `notify-receipt` Edge
+Function'ı üzerinden gider. `service_role` anahtarı hiçbir zaman buraya girmez.
 
 ```bash
 npm run dev
@@ -61,9 +59,10 @@ otomatik yapılır. Elle tetiklemek için Actions sekmesinden **Run workflow**.
 Tek seferlik kurulum:
 
 1. Depoda **Settings · Pages · Source** → **GitHub Actions**
-2. **Settings · Secrets and variables · Actions** altına dört secret ekle:
-   `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`, `VITE_N8N_WEBHOOK_URL`,
-   `VITE_N8N_WEBHOOK_SECRET`
+2. **Settings · Secrets and variables · Actions** altına iki secret ekle:
+   `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`
+3. Supabase panel · **Edge Functions · Secrets** altına ikisini ekle:
+   `N8N_WEBHOOK_URL`, `N8N_WEBHOOK_SECRET`
 3. Supabase panel · **Authentication · URL Configuration** → Redirect URLs'e
    `https://<kullanıcı>.github.io/<repo>/**` ekle (şifre sıfırlama için)
 

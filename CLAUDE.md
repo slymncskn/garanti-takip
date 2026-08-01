@@ -140,16 +140,20 @@ Boş/`null` `q` tüm kayıtları döndürür.
 
 ## 6. n8n sözleşmesi
 
-**Webhook:** `POST https://n8n.srv1508998.hstgr.cloud/webhook/receipt-uploaded`
+**Frontend n8n'i doğrudan çağırmaz.** Bildirim `notify-receipt` Edge Function'ı üzerinden gider:
 
 ```
-Content-Type: application/x-www-form-urlencoded
-Body:          secret=<VITE_N8N_WEBHOOK_SECRET>&receipt_id=<uuid>
+Frontend  → supabase.functions.invoke('notify-receipt', { body: { receipt_id } })
+Function  → POST https://n8n.srv1508998.hstgr.cloud/webhook/receipt-uploaded
+            Content-Type: application/x-www-form-urlencoded
+            Body: secret=<N8N_WEBHOOK_SECRET>&receipt_id=<uuid>
 ```
 
-> ⚠️ **Özel başlık kullanma.** Sır gövdede taşınır; n8n tarafında webhook node'u `authentication: none` ile çalışır ve `onlyRunIf` ifadesi gövdedeki `secret` alanını doğrular. Eşleşmeyen istek execution oluşturmadan 200 alır.
+> ⚠️ **Neden röle var:** Kullanıcının ağında `hstgr.cloud` alan adı **SNI seviyesinde engelli** — TLS el sıkışmasında alan adını gören ara katman bağlantıyı RST ile kesiyor. Aynı IP'ye farklı SNI ile TLS kuruluyor, düz HTTP çalışıyor; engellenen yalnızca bu alan adı. Yani tarayıcıdan n8n'e ulaşmanın yolu yok. Edge Function Supabase altyapısında çalıştığı için etkilenmiyor.
 >
-> Sebep: özel başlık (ör. `x-garanti-secret`) taşıyan tarayıcı isteği önce OPTIONS ön kontrolü yapar, tarayıcı ön kontrolde özel başlıkları **göndermez**, n8n isteği kimliksiz sayıp reddeder ve asıl POST hiç gönderilmez. Sessizce başarısız olur — yükleme yalnızca saatlik yedek tetikleyiciyle işlenir. Bu tuzağa bir kez düşüldü; istek bilerek "basit istek" olarak kurulmuştur (`mode: 'no-cors'`, form-urlencoded, özel başlık yok).
+> Yan fayda: webhook sırrı artık istemci paketinde değil. `N8N_WEBHOOK_URL` ve `N8N_WEBHOOK_SECRET` Supabase panelinde **Edge Functions · Secrets** altında tutulur.
+
+> ⚠️ n8n tarafında webhook node'u `authentication: none` ile çalışır; `onlyRunIf` ifadesi gövdedeki `secret` alanını doğrular, eşleşmeyen istek execution oluşturmadan 200 alır. **Özel başlıkla kimlik doğrulamaya geri dönme** — tarayıcıdan çağrılırsa OPTIONS ön kontrolü özel başlık taşımaz, n8n isteği reddeder ve asıl POST hiç gönderilmez; sessizce başarısız olur.
 
 Davranış kuralları:
 
@@ -184,11 +188,10 @@ Veri erişimini UI bileşenlerine dağıtma. Tek bir veri katmanı kur:
 src/
   lib/
     supabase.ts        // client (anon key)
-    n8n.ts             // webhook bildirimi, hata yutan
     image.ts           // canvas ile yeniden boyutlandırma
     format.ts          // tarih, para, "42 gün kaldı" metinleri
   api/
-    receipts.ts        // upload, liste, durum sorgulama
+    receipts.ts        // upload, liste, durum sorgulama, n8n bildirimi
     products.ts        // CRUD, onaylama, arama
   hooks/
     useAuth.ts
@@ -283,8 +286,13 @@ Tüm alanlar, fiş görseli, kalan süre, düzenle ve sil. Elle ürün ekleme de
 ```
 VITE_SUPABASE_URL=https://ycvzelwoouxkxljmkzcy.supabase.co
 VITE_SUPABASE_ANON_KEY=<anon key>
-VITE_N8N_WEBHOOK_URL=https://n8n.srv1508998.hstgr.cloud/webhook/receipt-uploaded
-VITE_N8N_WEBHOOK_SECRET=<n8n Header Auth ile aynı değer>
+```
+
+n8n bilgileri istemciye girmez. Supabase panelinde **Edge Functions · Secrets** altında tutulurlar ve yalnızca `notify-receipt` fonksiyonu okur:
+
+```
+N8N_WEBHOOK_URL=https://n8n.srv1508998.hstgr.cloud/webhook/receipt-uploaded
+N8N_WEBHOOK_SECRET=<n8n onlyRunIf ifadesindeki değer>
 ```
 
 `VITE_` önekli her değişken derlenmiş pakette görünür. Anon key için bu tasarım gereğidir. Webhook secret'ı da görünür olacaktır; bu kabul edilen bir risktir çünkü en kötü senaryoda birileri n8n'i boşuna tetikler — veriye erişemez. Buraya başka hiçbir sır koyma.

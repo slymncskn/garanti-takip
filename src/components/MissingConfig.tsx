@@ -18,15 +18,15 @@ export function MissingConfig() {
         <ul className="mt-4 flex flex-col gap-2 text-[14px] text-ink-soft">
           <li>
             <code className="tabular text-[13px] text-ink">
-              VITE_SUPABASE_ANON_KEY
+              VITE_SUPABASE_URL
             </code>{' '}
-            — Supabase panel · Project Settings · API · anon public
+            — Supabase panel · Project Settings · API
           </li>
           <li>
             <code className="tabular text-[13px] text-ink">
-              VITE_N8N_WEBHOOK_SECRET
+              VITE_SUPABASE_ANON_KEY
             </code>{' '}
-            — n8n'deki Header Auth değeri
+            — aynı sayfada, anon public
           </li>
         </ul>
       </div>

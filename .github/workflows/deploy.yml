@@ -35,11 +35,10 @@ jobs:
           # elle bir şey değiştirmen gerekmiyor.
           VITE_BASE_PATH: /${{ github.event.repository.name }}/
           # VITE_ önekli değişkenler pakete gömülür — bu tasarım gereği.
-          # Buraya service_role anahtarı ASLA konmaz.
+          # Buraya service_role anahtarı ya da n8n sırrı ASLA konmaz;
+          # n8n bildirimi Edge Function üzerinden gidiyor.
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
-          VITE_N8N_WEBHOOK_URL: ${{ secrets.VITE_N8N_WEBHOOK_URL }}
-          VITE_N8N_WEBHOOK_SECRET: ${{ secrets.VITE_N8N_WEBHOOK_SECRET }}
 
       - uses: actions/upload-pages-artifact@v3
         with:

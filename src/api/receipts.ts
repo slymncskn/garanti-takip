@@ -1,10 +1,29 @@
 import { supabase, requireUserId } from '@/lib/supabase'
-import { notifyReceiptUploaded } from '@/lib/n8n'
 import { buildStoragePath, prepareForUpload } from '@/lib/image'
 import { toReceiptRow } from '@/lib/rows'
 import type { ReceiptRow, ReceiptStatus } from '@/types/app'
 
 const BUCKET = 'receipts'
+
+/**
+ * "Yeni fiş yüklendi, işleyebilirsin" bildirimi.
+ *
+ * n8n doğrudan çağrılmaz: kullanıcının ağında `hstgr.cloud` alan adı SNI
+ * seviyesinde engelli, TLS el sıkışması sıfırlanıyor — tarayıcıdan o adrese
+ * hiçbir koşulda ulaşılamıyor. İstek `notify-receipt` Edge Function'ına
+ * gider, o da sunucu tarafından n8n'i tetikler. Webhook sırrı böylece
+ * istemci paketine hiç girmez, Supabase secret'ında durur.
+ *
+ * Fire-and-forget: yanıt beklenmez, hata yutulur. Bu çağrı düşse bile veri
+ * kaybolmaz — n8n saatlik olarak `status='pending'` kayıtları tarar.
+ */
+function notifyReceiptUploaded(receiptId: string): void {
+  void supabase.functions
+    .invoke('notify-receipt', { body: { receipt_id: receiptId } })
+    .catch(() => {
+      /* sessizce yut — yedek tetikleyici zaten toplayacak */
+    })
+}
 
 /** Henüz sonuçlanmamış fişler — koşullu polling bunları izler. */
 export const OPEN_STATUSES: ReceiptStatus[] = [

@@ -4,8 +4,8 @@
 interface ImportMetaEnv {
   readonly VITE_SUPABASE_URL: string
   readonly VITE_SUPABASE_ANON_KEY: string
-  readonly VITE_N8N_WEBHOOK_URL: string
-  readonly VITE_N8N_WEBHOOK_SECRET: string
+  // n8n bilgileri istemciye hiç girmez; bildirim `notify-receipt`
+  // Edge Function'ı üzerinden gider, sır Supabase secret'ında durur.
 }
 
 interface ImportMeta {
