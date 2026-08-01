@@ -143,9 +143,13 @@ Boş/`null` `q` tüm kayıtları döndürür.
 **Webhook:** `POST https://n8n.srv1508998.hstgr.cloud/webhook/receipt-uploaded`
 
 ```
-Header: x-garanti-secret: <VITE_N8N_WEBHOOK_SECRET>
-Body:   { "receipt_id": "<uuid>" }
+Content-Type: application/x-www-form-urlencoded
+Body:          secret=<VITE_N8N_WEBHOOK_SECRET>&receipt_id=<uuid>
 ```
+
+> ⚠️ **Özel başlık kullanma.** Sır gövdede taşınır; n8n tarafında webhook node'u `authentication: none` ile çalışır ve `onlyRunIf` ifadesi gövdedeki `secret` alanını doğrular. Eşleşmeyen istek execution oluşturmadan 200 alır.
+>
+> Sebep: özel başlık (ör. `x-garanti-secret`) taşıyan tarayıcı isteği önce OPTIONS ön kontrolü yapar, tarayıcı ön kontrolde özel başlıkları **göndermez**, n8n isteği kimliksiz sayıp reddeder ve asıl POST hiç gönderilmez. Sessizce başarısız olur — yükleme yalnızca saatlik yedek tetikleyiciyle işlenir. Bu tuzağa bir kez düşüldü; istek bilerek "basit istek" olarak kurulmuştur (`mode: 'no-cors'`, form-urlencoded, özel başlık yok).
 
 Davranış kuralları:
 
