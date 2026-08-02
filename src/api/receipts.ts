@@ -117,6 +117,23 @@ export async function getSignedUrl(filePath: string): Promise<string> {
   return data.signedUrl
 }
 
+/**
+ * İndirme için imzalı URL. `download` seçeneği yanıta
+ * `Content-Disposition: attachment` ekliyor, böylece tarayıcı dosyayı
+ * görüntülemek yerine veriyor ve adı da bizim verdiğimiz oluyor.
+ */
+export async function getDownloadUrl(
+  filePath: string,
+  fileName: string,
+): Promise<string> {
+  const { data, error } = await supabase.storage
+    .from(BUCKET)
+    .createSignedUrl(filePath, 3600, { download: fileName })
+
+  if (error) throw error
+  return data.signedUrl
+}
+
 /** Okunamayan fişi yeniden kuyruğa alır. */
 export async function retryReceipt(id: string): Promise<void> {
   const { error } = await supabase

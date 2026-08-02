@@ -27,6 +27,33 @@ const sizes: Record<Size, string> = {
   lg: 'min-h-13 px-5 text-base',
 }
 
+/**
+ * Düğme görünümünü sınıf olarak verir. Bir aksiyon gerçekten bağlantıysa
+ * (ör. dosya indirme) `<button>` yerine `<a>` kullanılabilsin diye ayrı
+ * duruyor — semantik doğru kalırken görünüm aynı oluyor.
+ */
+export function buttonStyles({
+  variant = 'primary',
+  size = 'md',
+  full = false,
+  className,
+}: {
+  variant?: Variant
+  size?: Size
+  full?: boolean
+  className?: string
+} = {}): string {
+  return cn(
+    'inline-flex items-center justify-center gap-2 rounded-xl font-medium',
+    'transition-colors duration-150',
+    'disabled:cursor-not-allowed disabled:opacity-50',
+    variants[variant],
+    sizes[size],
+    full && 'w-full',
+    className,
+  )
+}
+
 export function Button({
   variant = 'primary',
   size = 'md',
@@ -37,15 +64,7 @@ export function Button({
 }: ButtonProps) {
   return (
     <button
-      className={cn(
-        'inline-flex items-center justify-center gap-2 rounded-xl font-medium',
-        'transition-colors duration-150',
-        'disabled:cursor-not-allowed disabled:opacity-50',
-        variants[variant],
-        sizes[size],
-        full && 'w-full',
-        className,
-      )}
+      className={buttonStyles({ variant, size, full, className })}
       {...rest}
     >
       {children}

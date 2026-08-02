@@ -4,6 +4,7 @@ import { useDeleteProduct, useProduct } from '@/hooks/useProducts'
 import { useI18n } from '@/i18n'
 import { TimeBar } from '@/components/TimeBar'
 import { ReceiptViewer } from '@/components/ReceiptViewer'
+import { DownloadReceiptButton } from '@/components/DownloadReceiptButton'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { StatusBadge } from '@/components/ui/Badge'
@@ -120,12 +121,13 @@ export function ProductDetailPage() {
         </section>
       )}
 
-      <div className="flex gap-2">
-        <Link to={`/urun/${product.id}/duzenle`} className="flex-1">
+      <div className="flex flex-wrap gap-2">
+        <Link to={`/urun/${product.id}/duzenle`} className="min-w-24 flex-1">
           <Button variant="secondary" full>
             {t('product.edit')}
           </Button>
         </Link>
+        <DownloadReceiptButton product={product} />
         <Button
           variant="danger"
           onClick={() => setConfirming(true)}

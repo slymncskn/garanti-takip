@@ -7,6 +7,8 @@ export const receiptKeys = {
   open: ['receipts', 'open'] as const,
   detail: (id: string) => ['receipts', 'detail', id] as const,
   signedUrl: (path: string) => ['receipts', 'signed-url', path] as const,
+  downloadUrl: (path: string, name: string) =>
+    ['receipts', 'download-url', path, name] as const,
 }
 
 const POLL_MS = 4000
@@ -60,6 +62,24 @@ export function useSignedUrl(filePath: string | null | undefined) {
   return useQuery({
     queryKey: receiptKeys.signedUrl(filePath ?? ''),
     queryFn: () => api.getSignedUrl(filePath as string),
+    enabled: Boolean(filePath),
+    staleTime: 50 * 60_000,
+    gcTime: 55 * 60_000,
+  })
+}
+
+/**
+ * İndirme bağlantısı sayfa açılırken hazırlanır; düğme böylece gerçek bir
+ * `<a href>` olabiliyor. Tıklamadan sonra imzalı URL almak iOS'ta kullanıcı
+ * hareketi sayılmadığı için indirmeyi engelleyebilirdi.
+ */
+export function useDownloadUrl(
+  filePath: string | null | undefined,
+  fileName: string,
+) {
+  return useQuery({
+    queryKey: receiptKeys.downloadUrl(filePath ?? '', fileName),
+    queryFn: () => api.getDownloadUrl(filePath as string, fileName),
     enabled: Boolean(filePath),
     staleTime: 50 * 60_000,
     gcTime: 55 * 60_000,
