@@ -94,8 +94,12 @@ export function ActionSheet({
       <div
         ref={panelRef}
         tabIndex={-1}
-        className="absolute inset-x-2.5 bottom-3.5 outline-none"
+        className="absolute inset-x-2.5 outline-none"
         style={{
+          // Güvenli alan boşluğu sheet'in tamamını yukarı kaldırır.
+          // Bunu İptal düğmesinin iç boşluğuna verirsek metin, kalan
+          // alanın ortasına hizalanır ve yukarıda kalmış gibi görünür.
+          bottom: 'calc(env(safe-area-inset-bottom, 0px) + 14px)',
           transform: shown ? `translateY(${drag}px)` : 'translateY(110%)',
           transition:
             startY.current === null
@@ -132,8 +136,7 @@ export function ActionSheet({
         <button
           type="button"
           onClick={onClose}
-          className="press mt-2 flex min-h-14 w-full items-center justify-center rounded-[22px] bg-white/90 text-[17px] font-semibold text-ink backdrop-blur-xl"
-          style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
+          className="press mt-2 flex h-14 w-full items-center justify-center rounded-[22px] bg-white/90 text-[17px] font-semibold text-ink backdrop-blur-xl"
         >
           {cancelLabel}
         </button>
