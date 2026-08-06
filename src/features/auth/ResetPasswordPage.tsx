@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AuthError, useAuth } from '@/hooks/useAuth'
 import { useI18n } from '@/i18n'
-import { Button } from '@/components/ui/Button'
-import { TextField } from '@/components/ui/Field'
+import { ListGroup } from '@/components/ui/List'
+import { ListField } from '@/components/ui/ListField'
 import { Spinner } from '@/components/ui/Spinner'
 import { LanguageToggle } from '@/components/LanguageToggle'
 import { Credit } from '@/components/Credit'
@@ -46,62 +46,71 @@ export function ResetPasswordPage() {
   }
 
   return (
-    <div className="flex min-h-dvh flex-col bg-paper px-5 py-6">
+    <div className="flex min-h-dvh flex-col px-5 py-6">
       <div className="flex justify-end">
         <LanguageToggle />
       </div>
 
       <div className="mx-auto flex w-full max-w-sm flex-1 flex-col justify-center">
-        <h1 className="font-display text-[24px] font-bold tracking-tight text-ink">
+        <h1 className="text-[28px] font-bold leading-tight tracking-[-0.03em] text-ink">
           {t('reset.title')}
         </h1>
 
         {!session ? (
           <>
-            <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">
+            <p className="mt-2.5 text-[15.5px] leading-relaxed text-ink-soft">
               {t('reset.expired')}
             </p>
-            <Button
-              variant="secondary"
-              full
-              className="mt-5"
+            <button
+              type="button"
               onClick={() => navigate('/giris', { replace: true })}
+              className="press glass-surface mt-5 flex h-13 w-full items-center justify-center rounded-control text-[16px] font-semibold text-ink"
             >
               {t('login.back')}
-            </Button>
+            </button>
           </>
         ) : (
           <form onSubmit={onSubmit} className="mt-6 flex flex-col gap-4">
-            <TextField
-              label={t('reset.new')}
-              type="password"
-              autoComplete="new-password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <TextField
-              label={t('reset.repeat')}
-              type="password"
-              autoComplete="new-password"
-              required
-              value={repeat}
-              onChange={(e) => setRepeat(e.target.value)}
-            />
+            <ListGroup>
+              <ListField
+                label={t('reset.new')}
+                type="password"
+                autoComplete="new-password"
+                required
+                placeholder="••••••"
+                className="tracking-[0.14em]"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <ListField
+                label={t('reset.repeat')}
+                type="password"
+                autoComplete="new-password"
+                required
+                placeholder="••••••"
+                className="tracking-[0.14em]"
+                value={repeat}
+                onChange={(e) => setRepeat(e.target.value)}
+              />
+            </ListGroup>
 
             {error && (
               <p
                 role="alert"
-                className="rounded-xl bg-critical-soft px-3 py-2.5 text-[14px] text-critical"
+                className="rounded-[14px] bg-critical-soft/80 px-4 py-3 text-[14px] text-critical backdrop-blur-md"
               >
                 {error}
               </p>
             )}
 
-            <Button type="submit" size="lg" full disabled={busy}>
-              {busy && <Spinner />}
+            <button
+              type="submit"
+              disabled={busy}
+              className="press fill-action flex h-[54px] w-full items-center justify-center gap-2 rounded-control text-[17px] font-semibold text-white disabled:opacity-60"
+            >
+              {busy && <Spinner className="text-white" />}
               {t('reset.submit')}
-            </Button>
+            </button>
           </form>
         )}
       </div>

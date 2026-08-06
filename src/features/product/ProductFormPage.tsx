@@ -5,17 +5,18 @@ import {
   useProduct,
   useUpdateProduct,
 } from '@/hooks/useProducts'
-import { useI18n } from '@/i18n'
+import { useI18n, type DictKey } from '@/i18n'
 import { ProductFields } from '@/components/ProductFields'
-import { Button } from '@/components/ui/Button'
+import { NavBar, NavAction } from '@/components/ui/NavBar'
 import { ErrorNote } from '@/components/ui/EmptyState'
-import { Skeleton, Spinner } from '@/components/ui/Spinner'
+import { Skeleton } from '@/components/ui/Spinner'
 import { emptyDraft, rowToDraft, validateDraft } from '@/lib/draft'
 import type { ProductDraft } from '@/types/app'
 
 /**
  * Hem elle ürün ekleme (`/yeni`, fişsiz — `receipt_id` NULL) hem de mevcut
  * ürünü düzenleme (`/urun/:id/duzenle`) aynı formu kullanır.
+ * Kaydet/İptal nav bar'da; alt düğme çifti kaldırıldı.
  */
 export function ProductFormPage() {
   const { id } = useParams<{ id: string }>()
@@ -28,7 +29,8 @@ export function ProductFormPage() {
   const { t } = useI18n()
 
   const [draft, setDraft] = useState<ProductDraft>(() => emptyDraft())
-  const [error, setError] = useState<string | null>(null)
+  const [errorKey, setErrorKey] = useState<DictKey | null>(null)
+  const [saveError, setSaveError] = useState<string | null>(null)
   const [ready, setReady] = useState(!isEdit)
 
   useEffect(() => {
@@ -38,25 +40,18 @@ export function ProductFormPage() {
     }
   }, [isEdit, existing.data, ready])
 
-  if (isEdit && existing.isLoading) return <Skeleton className="h-96" />
-
-  if (isEdit && (existing.isError || (existing.isSuccess && !existing.data))) {
-    return (
-      <ErrorNote title={t('common.error')} description={t('form.notFound')} />
-    )
-  }
-
   const busy = create.isPending || update.isPending
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault()
     const problem = validateDraft(draft)
     if (problem) {
-      setError(t(problem))
+      setErrorKey(problem)
       return
     }
 
-    setError(null)
+    setErrorKey(null)
+    setSaveError(null)
     try {
       if (isEdit && id) {
         await update.mutateAsync(draft)
@@ -66,47 +61,70 @@ export function ProductFormPage() {
         navigate(`/urun/${newId}`, { replace: true })
       }
     } catch {
-      setError(t('form.saveFailed'))
+      setSaveError(t('form.saveFailed'))
     }
   }
 
+  if (isEdit && existing.isLoading) {
+    return (
+      <>
+        <NavBar title={t('form.editTitle')} />
+        <Skeleton className="mt-4 h-96" />
+      </>
+    )
+  }
+
+  if (isEdit && (existing.isError || (existing.isSuccess && !existing.data))) {
+    return (
+      <>
+        <NavBar title={t('form.editTitle')} />
+        <div className="pt-4">
+          <ErrorNote
+            title={t('common.error')}
+            description={t('form.notFound')}
+          />
+        </div>
+      </>
+    )
+  }
+
   return (
-    <form onSubmit={onSubmit} className="flex flex-col gap-5 pb-8">
-      <header>
-        <h1 className="font-display text-[22px] font-bold tracking-tight text-ink">
-          {isEdit ? t('form.editTitle') : t('form.newTitle')}
-        </h1>
+    <form onSubmit={onSubmit}>
+      <NavBar
+        left={
+          <NavAction onClick={() => navigate(-1)}>
+            {t('form.cancel')}
+          </NavAction>
+        }
+        title={isEdit ? t('form.editTitle') : t('form.newTitle')}
+        right={
+          <NavAction type="submit" strong disabled={busy}>
+            {t('form.save')}
+          </NavAction>
+        }
+      />
+
+      <div className="pt-4">
         {!isEdit && (
-          <p className="mt-1 text-[14px] leading-relaxed text-ink-soft">
+          <p className="mb-4 px-1 text-[13px] leading-relaxed text-ink-faint">
             {t('form.newSubtitle')}
           </p>
         )}
-      </header>
 
-      <ProductFields draft={draft} onChange={setDraft} />
+        <ProductFields
+          draft={draft}
+          onChange={setDraft}
+          errorKey={errorKey}
+        />
 
-      {error && (
-        <p
-          role="alert"
-          className="rounded-xl bg-critical-soft px-3 py-2.5 text-[14px] text-critical"
-        >
-          {error}
-        </p>
-      )}
-
-      <div className="flex gap-2">
-        <Button type="submit" size="lg" disabled={busy} className="flex-1">
-          {busy && <Spinner />}
-          {t('form.save')}
-        </Button>
-        <Button
-          type="button"
-          variant="ghost"
-          size="lg"
-          onClick={() => navigate(-1)}
-        >
-          {t('form.cancel')}
-        </Button>
+        {saveError && (
+          <p
+            role="alert"
+            className="mt-4 rounded-field bg-critical-soft px-3 py-2.5 text-[14px] text-critical"
+          >
+            {saveError}
+          </p>
+        )}
       </div>
     </form>
   )

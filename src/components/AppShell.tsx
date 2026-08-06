@@ -1,109 +1,159 @@
-import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
-import { UploadButton } from '@/features/upload/UploadButton'
-import { UploadStatus } from '@/features/upload/UploadStatus'
-import { useAuth } from '@/hooks/useAuth'
+import { createContext, useContext, useMemo, useState } from 'react'
+import { NavLink, Outlet, useLocation } from 'react-router-dom'
+import { UploadSheet } from '@/features/upload/UploadSheet'
+import { useUploads } from '@/hooks/useUploads'
+import { useOpenReceipts } from '@/hooks/useReceiptStatus'
 import { useI18n } from '@/i18n'
-import { LanguageToggle } from '@/components/LanguageToggle'
 import { cn } from '@/lib/cn'
 
-export function AppShell() {
-  const { signOut } = useAuth()
-  const { t } = useI18n()
-  const { pathname } = useLocation()
+/**
+ * Kabuk. Sticky header ve sağ alt köşedeki FAB kaldırıldı; yerlerine
+ * yüzen cam sekme çubuğu geldi. Dil ve çıkış Hesap ekranında.
+ */
+/** Fiş ekleme sheet'ini kabuk dışından da açabilmek için (ör. boş durum). */
+const AddReceiptContext = createContext<() => void>(() => {})
 
-  // Onay ve form ekranlarının kendi alt aksiyonu var; yükleme düğmesi
+// eslint-disable-next-line react-refresh/only-export-components
+export function useAddReceipt(): () => void {
+  return useContext(AddReceiptContext)
+}
+
+export function AppShell() {
+  const { pathname } = useLocation()
+  const { t } = useI18n()
+  const [sheetOpen, setSheetOpen] = useState(false)
+
+  // Onay ve form ekranlarının kendi alt aksiyon çubuğu var; sekme çubuğu
   // onların üstüne binmesin.
-  const showUpload = !/^\/(onay|yeni)|\/duzenle$/.test(pathname)
+  const showTabBar = !/^\/(onay|yeni)|\/duzenle$/.test(pathname)
+
+  const open = useMemo(() => () => setSheetOpen(true), [])
 
   return (
-    <div className="min-h-dvh bg-paper">
-      <header className="sticky top-0 z-30 border-b border-line bg-paper/90 backdrop-blur safe-top">
-        <div className="mx-auto flex h-16 max-w-2xl items-center justify-between px-4">
-          <Link to="/" className="min-w-0 leading-none">
-            <span className="block font-display text-[17px] font-bold tracking-tight text-ink">
-              Garanti<span className="text-ink-faint">Takip</span>
-            </span>
-            <span className="mt-1 block truncate text-[10px] font-medium tracking-wide text-ink-faint">
-              {t('app.credit')}
-            </span>
-          </Link>
+    <AddReceiptContext.Provider value={open}>
+      <div className="min-h-dvh">
+        <main
+          className={cn('mx-auto max-w-2xl px-5', showTabBar ? 'pb-26' : 'pb-8')}
+        >
+          <Outlet />
+        </main>
 
-          <nav className="flex items-center gap-1">
-            <LanguageToggle className="mr-1" />
+        {showTabBar && <TabBar onAdd={open} addLabel={t('upload.add')} />}
 
-            <IconLink to="/ara" label={t('nav.search')}>
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                className="size-5"
-                aria-hidden="true"
-              >
-                <circle cx="11" cy="11" r="7" />
-                <path d="m20 20-3.5-3.5" />
-              </svg>
-            </IconLink>
-
-            <button
-              type="button"
-              onClick={() => void signOut()}
-              aria-label={t('nav.signOut')}
-              className="flex size-11 items-center justify-center rounded-xl text-ink-faint transition-colors hover:bg-sunken hover:text-ink"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="size-5"
-                aria-hidden="true"
-              >
-                <path d="M15 17l5-5-5-5" />
-                <path d="M20 12H9" />
-                <path d="M12 20H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h6" />
-              </svg>
-            </button>
-          </nav>
-        </div>
-      </header>
-
-      <main className="mx-auto max-w-2xl px-4 pb-32 pt-5">
-        <Outlet />
-      </main>
-
-      <UploadStatus />
-      {showUpload && <UploadButton />}
-    </div>
+        <UploadSheet open={sheetOpen} onClose={() => setSheetOpen(false)} />
+      </div>
+    </AddReceiptContext.Provider>
   )
 }
 
-function IconLink({
+function TabBar({
+  onAdd,
+  addLabel,
+}: {
+  onAdd: () => void
+  addLabel: string
+}) {
+  const { t } = useI18n()
+  const { busy } = useUploads()
+  const { data: openReceipts } = useOpenReceipts()
+
+  // Başka ekrandayken işlenen fiş varsa Özet sekmesinde küçük bir nokta.
+  const working =
+    busy ||
+    (openReceipts ?? []).some(
+      (r) => r.status === 'pending' || r.status === 'processing',
+    )
+
+  return (
+    <nav
+      aria-label={t('nav.tabs')}
+      className="glass-chrome fixed inset-x-3 z-40 flex h-[66px] items-center justify-around rounded-[33px] px-2"
+      style={{ bottom: 'calc(env(safe-area-inset-bottom, 0px) + 14px)' }}
+    >
+      <TabItem to="/" label={t('nav.summary')} badge={working}>
+        {({ active }) => (
+          <span
+            className="block size-5 rounded-full"
+            style={{ border: `${active ? 2.6 : 2.2}px solid currentColor` }}
+          />
+        )}
+      </TabItem>
+
+      <TabItem to="/ara" label={t('nav.search')}>
+        {({ active }) => (
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={active ? 2.2 : 1.9}
+            strokeLinecap="round"
+            className="size-[21px]"
+            aria-hidden="true"
+          >
+            <circle cx="11" cy="11" r="7" />
+            <path d="m20 20-3.5-3.5" />
+          </svg>
+        )}
+      </TabItem>
+
+      <button
+        type="button"
+        onClick={onAdd}
+        aria-label={addLabel}
+        className="press fill-action flex size-[50px] items-center justify-center rounded-[25px] text-white"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+          className="size-[23px]"
+          aria-hidden="true"
+        >
+          <path d="M12 5v14M5 12h14" />
+        </svg>
+      </button>
+    </nav>
+  )
+}
+
+function TabItem({
   to,
   label,
+  badge = false,
   children,
 }: {
   to: string
   label: string
-  children: React.ReactNode
+  badge?: boolean
+  children: (state: { active: boolean }) => React.ReactNode
 }) {
   return (
     <NavLink
       to={to}
-      aria-label={label}
+      end={to === '/'}
       className={({ isActive }) =>
         cn(
-          'flex size-11 items-center justify-center rounded-xl transition-colors',
-          isActive
-            ? 'bg-sunken text-ink'
-            : 'text-ink-faint hover:bg-sunken hover:text-ink',
+          'relative flex min-h-11 w-16 flex-col items-center justify-center gap-1 transition-colors',
+          isActive ? 'text-accent' : 'text-ink-faint',
         )
       }
     >
-      {children}
+      {({ isActive }) => (
+        <>
+          {children({ active: isActive })}
+          <span className="text-[10.5px] font-semibold leading-none">
+            {label}
+          </span>
+          {badge && (
+            <span
+              className="absolute right-3 top-0 size-2 rounded-full bg-soon ring-2 ring-white/70"
+              aria-hidden="true"
+            />
+          )}
+        </>
+      )}
     </NavLink>
   )
 }

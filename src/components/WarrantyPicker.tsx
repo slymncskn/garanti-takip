@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import { useI18n } from '@/i18n'
 import { cn } from '@/lib/cn'
-import { warrantyMonthsLabel } from '@/lib/format'
 
-const presets = [12, 24, 36, 60]
+/** Dört sütuna sığması için preset'ler 12 / 24 / 36 + Diğer. */
+const presets = [12, 24, 36]
 
 /**
- * Garanti süresi hızlı seçimi. 24 ay varsayılan; kullanıcı çoğu zaman tek
+ * Garanti süresi seçimi. 24 ay varsayılan; kullanıcı çoğu zaman tek
  * dokunuşla geçebilmeli, gerekirse özel süre yazabilmeli.
  */
 export function WarrantyPicker({
@@ -20,12 +20,12 @@ export function WarrantyPicker({
   const [custom, setCustom] = useState(!presets.includes(value))
 
   return (
-    <div className="flex flex-col gap-2">
-      <span className="text-[13px] font-medium text-ink-soft">
+    <div className="px-4 py-3">
+      <span className="block text-[14.5px] text-ink-faint">
         {t('warranty.label')}
       </span>
 
-      <div className="flex flex-wrap gap-1.5">
+      <div className="mt-2.5 flex gap-1.5">
         {presets.map((months) => {
           const selected = !custom && value === months
           return (
@@ -38,10 +38,10 @@ export function WarrantyPicker({
                 onChange(months)
               }}
               className={cn(
-                'min-h-11 rounded-xl px-3.5 text-[14px] font-medium transition-colors',
+                'press min-h-11 flex-1 rounded-xl py-2.5 text-[14px] transition-colors',
                 selected
-                  ? 'bg-ink text-paper'
-                  : 'bg-sunken text-ink-soft hover:text-ink',
+                  ? 'bg-ink font-semibold text-paper'
+                  : 'bg-ink/[0.05] font-medium text-ink-soft',
               )}
             >
               <span className="tabular">{months}</span> {t('warranty.months')}
@@ -54,18 +54,18 @@ export function WarrantyPicker({
           aria-pressed={custom}
           onClick={() => setCustom(true)}
           className={cn(
-            'min-h-11 rounded-xl px-3.5 text-[14px] font-medium transition-colors',
+            'press min-h-11 flex-1 rounded-xl py-2.5 text-[14px] transition-colors',
             custom
-              ? 'bg-ink text-paper'
-              : 'bg-sunken text-ink-soft hover:text-ink',
+              ? 'bg-ink font-semibold text-paper'
+              : 'bg-ink/[0.05] font-medium text-ink-soft',
           )}
         >
           {t('warranty.custom')}
         </button>
       </div>
 
-      {custom ? (
-        <div className="flex items-center gap-2">
+      {custom && (
+        <div className="mt-2.5 flex items-center gap-2">
           <input
             type="number"
             min={0}
@@ -74,16 +74,12 @@ export function WarrantyPicker({
             value={value}
             onChange={(e) => onChange(Number(e.target.value))}
             aria-label={t('warranty.label')}
-            className="tabular w-28 min-h-11 rounded-xl border border-line-strong bg-surface px-3 py-2 focus:border-accent"
+            className="tabular min-h-11 w-24 rounded-xl bg-ink/[0.05] px-3 text-center font-medium text-ink caret-accent focus:outline-none"
           />
           <span className="text-[14px] text-ink-soft">
             {t('warranty.customHint')}
           </span>
         </div>
-      ) : (
-        <p className="text-[13px] text-ink-faint">
-          {t('warranty.summary', { label: warrantyMonthsLabel(value) })}
-        </p>
       )}
     </div>
   )

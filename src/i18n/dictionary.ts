@@ -13,6 +13,31 @@ export const tr = {
 
   'nav.search': 'Ara',
   'nav.signOut': 'Çıkış yap',
+  'nav.tabs': 'Ana gezinme',
+  'nav.summary': 'Özet',
+  'nav.account': 'Hesap',
+
+  'common.cancel': 'İptal',
+
+  'dash.eyebrow': 'Özet',
+  'dash.today': 'Bugün',
+  'dash.attention': 'Dikkat gerektirenler',
+  'dash.processing': 'İşleniyor',
+  'dash.ringUnit': 'Ürün',
+  'dash.ringLabel': 'Takip edilen {count} ürünün durum dağılımı',
+  'dash.count.active': 'sürüyor',
+  'dash.count.soon': 'yaklaşıyor',
+  'dash.count.critical': 'az kaldı',
+  'dash.count.expired': 'doldu',
+  'dash.emptyManual': 'Fişsiz elle ekle',
+
+  'detail.countdownLabel': 'Garanti bitimine',
+  'detail.expiredLabel': 'Süresi doldu',
+
+  'account.app': 'Uygulama',
+  'account.language': 'Dil',
+  'account.savedProducts': 'Kayıtlı ürün',
+  'account.version': 'Sürüm',
 
   'login.tagline': 'Fişlerin burada, süreler kontrol altında.',
   'login.resetTagline': 'E-posta adresini yaz, sıfırlama bağlantısını gönderelim.',
@@ -78,8 +103,12 @@ export const tr = {
   'receipt.zoom': 'Fişi büyüt',
   'receipt.alt': 'Yüklenen fiş',
   'receipt.label': 'Fiş',
+  'receipt.view': 'Görüntüle',
+  'receipt.hide': 'Gizle',
 
   'upload.add': 'Fiş ekle',
+  'upload.sheetHint': 'Fişi oku, ürünleri kendisi çıkarsın',
+  'upload.manualHint': 'Fiş yoksa',
   'upload.close': 'Kapat',
   'upload.camera': 'Fotoğraf çek',
   'upload.gallery': 'Galeriden seç',
@@ -115,6 +144,10 @@ export const tr = {
   'review.addProduct': 'Ürün ekle',
   'review.count': '{count} ürün',
   'review.confirm': 'Onayla',
+  'review.readCount': '{count} ürün okundu',
+  'review.willSave': '{count} ürün kaydedilecek',
+  'review.noReminderUntil': 'Onaylanmadan hatırlatma gönderilmez',
+  'review.zoom': 'Fişi büyüt',
   'review.needOne': 'En az bir ürün olmalı.',
   'review.saveFailed': 'Kaydedilemedi. Bağlantını kontrol edip tekrar dene.',
 
@@ -124,6 +157,7 @@ export const tr = {
   'search.emptyTitle': 'Eşleşen ürün yok',
   'search.emptyBody':
     '“{term}” için sonuç bulamadım. Markayı ya da ürünün kısa adını yazmayı dene.',
+  'search.recent': 'Son aramalar',
   'search.idleTitle': 'Ne arıyorsun?',
   'search.idleBody':
     'Ürün adı, marka, satıcı veya seri numarasıyla arayabilirsin. Türkçe karakterleri yazmasan da bulur.',
@@ -140,6 +174,8 @@ export const tr = {
   'product.edit': 'Düzenle',
   'product.delete': 'Sil',
   'product.download': 'İndir',
+  'product.downloadRow': 'Fiş dosyası',
+  'product.deleteRow': 'Ürünü sil',
   'product.downloadAria': 'Fişi indir',
   'product.downloadError': 'İndirme bağlantısı hazırlanamadı.',
   'product.deleteAsk': 'Bu ürün silinsin mi?',
@@ -165,8 +201,9 @@ export const tr = {
   'fields.merchant': 'Satıcı',
   'fields.purchaseDate': 'Alım tarihi',
   'fields.price': 'Fiyat',
-  'fields.serial': 'Seri numarası',
-  'fields.notes': 'Not',
+  'fields.serial': 'Seri no',
+  'fields.optional': 'İsteğe bağlı',
+  'fields.notes': 'Notlar',
   'fields.notesPlaceholder':
     'Servis telefonu, nerede durduğu, aklında kalsın istediğin her şey',
   'fields.warrantyEndPreview': 'Garanti bitişi:',
@@ -201,6 +238,9 @@ export const tr = {
   'time.shortDays': '{n} gün',
   'time.shortMonths': '{n} ay',
   'time.shortYears': '{n} yıl+',
+  'time.dayUnit': 'gün',
+  'time.monthUnit': 'ay',
+  'time.yearUnit': 'yıl',
 
   'common.loading': 'Yükleniyor',
   'common.error': 'Bir şeyler ters gitti',
@@ -220,6 +260,31 @@ export const en: Record<DictKey, string> = {
 
   'nav.search': 'Search',
   'nav.signOut': 'Sign out',
+  'nav.tabs': 'Main navigation',
+  'nav.summary': 'Summary',
+  'nav.account': 'Account',
+
+  'common.cancel': 'Cancel',
+
+  'dash.eyebrow': 'Summary',
+  'dash.today': 'Today',
+  'dash.attention': 'Needs attention',
+  'dash.processing': 'In progress',
+  'dash.ringUnit': 'Items',
+  'dash.ringLabel': 'Status breakdown of {count} tracked products',
+  'dash.count.active': 'active',
+  'dash.count.soon': 'approaching',
+  'dash.count.critical': 'not long left',
+  'dash.count.expired': 'expired',
+  'dash.emptyManual': 'Add one without a receipt',
+
+  'detail.countdownLabel': 'Warranty ends in',
+  'detail.expiredLabel': 'Warranty expired',
+
+  'account.app': 'App',
+  'account.language': 'Language',
+  'account.savedProducts': 'Saved products',
+  'account.version': 'Version',
 
   'login.tagline': 'Your receipts, filed. Your warranties, watched.',
   'login.resetTagline':
@@ -285,8 +350,12 @@ export const en: Record<DictKey, string> = {
   'receipt.zoom': 'Enlarge receipt',
   'receipt.alt': 'Uploaded receipt',
   'receipt.label': 'Receipt',
+  'receipt.view': 'View',
+  'receipt.hide': 'Hide',
 
   'upload.add': 'Add receipt',
+  'upload.sheetHint': 'We read the receipt and pull the products out',
+  'upload.manualHint': 'No receipt',
   'upload.close': 'Close',
   'upload.camera': 'Take a photo',
   'upload.gallery': 'Choose from gallery',
@@ -321,6 +390,10 @@ export const en: Record<DictKey, string> = {
   'review.addProduct': 'Add product',
   'review.count': '{count} products',
   'review.confirm': 'Confirm',
+  'review.readCount': '{count} products found',
+  'review.willSave': '{count} products will be saved',
+  'review.noReminderUntil': 'No reminders until you confirm',
+  'review.zoom': 'Enlarge receipt',
   'review.needOne': 'There has to be at least one product.',
   'review.saveFailed': 'Couldn’t save. Check your connection and try again.',
 
@@ -330,6 +403,7 @@ export const en: Record<DictKey, string> = {
   'search.emptyTitle': 'No matching products',
   'search.emptyBody':
     'Nothing found for “{term}”. Try the brand, or a shorter version of the name.',
+  'search.recent': 'Recent searches',
   'search.idleTitle': 'What are you looking for?',
   'search.idleBody':
     'Search by product name, brand, store or serial number. Turkish characters are optional.',
@@ -346,6 +420,8 @@ export const en: Record<DictKey, string> = {
   'product.edit': 'Edit',
   'product.delete': 'Delete',
   'product.download': 'Download',
+  'product.downloadRow': 'Receipt file',
+  'product.deleteRow': 'Delete product',
   'product.downloadAria': 'Download receipt',
   'product.downloadError': 'Couldn’t prepare the download link.',
   'product.deleteAsk': 'Delete this product?',
@@ -371,7 +447,8 @@ export const en: Record<DictKey, string> = {
   'fields.merchant': 'Store',
   'fields.purchaseDate': 'Purchase date',
   'fields.price': 'Price',
-  'fields.serial': 'Serial number',
+  'fields.serial': 'Serial no',
+  'fields.optional': 'Optional',
   'fields.notes': 'Notes',
   'fields.notesPlaceholder':
     'Service phone number, where you keep it, anything worth remembering',
@@ -407,6 +484,9 @@ export const en: Record<DictKey, string> = {
   'time.shortDays': '{n} days',
   'time.shortMonths': '{n} mo',
   'time.shortYears': '{n} yr+',
+  'time.dayUnit': 'days',
+  'time.monthUnit': 'months',
+  'time.yearUnit': 'years',
 
   'common.loading': 'Loading',
   'common.error': 'Something went wrong',

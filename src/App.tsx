@@ -18,6 +18,7 @@ import { ReviewPage } from '@/features/review/ReviewPage'
 import { SearchPage } from '@/features/search/SearchPage'
 import { ProductDetailPage } from '@/features/product/ProductDetailPage'
 import { ProductFormPage } from '@/features/product/ProductFormPage'
+import { AccountPage } from '@/features/account/AccountPage'
 import { Spinner } from '@/components/ui/Spinner'
 
 export default function App() {
@@ -40,6 +41,7 @@ export default function App() {
                 <Route element={<AppShell />}>
                   <Route index element={<DashboardPage />} />
                   <Route path="ara" element={<SearchPage />} />
+                  <Route path="hesap" element={<AccountPage />} />
                   <Route path="yeni" element={<ProductFormPage />} />
                   <Route path="onay/:receiptId" element={<ReviewPage />} />
                   <Route path="urun/:id" element={<ProductDetailPage />} />

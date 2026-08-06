@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics><meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap&subset=latin,latin-ext" rel="stylesheet">
+<style>
+body{margin:0;background:#e9e7e1;font-family:-apple-system,BlinkMacSystemFont,system-ui,sans-serif}
+a{color:#1f5f7a}a:hover{color:#123c4d}
+.dv-turn{padding:44px 48px 36px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}
+.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 6px}
+.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}
+.dv-tname{font:600 13px/1.2 system-ui,sans-serif;color:#1a1a1a}
+.dv-note{margin:0 0 24px;max-width:760px;font:400 12.5px/1.65 system-ui,sans-serif;color:rgba(0,0,0,.55)}
+.dv-opts{display:flex;flex-wrap:wrap;gap:36px;align-items:flex-start}
+.dv-opt{flex:none;display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px}
+.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none}
+.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11.5px/1.3 system-ui,sans-serif;color:rgba(0,0,0,.55);max-width:414px}
+.dv-opt:target .dv-oid{background:#2a78d6;color:#fff}
+.dv-next{margin:26px 0 0;font:12px/1.6 system-ui,sans-serif;color:rgba(0,0,0,.5)}
+.dv-row{display:flex;gap:22px;align-items:flex-start}
+.dv-cap{font:500 11px/1.3 ui-monospace,Menlo,monospace;color:rgba(0,0,0,.42);text-transform:uppercase;letter-spacing:.06em}
+</style></helmet>
+
+<section class="dv-turn" id="t2">
+<div class="dv-thd"><a class="dv-tid" href="#t2">2</a><span class="dv-tname">1b Sağlık Panosu — tüm ekranlar</span></div>
+<p class="dv-note">Seçilen yön (<a class="dv-oid" href="#1b">1b</a>) uygulamanın kalan ekranlarına uygulandı. Özet · Ürün detayı · Ara ekranları <a class="dv-oid" href="#1b">1b</a>'de duruyor; burada geri kalan yedi ekran var. Sistem: #f4f3f0 kağıt + camın kıracağı renk yıkaması, 22 px köşe yarıçapı, gruplanmış cam listeler (iOS Ayarlar mantığı), SF tipografi, sayılar tabular mono, aksiyon rengi #24413f. Formlar iOS'ta beklendiği gibi “etiket solda / değer sağda” satırlara dönüştü — web formu hissi buradan gidiyor.</p>
+<div class="dv-opts">
+<div class="dv-opt" id="2a">
+<div class="dv-olabel"><a class="dv-oid" href="#2a">2a</a>Giriş · Fiş ekle · Okunuyor · Fiş onayı · Ürün formu · Boş durum · Hesap</div>
+<div class="dv-row">
+
+<div>
+<div style="width:414px;padding:11px;background:linear-gradient(155deg,#48484a,#1c1c1e 45%,#3a3a3c);border-radius:64px;box-shadow:0 22px 50px rgba(28,28,26,.24)">
+<div style="position:relative;width:392px;height:812px;border-radius:53px;overflow:hidden;background:#f4f3f0">
+<div style="position:absolute;inset:0;background:radial-gradient(560px 380px at 50% -6%, rgba(31,122,90,.18), transparent 68%), radial-gradient(420px 300px at 90% 96%, {{tintA}}, transparent 70%)"></div>
+<div style="position:absolute;top:0;left:0;right:0;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;z-index:40;font:600 15px/1 -apple-system,system-ui,sans-serif;color:#1c1c1a"><span>9:41</span><span style="width:23px;height:12px;border:1px solid currentColor;border-radius:3.5px;padding:1.5px;display:block;opacity:.5"><span style="display:block;width:70%;height:100%;background:currentColor;border-radius:1.5px"></span></span></div>
+
+<div style="position:absolute;top:52px;left:0;right:0;bottom:0;padding:0 24px;display:flex;flex-direction:column">
+<div style="display:flex;justify-content:flex-end;padding-top:8px"><div style="display:inline-flex;align-items:center;padding:2px;border-radius:999px;background:rgba(255,255,255,.6);backdrop-filter:blur(14px);border:.5px solid rgba(255,255,255,.85)"><span style="min-height:32px;display:flex;align-items:center;padding:0 11px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.06);font:600 12px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:#1c1c1a">TR</span><span style="min-height:32px;display:flex;align-items:center;padding:0 11px;font:600 12px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:#8a8a80">EN</span></div></div>
+
+<div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding-bottom:40px">
+<img src="public/favicon.svg" alt="Garanti Takip" style="width:64px;height:64px;border-radius:20px;box-shadow:0 12px 26px rgba(36,65,63,.32);display:block">
+<div style="margin-top:22px;font:700 30px/1.12 -apple-system,system-ui,sans-serif;letter-spacing:-.035em;color:#1c1c1a">GarantiTakip</div>
+<div style="margin-top:8px;font:400 15.5px/1.5 -apple-system,system-ui,sans-serif;color:#55554e">Fişlerini sakla, garanti süresi dolmadan haberin olsun.</div>
+
+<div style="margin-top:26px;border-radius:22px;overflow:hidden;background:rgba(255,255,255,.66);backdrop-filter:blur({{blur}}px) saturate(190%);-webkit-backdrop-filter:blur({{blur}}px) saturate(190%);border:.5px solid rgba(255,255,255,.9);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 14px 32px rgba(28,28,26,.08)">
+<div style="display:flex;align-items:center;gap:12px;padding:15px 16px"><span style="flex:none;width:78px;font:400 15px/1.2 -apple-system,system-ui,sans-serif;color:#8a8a80">E-posta</span><span style="font:500 16px/1.2 -apple-system,system-ui,sans-serif;color:#1c1c1a">suleyman@ornek.com</span></div>
+<div style="display:flex;align-items:center;gap:12px;padding:15px 16px;border-top:.5px solid rgba(28,28,26,.08)"><span style="flex:none;width:78px;font:400 15px/1.2 -apple-system,system-ui,sans-serif;color:#8a8a80">Şifre</span><span style="font:600 15px/1.2 -apple-system,system-ui,sans-serif;color:#1c1c1a;letter-spacing:.14em">••••••••</span><span style="flex:1"></span><span style="width:2px;height:20px;background:#24413f"></span></div>
+</div>
+
+<div style="margin-top:16px;height:54px;border-radius:18px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#2e514e,#24413f);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 10px 24px rgba(36,65,63,.3);font:600 17px/1 -apple-system,system-ui,sans-serif;color:#fff;letter-spacing:-.01em">Giriş yap</div>
+<div style="margin-top:16px;text-align:center;font:500 14.5px/1 -apple-system,system-ui,sans-serif;color:#24413f">Şifremi unuttum</div>
+</div>
+<div style="padding-bottom:26px;text-align:center;font:400 11.5px/1 -apple-system,system-ui,sans-serif;color:#8a8a80;letter-spacing:.02em">Created By Süleyman Coşkun</div>
+</div>
+<div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:140px;height:5px;border-radius:3px;background:rgba(28,28,26,.3);z-index:50"></div>
+</div></div>
+<div class="dv-cap" style="margin-top:10px">Giriş</div>
+</div>
+
+<div>
+<div style="width:414px;padding:11px;background:linear-gradient(155deg,#48484a,#1c1c1e 45%,#3a3a3c);border-radius:64px;box-shadow:0 22px 50px rgba(28,28,26,.24)">
+<div style="position:relative;width:392px;height:812px;border-radius:53px;overflow:hidden;background:#f4f3f0">
+<div style="position:absolute;inset:0;background:radial-gradient(560px 340px at 88% -4%, rgba(192,28,40,.14), transparent 68%), radial-gradient(520px 320px at 6% 12%, rgba(31,122,90,.13), transparent 70%)"></div>
+<div style="position:absolute;top:0;left:0;right:0;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;z-index:40;font:600 15px/1 -apple-system,system-ui,sans-serif;color:#1c1c1a"><span>9:41</span><span style="width:23px;height:12px;border:1px solid currentColor;border-radius:3.5px;padding:1.5px;display:block;opacity:.5"><span style="display:block;width:70%;height:100%;background:currentColor;border-radius:1.5px"></span></span></div>
+
+<div style="position:absolute;top:52px;left:0;right:0;bottom:0;padding:8px 20px 0;filter:blur(2px);opacity:.5">
+<div style="font:600 13px/1 -apple-system,system-ui,sans-serif;color:#8a8a80;letter-spacing:.02em">ÖZET</div>
+<div style="margin-top:6px;font:700 32px/1.1 -apple-system,system-ui,sans-serif;letter-spacing:-.03em;color:#1c1c1a">Bugün</div>
+<div style="margin-top:16px;height:144px;border-radius:24px;background:rgba(255,255,255,.72)"></div>
+<div style="margin-top:26px;height:150px;border-radius:22px;background:rgba(255,255,255,.72)"></div>
+</div>
+<div style="position:absolute;inset:0;background:rgba(28,28,26,.2);z-index:44"></div>
+
+<div style="position:absolute;left:10px;right:10px;bottom:14px;z-index:46;display:flex;flex-direction:column;gap:10px">
+<div style="border-radius:26px;overflow:hidden;background:rgba(255,255,255,.74);backdrop-filter:blur({{blurNav}}px) saturate(200%);-webkit-backdrop-filter:blur({{blurNav}}px) saturate(200%);border:.5px solid rgba(255,255,255,.9);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 18px 40px rgba(28,28,26,.18)">
+<div style="padding:16px 20px 12px;text-align:center"><div style="font:600 15px/1 -apple-system,system-ui,sans-serif;color:#1c1c1a">Fiş ekle</div><div style="margin-top:4px;font:400 12.5px/1.3 -apple-system,system-ui,sans-serif;color:#8a8a80">Fişi oku, ürünleri kendisi çıkarsın</div></div>
+<div style="display:flex;align-items:center;gap:13px;padding:15px 20px;border-top:.5px solid rgba(28,28,26,.08)"><span style="width:30px;height:30px;border-radius:9px;background:#e4f1ea;display:flex;align-items:center;justify-content:center"><span style="width:13px;height:10px;border:1.8px solid #1f7a5a;border-radius:2.5px;display:block"></span></span><div style="flex:1"><div style="font:400 17px/1.2 -apple-system,system-ui,sans-serif;color:#1c1c1a">Fotoğraf çek</div></div><svg viewBox="0 0 24 24" fill="none" stroke="#c7c6be" stroke-width="2.2" stroke-linecap="round" style="width:14px;height:14px"><path d="m9 6 6 6-6 6"></path></svg></div>
+<div style="display:flex;align-items:center;gap:13px;padding:15px 20px;border-top:.5px solid rgba(28,28,26,.08)"><span style="width:30px;height:30px;border-radius:9px;background:#e6eceb;display:flex;align-items:center;justify-content:center"><span style="width:11px;height:11px;border:1.8px solid #24413f;border-radius:2.5px;display:block"></span></span><div style="flex:1"><div style="font:400 17px/1.2 -apple-system,system-ui,sans-serif;color:#1c1c1a">Galeriden seç</div></div><svg viewBox="0 0 24 24" fill="none" stroke="#c7c6be" stroke-width="2.2" stroke-linecap="round" style="width:14px;height:14px"><path d="m9 6 6 6-6 6"></path></svg></div>
+<div style="display:flex;align-items:center;gap:13px;padding:15px 20px;border-top:.5px solid rgba(28,28,26,.08)"><span style="width:30px;height:30px;border-radius:9px;background:#f0efeb;display:flex;align-items:center;justify-content:center"><span style="width:10px;height:12px;border:1.8px solid #55554e;border-radius:2px;display:block"></span></span><div style="flex:1"><div style="font:400 17px/1.2 -apple-system,system-ui,sans-serif;color:#1c1c1a">Dosya seç (PDF)</div></div><svg viewBox="0 0 24 24" fill="none" stroke="#c7c6be" stroke-width="2.2" stroke-linecap="round" style="width:14px;height:14px"><path d="m9 6 6 6-6 6"></path></svg></div>
+<div style="display:flex;align-items:center;gap:13px;padding:15px 20px;border-top:.5px solid rgba(28,28,26,.08)"><span style="width:30px;height:30px;border-radius:9px;background:#f8efdc;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" fill="none" stroke="#a2761b" stroke-width="2.6" stroke-linecap="round" style="width:14px;height:14px"><path d="M12 5v14M5 12h14"></path></svg></span><div style="flex:1"><div style="font:400 17px/1.2 -apple-system,system-ui,sans-serif;color:#1c1c1a">Elle ekle</div><div style="margin-top:1px;font:400 12.5px/1.2 -apple-system,system-ui,sans-serif;color:#8a8a80">Fiş yoksa</div></div><svg viewBox="0 0 24 24" fill="none" stroke="#c7c6be" stroke-width="2.2" stroke-linecap="round" style="width:14px;height:14px"><path d="m9 6 6 6-6 6"></path></svg></div>
+</div>
+<div style="height:56px;border-radius:22px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.92);backdrop-filter:blur(24px);border:.5px solid rgba(255,255,255,.95);box-shadow:0 12px 30px rgba(28,28,26,.16);font:600 17px/1 -apple-system,system-ui,sans-serif;color:#1c1c1a">İptal</div>
+</div>
+<div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:140px;height:5px;border-radius:3px;background:rgba(255,255,255,.7);z-index:50"></div>
+</div></div>
+<div class="dv-cap" style="margin-top:10px">Fiş ekle — alt sheet</div>
+</div>
+
+<div>
+<div style="width:414px;padding:11px;background:linear-gradient(155deg,#48484a,#1c1c1e 45%,#3a3a3c);border-radius:64px;box-shadow:0 22px 50px rgba(28,28,26,.24)">
+<div style="position:relative;width:392px;height:812px;border-radius:53px;overflow:hidden;background:#f4f3f0">
+<div style="position:absolute;inset:0;background:radial-gradient(520px 320px at 12% -6%, {{tintA}}, transparent 70%)"></div>
+<div style="position:absolute;top:0;left:0;right:0;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;z-index:40;font:600 15px/1 -apple-system,system-ui,sans-serif;color:#1c1c1a"><span>9:41</span><span style="width:23px;height:12px;border:1px solid currentColor;border-radius:3.5px;padding:1.5px;display:block;opacity:.5"><span style="display:block;width:70%;height:100%;background:currentColor;border-radius:1.5px"></span></span></div>
+
+<div style="position:absolute;top:52px;left:0;right:0;bottom:0;padding:8px 20px 0">
+<div style="font:600 13px/1 -apple-system,system-ui,sans-serif;color:#8a8a80;letter-spacing:.02em">ÖZET</div>
+<div style="margin-top:6px;font:700 32px/1.1 -apple-system,system-ui,sans-serif;letter-spacing:-.03em;color:#1c1c1a">Bugün</div>
+
+<div style="margin-top:18px;font:600 13px/1 -apple-system,system-ui,sans-serif;color:#8a8a80;letter-spacing:.02em">İŞLENİYOR</div>
+<div style="margin-top:10px;border-radius:22px;overflow:hidden;background:rgba(255,255,255,.64);backdrop-filter:blur({{blur}}px) saturate(190%);-webkit-backdrop-filter:blur({{blur}}px) saturate(190%);border:.5px solid rgba(255,255,255,.9);box-shadow:0 12px 28px rgba(28,28,26,.07)">
+<div style="display:flex;align-items:center;gap:13px;padding:15px 16px">
+<span style="flex:none;width:34px;height:34px;border-radius:11px;background:#f0efeb;display:flex;align-items:center;justify-content:center"><span style="display:block;width:16px;height:16px;border-radius:50%;border:2.4px solid rgba(28,28,26,.18);border-top-color:#55554e"></span></span>
+<div style="flex:1;min-width:0"><div style="font:500 15.5px/1.25 -apple-system,system-ui,sans-serif;color:#1c1c1a">fis-media-markt.jpg</div><div style="margin-top:3px;font:400 12.5px/1.3 -apple-system,system-ui,sans-serif;color:#8a8a80">Yükleniyor… %68</div><div style="margin-top:7px;height:4px;border-radius:999px;background:rgba(28,28,26,.09)"><div style="width:68%;height:100%;border-radius:999px;background:#24413f"></div></div></div>
+</div>
+<div style="display:flex;align-items:center;gap:13px;padding:15px 16px;border-top:.5px solid rgba(28,28,26,.07)">
+<span style="flex:none;width:34px;height:34px;border-radius:11px;background:#f8efdc;display:flex;align-items:center;justify-content:center"><span style="display:block;width:16px;height:16px;border-radius:50%;border:2.4px solid rgba(162,118,27,.25);border-top-color:#a2761b"></span></span>
+<div style="flex:1;min-width:0"><div style="font:500 15.5px/1.25 -apple-system,system-ui,sans-serif;color:#1c1c1a">Fiş okunuyor</div><div style="margin-top:2px;font:400 12.5px/1.3 -apple-system,system-ui,sans-serif;color:#8a8a80">07.08.2026 · birkaç dakika sürebilir</div></div>
+</div>
+</div>
+
+<div style="margin-top:22px;font:600 13px/1 -apple-system,system-ui,sans-serif;color:#8a8a80;letter-spacing:.02em">ONAY BEKLİYOR</div>
+<div style="margin-top:10px;padding:16px;border-radius:22px;background:rgba(248,239,220,.62);backdrop-filter:blur({{blur}}px) saturate(180%);-webkit-backdrop-filter:blur({{blur}}px) saturate(180%);border:.5px solid rgba(162,118,27,.28);box-shadow:0 12px 28px rgba(162,118,27,.1)">
+<div style="display:flex;align-items:center;gap:12px"><span style="width:34px;height:34px;border-radius:11px;background:#f8efdc;color:#a2761b;display:flex;align-items:center;justify-content:center;font:700 14px/1 -apple-system,system-ui,sans-serif">M</span><div><div style="font:600 15.5px/1.2 -apple-system,system-ui,sans-serif;color:#1c1c1a">Media Markt</div><div style="margin-top:2px;font:400 12.5px/1.2 -apple-system,system-ui,sans-serif;color:#8a8a80">Fişten 2 ürün okundu</div></div></div>
+<div style="margin-top:12px;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;align-items:center;gap:8px;font:400 14.5px/1.3 -apple-system,system-ui,sans-serif;color:#1c1c1a"><span style="width:4px;height:4px;border-radius:50%;background:#a2761b"></span>Xiaomi Robot Süpürge S20</div>
+<div style="display:flex;align-items:center;gap:8px;font:400 14.5px/1.3 -apple-system,system-ui,sans-serif;color:#1c1c1a"><span style="width:4px;height:4px;border-radius:50%;background:#a2761b"></span>Anker 20000 mAh Powerbank</div>
+</div>
+<div style="margin-top:14px;height:48px;border-radius:15px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#2e514e,#24413f);box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 8px 18px rgba(36,65,63,.26);font:600 15.5px/1 -apple-system,system-ui,sans-serif;color:#fff">Kontrol et ve onayla</div>
+</div>
+
+<div style="margin-top:22px;font:600 13px/1 -apple-system,system-ui,sans-serif;color:#8a8a80;letter-spacing:.02em">OKUNAMAYAN</div>
+<div style="margin-top:10px;padding:15px 16px;border-radius:22px;background:rgba(251,230,231,.6);backdrop-filter:blur(18px);border:.5px solid rgba(192,28,40,.24)">
+<div style="display:flex;align-items:center;gap:10px"><span style="width:8px;height:8px;border-radius:50%;background:#c01c28"></span><span style="font:600 15px/1.2 -apple-system,system-ui,sans-serif;color:#1c1c1a">Fiş okunamadı</span></div>
+<div style="margin-top:5px;font:400 13px/1.45 -apple-system,system-ui,sans-serif;color:#55554e">Fotoğraf bulanık olabilir. Tekrar denemeyi ya da ürünü elle eklemeyi seç.</div>
+<div style="margin-top:12px;display:flex;gap:8px"><span style="flex:1;height:42px;border-radius:13px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.9);border:.5px solid rgba(255,255,255,.95);font:600 14px/1 -apple-system,system-ui,sans-serif;color:#1c1c1a">Tekrar dene</span><span style="flex:1;height:42px;border-radius:13px;display:flex;align-items:center;justify-content:center;font:600 14px/1 -apple-system,system-ui,sans-serif;color:#24413f">Elle ekle</span></div>
+</div>
+</div>
+<div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:140px;height:5px;border-radius:3px;background:rgba(28,28,26,.3);z-index:50"></div>
+</div></div>
+<div class="dv-cap" style="margin-top:10px">Yükleme &amp; okuma durumu</div>
+</div>
+
+<div>
+<div style="width:414px;padding:11px;background:linear-gradient(155deg,#48484a,#1c1c1e 45%,#3a3a3c);border-radius:64px;box-shadow:0 22px 50px rgba(28,28,26,.24)">
+<div style="position:relative;width:392px;height:812px;border-radius:53px;overflow:hidden;background:#f4f3f0">
+<div style="position:absolute;inset:0;background:radial-gradient(560px 360px at 50% -10%, rgba(162,118,27,.18), transparent 66%)"></div>
+<div style="position:absolute;top:0;left:0;right:0;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;z-index:40;font:600 15px/1 -apple-system,system-ui,sans-serif;color:#1c1c1a"><span>9:41</span><span style="width:23px;height:12px;border:1px solid currentColor;border-radius:3.5px;padding:1.5px;display:block;opacity:.5"><span style="display:block;width:70%;height:100%;background:currentColor;border-radius:1.5px"></span></span></div>
+<div style="position:absolute;top:52px;left:0;right:0;height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;z-index:35;background:rgba(244,243,240,.72);backdrop-filter:blur({{blurNav}}px) saturate(180%);-webkit-backdrop-filter:blur({{blurNav}}px) saturate(180%);border-bottom:.5px solid rgba(28,28,26,.08)"><span style="font:400 17px/1 -apple-system,system-ui,sans-serif;color:#24413f">İptal</span><span style="font:600 16px/1 -apple-system,system-ui,sans-serif;color:#1c1c1a;letter-spacing:-.01em">Fişi kontrol et</span><span style="font:400 11px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:#8a8a80">2 ÜRÜN</span></div>
+
+<div style="position:absolute;top:100px;left:0;right:0;bottom:96px;padding:14px 20px 0;overflow:hidden">
+<div style="display:flex;gap:14px;align-items:flex-start">
+<div style="flex:none;width:92px;height:118px;border-radius:16px;background:repeating-linear-gradient(135deg,#efeee9,#efeee9 7px,#e3e2dc 7px,#e3e2dc 14px);border:.5px solid rgba(28,28,26,.1);box-shadow:0 8px 18px rgba(28,28,26,.08);display:flex;align-items:flex-end;justify-content:center;padding-bottom:8px;font:400 10px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:#8a8a80">fiş</div>
+<div style="min-width:0;padding-top:4px"><div style="font:600 17px/1.25 -apple-system,system-ui,sans-serif;letter-spacing:-.02em;color:#1c1c1a">Media Markt</div><div style="margin-top:3px;font:400 13px/1.35 -apple-system,system-ui,sans-serif;color:#8a8a80">07.08.2026 · ₺15.998,00</div><div style="margin-top:10px;display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;background:#f8efdc"><span style="width:6px;height:6px;border-radius:50%;background:#a2761b"></span><span style="font:600 11px/1 -apple-system,system-ui,sans-serif;color:#a2761b;letter-spacing:.04em">2 ÜRÜN OKUNDU</span></div><div style="margin-top:10px;font:500 13.5px/1 -apple-system,system-ui,sans-serif;color:#24413f">Fişi büyüt</div></div>
+</div>
+
+<div style="margin-top:20px;display:flex;align-items:baseline;justify-content:space-between"><span style="font:600 13px/1 -apple-system,system-ui,sans-serif;color:#8a8a80;letter-spacing:.02em">ÜRÜN 1</span><span style="font:500 13.5px/1 -apple-system,system-ui,sans-serif;color:#8a8a80">Kaldır</span></div>
+<div style="margin-top:10px;border-radius:22px;overflow:hidden;background:rgba(255,255,255,.66);backdrop-filter:blur({{blur}}px) saturate(190%);-webkit-backdrop-filter:blur({{blur}}px) saturate(190%);border:.5px solid rgba(255,255,255,.9);box-shadow:0 12px 28px rgba(28,28,26,.07)">
+<div style="display:flex;align-items:center;gap:12px;padding:14px 16px"><span style="flex:none;width:96px;font:400 14.5px/1.2 -apple-system,system-ui,sans-serif;color:#8a8a80">Ürün adı</span><span style="flex:1;font:500 15.5px/1.2 -apple-system,system-ui,sans-serif;color:#1c1c1a">Xiaomi Robot Süpürge S20</span></div>
+<div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-top:.5px solid rgba(28,28,26,.07)"><span style="flex:none;width:96px;font:400 14.5px/1.2 -apple-system,system-ui,sans-serif;color:#8a8a80">Marka</span><span style="flex:1;font:500 15.5px/1.2 -apple-system,system-ui,sans-serif;color:#1c1c1a">Xiaomi</span></div>
+<div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-top:.5px solid rgba(28,28,26,.07)"><span style="flex:none;width:96px;font:400 14.5px/1.2 -apple-system,system-ui,sans-serif;color:#8a8a80">Alış tarihi</span><span style="flex:1;font:500 15px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;color:#1c1c1a">07.08.2026</span></div>
+<div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-top:.5px solid rgba(28,28,26,.07)"><span style="flex:none;width:96px;font:400 14.5px/1.2 -apple-system,system-ui,sans-serif;color:#8a8a80">Fiyat</span><span style="flex:1;font:500 15px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;color:#1c1c1a">₺12.499,00</span></div>
+<div style="padding:14px 16px;border-top:.5px solid rgba(28,28,26,.07)">
+<div style="font:400 14.5px/1.2 -apple-system,system-ui,sans-serif;color:#8a8a80">Garanti süresi</div>
+<div style="margin-top:10px;display:flex;gap:6px">
+<span style="flex:1;text-align:center;padding:11px 0;border-radius:12px;background:rgba(28,28,26,.05);font:500 14px/1 -apple-system,system-ui,sans-serif;color:#55554e">12 ay</span>
+<span style="flex:1;text-align:center;padding:11px 0;border-radius:12px;background:#1c1c1a;color:#f7f7f5;font:600 14px/1 -apple-system,system-ui,sans-serif">24 ay</span>
+<span style="flex:1;text-align:center;padding:11px 0;border-radius:12px;background:rgba(28,28,26,.05);font:500 14px/1 -apple-system,system-ui,sans-serif;color:#55554e">36 ay</span>
+<span style="flex:1;text-align:center;padding:11px 0;border-radius:12px;background:rgba(28,28,26,.05);font:500 14px/1 -apple-system,system-ui,sans-serif;color:#55554e">Diğer</span>
+</div>
+<div style="margin-top:12px;padding:11px 13px;border-radius:13px;background:#e4f1ea;display:flex;align-items:center;justify-content:space-between"><span style="font:500 13px/1 -apple-system,system-ui,sans-serif;color:#1f7a5a">Garanti bitişi</span><span style="font:600 14px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:#1f7a5a">07.08.2028</span></div>
+</div>
+</div>
+<div style="margin-top:14px;font:600 13px/1 -apple-system,system-ui,sans-serif;color:#8a8a80;letter-spacing:.02em">ÜRÜN 2</div>
+<div style="margin-top:10px;height:46px;border-radius:22px;background:rgba(255,255,255,.5);border:.5px solid rgba(255,255,255,.8)"></div>
+</div>
+
+<div style="position:absolute;left:0;right:0;bottom:0;padding:12px 18px 26px;z-index:46;background:rgba(244,243,240,.8);backdrop-filter:blur({{blurNav}}px) saturate(190%);-webkit-backdrop-filter:blur({{blurNav}}px) saturate(190%);border-top:.5px solid rgba(28,28,26,.08);display:flex;align-items:center;gap:12px">
+<div style="flex:1;font:500 12.5px/1.3 -apple-system,system-ui,sans-serif;color:#8a8a80">2 ürün kaydedilecek<br><span style="font:400 11.5px/1.3 -apple-system,system-ui,sans-serif">Onaylanmadan hatırlatma gönderilmez</span></div>
+<div style="flex:none;height:50px;padding:0 26px;border-radius:17px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#2e514e,#24413f);box-shadow:inset 0 1px 0 rgba(255,255,255,.24),0 8px 20px rgba(36,65,63,.28);font:600 16px/1 -apple-system,system-ui,sans-serif;color:#fff">Onayla</div>
+</div>
+<div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:140px;height:5px;border-radius:3px;background:rgba(28,28,26,.3);z-index:50"></div>
+</div></div>
+<div class="dv-cap" style="margin-top:10px">Fiş onayı</div>
+</div>
+
+<div>
+<div style="width:414px;padding:11px;background:linear-gradient(155deg,#48484a,#1c1c1e 45%,#3a3a3c);border-radius:64px;box-shadow:0 22px 50px rgba(28,28,26,.24)">
+<div style="position:relative;width:392px;height:812px;border-radius:53px;overflow:hidden;background:#f4f3f0">
+<div style="position:absolute;inset:0;background:radial-gradient(520px 340px at 20% -8%, rgba(31,122,90,.16), transparent 70%)"></div>
+<div style="position:absolute;top:0;left:0;right:0;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;z-index:40;font:600 15px/1 -apple-system,system-ui,sans-serif;color:#1c1c1a"><span>9:41</span><span style="width:23px;height:12px;border:1px solid currentColor;border-radius:3.5px;padding:1.5px;display:block;opacity:.5"><span style="display:block;width:70%;height:100%;background:currentColor;border-radius:1.5px"></span></span></div>
+<div style="position:absolute;top:52px;left:0;right:0;height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;z-index:35;background:rgba(244,243,240,.72);backdrop-filter:blur({{blurNav}}px) saturate(180%);-webkit-backdrop-filter:blur({{blurNav}}px) saturate(180%);border-bottom:.5px solid rgba(28,28,26,.08)"><span style="font:400 17px/1 -apple-system,system-ui,sans-serif;color:#24413f">İptal</span><span style="font:600 16px/1 -apple-system,system-ui,sans-serif;color:#1c1c1a">Yeni ürün</span><span style="font:600 17px/1 -apple-system,system-ui,sans-serif;color:#24413f">Kaydet</span></div>
+
+<div style="position:absolute;top:100px;left:0;right:0;bottom:0;padding:16px 20px 0">
+<div style="font:400 13px/1.45 -apple-system,system-ui,sans-serif;color:#8a8a80">Fişi olmayan ürünü elle ekle. Garanti bitişini alış tarihi ve süreden kendisi hesaplar.</div>
+
+<div style="margin-top:16px;border-radius:22px;overflow:hidden;background:rgba(255,255,255,.66);backdrop-filter:blur({{blur}}px) saturate(190%);-webkit-backdrop-filter:blur({{blur}}px) saturate(190%);border:.5px solid rgba(255,255,255,.9);box-shadow:0 12px 28px rgba(28,28,26,.07)">
+<div style="display:flex;align-items:center;gap:12px;padding:14px 16px"><span style="flex:none;width:96px;font:400 14.5px/1.2 -apple-system,system-ui,sans-serif;color:#8a8a80">Ürün adı</span><span style="flex:1;font:500 15.5px/1.2 -apple-system,system-ui,sans-serif;color:#1c1c1a">Vestel Bulaşık Makinesi</span><span style="width:2px;height:20px;background:#24413f"></span></div>
+<div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-top:.5px solid rgba(28,28,26,.07)"><span style="flex:none;width:96px;font:400 14.5px/1.2 -apple-system,system-ui,sans-serif;color:#8a8a80">Marka</span><span style="flex:1;font:500 15.5px/1.2 -apple-system,system-ui,sans-serif;color:#1c1c1a">Vestel</span></div>
+<div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-top:.5px solid rgba(28,28,26,.07)"><span style="flex:none;width:96px;font:400 14.5px/1.2 -apple-system,system-ui,sans-serif;color:#8a8a80">Kategori</span><span style="flex:1;font:400 15.5px/1.2 -apple-system,system-ui,sans-serif;color:#c7c6be">Beyaz eşya</span></div>
+<div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-top:.5px solid rgba(28,28,26,.07)"><span style="flex:none;width:96px;font:400 14.5px/1.2 -apple-system,system-ui,sans-serif;color:#8a8a80">Satıcı</span><span style="flex:1;font:500 15.5px/1.2 -apple-system,system-ui,sans-serif;color:#1c1c1a">Vestel Bayi</span></div>
+</div>
+
+<div style="margin-top:16px;border-radius:22px;overflow:hidden;background:rgba(255,255,255,.66);backdrop-filter:blur({{blur}}px) saturate(190%);-webkit-backdrop-filter:blur({{blur}}px) saturate(190%);border:.5px solid rgba(255,255,255,.9);box-shadow:0 12px 28px rgba(28,28,26,.07)">
+<div style="display:flex;align-items:center;gap:12px;padding:14px 16px"><span style="flex:none;width:96px;font:400 14.5px/1.2 -apple-system,system-ui,sans-serif;color:#8a8a80">Alış tarihi</span><span style="flex:1;font:500 15px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;color:#1c1c1a">14.07.2026</span></div>
+<div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-top:.5px solid rgba(28,28,26,.07)"><span style="flex:none;width:96px;font:400 14.5px/1.2 -apple-system,system-ui,sans-serif;color:#8a8a80">Fiyat</span><span style="flex:1;font:500 15px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;color:#1c1c1a">₺18.750,00</span></div>
+<div style="padding:14px 16px;border-top:.5px solid rgba(28,28,26,.07)">
+<div style="font:400 14.5px/1.2 -apple-system,system-ui,sans-serif;color:#8a8a80">Garanti süresi</div>
+<div style="margin-top:10px;display:flex;gap:6px">
+<span style="flex:1;text-align:center;padding:11px 0;border-radius:12px;background:rgba(28,28,26,.05);font:500 14px/1 -apple-system,system-ui,sans-serif;color:#55554e">12 ay</span>
+<span style="flex:1;text-align:center;padding:11px 0;border-radius:12px;background:rgba(28,28,26,.05);font:500 14px/1 -apple-system,system-ui,sans-serif;color:#55554e">24 ay</span>
+<span style="flex:1;text-align:center;padding:11px 0;border-radius:12px;background:#1c1c1a;color:#f7f7f5;font:600 14px/1 -apple-system,system-ui,sans-serif">36 ay</span>
+<span style="flex:1;text-align:center;padding:11px 0;border-radius:12px;background:rgba(28,28,26,.05);font:500 14px/1 -apple-system,system-ui,sans-serif;color:#55554e">Diğer</span>
+</div>
+<div style="margin-top:12px;padding:11px 13px;border-radius:13px;background:#e4f1ea;display:flex;align-items:center;justify-content:space-between"><span style="font:500 13px/1 -apple-system,system-ui,sans-serif;color:#1f7a5a">Garanti bitişi</span><span style="font:600 14px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:#1f7a5a">14.07.2029</span></div>
+</div>
+</div>
+
+<div style="margin-top:16px;border-radius:22px;overflow:hidden;background:rgba(255,255,255,.66);backdrop-filter:blur(18px);border:.5px solid rgba(255,255,255,.9);box-shadow:0 12px 28px rgba(28,28,26,.06)">
+<div style="display:flex;align-items:center;gap:12px;padding:14px 16px"><span style="flex:none;width:96px;font:400 14.5px/1.2 -apple-system,system-ui,sans-serif;color:#8a8a80">Seri no</span><span style="flex:1;font:400 15px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;color:#c7c6be">İsteğe bağlı</span></div>
+<div style="padding:14px 16px;border-top:.5px solid rgba(28,28,26,.07)"><div style="font:400 14.5px/1.2 -apple-system,system-ui,sans-serif;color:#8a8a80">Notlar</div><div style="margin-top:6px;font:400 15px/1.4 -apple-system,system-ui,sans-serif;color:#c7c6be">Servis numarası, kutu yeri, aksesuarlar…</div></div>
+</div>
+</div>
+<div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:140px;height:5px;border-radius:3px;background:rgba(28,28,26,.3);z-index:50"></div>
+</div></div>
+<div class="dv-cap" style="margin-top:10px">Ürün formu (yeni / düzenle)</div>
+</div>
+
+<div>
+<div style="width:414px;padding:11px;background:linear-gradient(155deg,#48484a,#1c1c1e 45%,#3a3a3c);border-radius:64px;box-shadow:0 22px 50px rgba(28,28,26,.24)">
+<div style="position:relative;width:392px;height:812px;border-radius:53px;overflow:hidden;background:#f4f3f0">
+<div style="position:absolute;inset:0;background:radial-gradient(520px 340px at 50% 8%, rgba(31,122,90,.14), transparent 68%)"></div>
+<div style="position:absolute;top:0;left:0;right:0;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;z-index:40;font:600 15px/1 -apple-system,system-ui,sans-serif;color:#1c1c1a"><span>9:41</span><span style="width:23px;height:12px;border:1px solid currentColor;border-radius:3.5px;padding:1.5px;display:block;opacity:.5"><span style="display:block;width:70%;height:100%;background:currentColor;border-radius:1.5px"></span></span></div>
+
+<div style="position:absolute;top:52px;left:0;right:0;bottom:0;padding:8px 20px 0">
+<div style="display:flex;align-items:flex-end;justify-content:space-between"><div><div style="font:600 13px/1 -apple-system,system-ui,sans-serif;color:#8a8a80;letter-spacing:.02em">ÖZET</div><div style="margin-top:6px;font:700 32px/1.1 -apple-system,system-ui,sans-serif;letter-spacing:-.03em;color:#1c1c1a">Bugün</div></div><div style="width:38px;height:38px;border-radius:19px;background:rgba(255,255,255,.75);backdrop-filter:blur(14px);border:.5px solid rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center;font:600 13px/1 -apple-system,system-ui,sans-serif;color:#24413f">SC</div></div>
+
+<div style="margin-top:60px;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 12px">
+<div style="position:relative;width:112px;height:112px"><svg viewBox="0 0 120 120" style="width:112px;height:112px;transform:rotate(-90deg)"><circle cx="60" cy="60" r="52" fill="none" stroke="rgba(28,28,26,.08)" stroke-width="13" stroke-dasharray="4 9"></circle></svg><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:600 30px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:#c7c6be">0</div></div>
+<div style="margin-top:24px;font:700 24px/1.2 -apple-system,system-ui,sans-serif;letter-spacing:-.03em;color:#1c1c1a">Henüz ürün yok</div>
+<div style="margin-top:8px;max-width:280px;font:400 15px/1.5 -apple-system,system-ui,sans-serif;color:#55554e">İlk fişini yükle — ürünleri ve garanti sürelerini kendisi çıkarır, bitmeden önce sana haber verir.</div>
+<div style="margin-top:22px;height:52px;padding:0 26px;border-radius:18px;display:flex;align-items:center;justify-content:center;gap:9px;background:linear-gradient(180deg,#2e514e,#24413f);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 10px 24px rgba(36,65,63,.3);font:600 16px/1 -apple-system,system-ui,sans-serif;color:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" style="width:17px;height:17px"><path d="M12 5v14M5 12h14"></path></svg>Fiş ekle</div>
+<div style="margin-top:14px;font:500 14.5px/1 -apple-system,system-ui,sans-serif;color:#24413f">Fişsiz elle ekle</div>
+</div>
+</div>
+
+<div style="position:absolute;left:12px;right:12px;bottom:22px;height:66px;border-radius:33px;background:rgba(255,255,255,.6);backdrop-filter:blur({{blurNav}}px) saturate(200%);-webkit-backdrop-filter:blur({{blurNav}}px) saturate(200%);border:.5px solid rgba(255,255,255,.9);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 10px 30px rgba(28,28,26,.13);display:flex;align-items:center;justify-content:space-around;padding:0 10px;z-index:45">
+<div style="display:flex;flex-direction:column;align-items:center;gap:4px;color:#24413f"><div style="width:20px;height:20px;border-radius:50%;border:2.2px solid currentColor"></div><span style="font:600 10.5px/1 -apple-system,system-ui,sans-serif">Özet</span></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:4px;color:#8a8a80"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" style="width:21px;height:21px"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg><span style="font:500 10.5px/1 -apple-system,system-ui,sans-serif">Ara</span></div>
+<div style="display:flex;align-items:center;justify-content:center;width:50px;height:50px;border-radius:25px;background:linear-gradient(180deg,#2e514e,#24413f);box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 6px 16px rgba(36,65,63,.4)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" style="width:23px;height:23px"><path d="M12 5v14M5 12h14"></path></svg></div>
+</div>
+<div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:140px;height:5px;border-radius:3px;background:rgba(28,28,26,.3);z-index:50"></div>
+</div></div>
+<div class="dv-cap" style="margin-top:10px">Boş durum</div>
+</div>
+
+<div>
+<div style="width:414px;padding:11px;background:linear-gradient(155deg,#48484a,#1c1c1e 45%,#3a3a3c);border-radius:64px;box-shadow:0 22px 50px rgba(28,28,26,.24)">
+<div style="position:relative;width:392px;height:812px;border-radius:53px;overflow:hidden;background:#f4f3f0">
+<div style="position:absolute;inset:0;background:radial-gradient(520px 320px at 12% -6%, {{tintA}}, transparent 70%)"></div>
+<div style="position:absolute;top:0;left:0;right:0;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;z-index:40;font:600 15px/1 -apple-system,system-ui,sans-serif;color:#1c1c1a"><span>9:41</span><span style="width:23px;height:12px;border:1px solid currentColor;border-radius:3.5px;padding:1.5px;display:block;opacity:.5"><span style="display:block;width:70%;height:100%;background:currentColor;border-radius:1.5px"></span></span></div>
+
+<div style="position:absolute;top:52px;left:0;right:0;bottom:0;padding:8px 20px 0">
+<div style="font:700 32px/1.1 -apple-system,system-ui,sans-serif;letter-spacing:-.03em;color:#1c1c1a">Hesap</div>
+
+<div style="margin-top:18px;display:flex;align-items:center;gap:14px;padding:16px;border-radius:22px;background:rgba(255,255,255,.66);backdrop-filter:blur({{blur}}px) saturate(190%);-webkit-backdrop-filter:blur({{blur}}px) saturate(190%);border:.5px solid rgba(255,255,255,.9);box-shadow:0 12px 28px rgba(28,28,26,.07)">
+<span style="width:52px;height:52px;border-radius:17px;background:linear-gradient(165deg,#2e514e,#24413f);color:#fff;display:flex;align-items:center;justify-content:center;font:600 19px/1 -apple-system,system-ui,sans-serif">SC</span>
+<div style="min-width:0"><div style="font:600 16.5px/1.2 -apple-system,system-ui,sans-serif;letter-spacing:-.015em;color:#1c1c1a">Süleyman Coşkun</div><div style="margin-top:3px;font:400 13px/1.2 -apple-system,system-ui,sans-serif;color:#8a8a80">suleyman@ornek.com</div></div>
+</div>
+
+<div style="margin-top:22px;font:600 13px/1 -apple-system,system-ui,sans-serif;color:#8a8a80;letter-spacing:.02em">HATIRLATMALAR</div>
+<div style="margin-top:10px;border-radius:22px;overflow:hidden;background:rgba(255,255,255,.66);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:.5px solid rgba(255,255,255,.9);box-shadow:0 10px 24px rgba(28,28,26,.06)">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px"><span style="font:400 16px/1.2 -apple-system,system-ui,sans-serif;color:#1c1c1a">6 ay önce</span><span style="width:46px;height:28px;border-radius:14px;background:#1f7a5a;padding:2px;display:flex;justify-content:flex-end"><span style="width:24px;height:24px;border-radius:12px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2)"></span></span></div>
+<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-top:.5px solid rgba(28,28,26,.07)"><span style="font:400 16px/1.2 -apple-system,system-ui,sans-serif;color:#1c1c1a">1 ay önce</span><span style="width:46px;height:28px;border-radius:14px;background:#1f7a5a;padding:2px;display:flex;justify-content:flex-end"><span style="width:24px;height:24px;border-radius:12px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2)"></span></span></div>
+<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-top:.5px solid rgba(28,28,26,.07)"><span style="font:400 16px/1.2 -apple-system,system-ui,sans-serif;color:#1c1c1a">1 hafta önce</span><span style="width:46px;height:28px;border-radius:14px;background:rgba(28,28,26,.12);padding:2px;display:flex;justify-content:flex-start"><span style="width:24px;height:24px;border-radius:12px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.15)"></span></span></div>
+</div>
+
+<div style="margin-top:22px;font:600 13px/1 -apple-system,system-ui,sans-serif;color:#8a8a80;letter-spacing:.02em">UYGULAMA</div>
+<div style="margin-top:10px;border-radius:22px;overflow:hidden;background:rgba(255,255,255,.66);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:.5px solid rgba(255,255,255,.9);box-shadow:0 10px 24px rgba(28,28,26,.06)">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px"><span style="font:400 16px/1.2 -apple-system,system-ui,sans-serif;color:#1c1c1a">Dil</span><div style="display:inline-flex;align-items:center;padding:2px;border-radius:999px;background:rgba(28,28,26,.06)"><span style="min-height:30px;display:flex;align-items:center;padding:0 12px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.08);font:600 12px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:#1c1c1a">TR</span><span style="min-height:30px;display:flex;align-items:center;padding:0 12px;font:600 12px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:#8a8a80">EN</span></div></div>
+<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-top:.5px solid rgba(28,28,26,.07)"><span style="font:400 16px/1.2 -apple-system,system-ui,sans-serif;color:#1c1c1a">Kayıtlı ürün</span><span style="font:500 15px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;color:#8a8a80">7</span></div>
+<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-top:.5px solid rgba(28,28,26,.07)"><span style="font:400 16px/1.2 -apple-system,system-ui,sans-serif;color:#1c1c1a">Sürüm</span><span style="font:500 15px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;color:#8a8a80">1.0.0</span></div>
+</div>
+
+<div style="margin-top:18px;height:52px;border-radius:18px;display:flex;align-items:center;justify-content:center;background:rgba(251,230,231,.7);backdrop-filter:blur(18px);border:.5px solid rgba(192,28,40,.22);font:600 16px/1 -apple-system,system-ui,sans-serif;color:#c01c28">Çıkış yap</div>
+<div style="margin-top:16px;text-align:center;font:400 11.5px/1 -apple-system,system-ui,sans-serif;color:#8a8a80">Created By Süleyman Coşkun</div>
+</div>
+
+<div style="position:absolute;left:12px;right:12px;bottom:22px;height:66px;border-radius:33px;background:rgba(255,255,255,.6);backdrop-filter:blur({{blurNav}}px) saturate(200%);-webkit-backdrop-filter:blur({{blurNav}}px) saturate(200%);border:.5px solid rgba(255,255,255,.9);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 10px 30px rgba(28,28,26,.13);display:flex;align-items:center;justify-content:space-around;padding:0 10px;z-index:45">
+<div style="display:flex;flex-direction:column;align-items:center;gap:4px;color:#8a8a80"><div style="width:20px;height:20px;border-radius:50%;border:2.2px solid currentColor"></div><span style="font:500 10.5px/1 -apple-system,system-ui,sans-serif">Özet</span></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:4px;color:#8a8a80"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" style="width:21px;height:21px"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg><span style="font:500 10.5px/1 -apple-system,system-ui,sans-serif">Ara</span></div>
+<div style="display:flex;align-items:center;justify-content:center;width:50px;height:50px;border-radius:25px;background:linear-gradient(180deg,#2e514e,#24413f);box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 6px 16px rgba(36,65,63,.4)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" style="width:23px;height:23px"><path d="M12 5v14M5 12h14"></path></svg></div>
+</div>
+<div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:140px;height:5px;border-radius:3px;background:rgba(28,28,26,.3);z-index:50"></div>
+</div></div>
+<div class="dv-cap" style="margin-top:10px">Hesap</div>
+</div>
+
+</div>
+</div>
+</div>
+<p class="dv-next">Sırada denenebilir: “koyu tema da ekle” · “ürün kartına kaydırarak silme ve hatırlatıcı ekle” · “<a class="dv-oid" href="#2a">2a</a>'daki hesap ekranını sekme çubuğuna dördüncü sekme olarak koy” · “bu yönü koda çevir (Tailwind sınıfları olarak)”</p>
+</section>
+
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">Liquid Glass — üç yön</span></div>
+<p class="dv-note">Sistem kararları: tipografi SF (system-ui) + tabular mono sayılar — “html sayfası” hissini en çok değiştiren şey bu. Durum renkleri koddaki omurga (yeşil → amber → turuncu → kırmızı) aynen korunuyor; kağıt tonu #f7f7f5 kalıyor, altına camın kıracağı hafif bir renk yıkaması geliyor. Sağ alttaki yüzen + düğmesi yerini alt cam sekme çubuğuna bırakıyor (native uygulamaların ana ekrandan açıldığında beklenen dokunuş bölgesi). 1a muhafazakâr, 1b Apple Health mantığı, 1c Apple Sports cesurluğu.</p>
+<div class="dv-opts">
+
+<div class="dv-opt" id="1a">
+<div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>Sakin Cam — mevcut mimari korunur; büyük başlık, cam kartlar, cam sekme çubuğu, alt sheet.</div>
+<div class="dv-row">
+
+<div>
+<div style="width:414px;padding:11px;background:linear-gradient(155deg,#48484a,#1c1c1e 45%,#3a3a3c);border-radius:64px;box-shadow:0 22px 50px rgba(28,28,26,.24)">
+<div style="position:relative;width:392px;height:812px;border-radius:53px;overflow:hidden;background:#f7f7f5">
+<div style="position:absolute;inset:0;background:radial-gradient(520px 320px at 12% -6%, {{tintA}}, transparent 70%), radial-gradient(420px 300px at 96% 8%, rgba(31,122,90,.12), transparent 70%)"></div>
+<div style="position:absolute;top:0;left:0;right:0;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;z-index:40;font:600 15px/1 -apple-system,system-ui,sans-serif;color:#1c1c1a;letter-spacing:-.01em"><span>9:41</span><div style="display:flex;align-items:center;gap:6px"><div style="display:flex;align-items:flex-end;gap:2px;height:11px"><span style="width:3px;height:5px;background:currentColor;border-radius:1px"></span><span style="width:3px;height:7px;background:currentColor;border-radius:1px"></span><span style="width:3px;height:9px;background:currentColor;border-radius:1px"></span><span style="width:3px;height:11px;background:currentColor;border-radius:1px"></span></div><span style="width:23px;height:12px;border:1px solid currentColor;border-radius:3.5px;padding:1.5px;display:block;opacity:.5"><span style="display:block;width:70%;height:100%;background:currentColor;border-radius:1.5px"></span></span></div></div>
+
+<div style="position:absolute;top:52px;left:0;right:0;bottom:0;overflow:hidden">
+<div style="padding:6px 20px 0"><div style="font:400 12px/1 -apple-system,system-ui,sans-serif;color:#8a8a80;letter-spacing:.01em">6 Ağustos, Perşembe</div>
+<div style="margin-top:4px;font:700 34px/1.1 -apple-system,system-ui,sans-serif;letter-spacing:-.032em;color:#1c1c1a">Garantiler</div></div>
+
+<div style="margin:16px 20px 0;padding:14px 16px;border-radius:20px;background:rgba(255,255,255,.62);backdrop-filter:blur({{blur}}px) saturate(180%);-webkit-backdrop-filter:blur({{blur}}px) saturate(180%);border:.5px solid rgba(255,255,255,.85);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 10px 24px rgba(28,28,26,.07);display:flex;align-items:center;gap:12px">
+<span style="width:9px;height:9px;border-radius:50%;background:#c01c28;box-shadow:0 0 0 4px rgba(192,28,40,.14)"></span>
+<div style="min-width:0;flex:1"><div style="font:600 15px/1.2 -apple-system,system-ui,sans-serif;letter-spacing:-.015em;color:#1c1c1a">3 garanti 90 gün içinde doluyor</div><div style="margin-top:2px;font:400 13px/1.3 -apple-system,system-ui,sans-serif;color:#8a8a80">En yakını Dyson V15 — 3 gün</div></div>
+<svg viewBox="0 0 24 24" fill="none" stroke="#c7c6be" stroke-width="2" stroke-linecap="round" style="width:16px;height:16px;flex:none"><path d="m9 6 6 6-6 6"></path></svg>
+</div>
+
+<div style="display:flex;gap:8px;padding:18px 20px 0;overflow:hidden">
+<span style="padding:8px 14px;border-radius:999px;background:#1c1c1a;color:#f7f7f5;font:600 13px/1 -apple-system,system-ui,sans-serif;white-space:nowrap">Hepsi</span>
+<span style="padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.7);backdrop-filter:blur(12px);border:.5px solid rgba(255,255,255,.8);color:#55554e;font:500 13px/1 -apple-system,system-ui,sans-serif;white-space:nowrap">Sürüyor</span>
+<span style="padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.7);backdrop-filter:blur(12px);border:.5px solid rgba(255,255,255,.8);color:#55554e;font:500 13px/1 -apple-system,system-ui,sans-serif;white-space:nowrap">Yaklaşan</span>
+<span style="padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.7);backdrop-filter:blur(12px);border:.5px solid rgba(255,255,255,.8);color:#55554e;font:500 13px/1 -apple-system,system-ui,sans-serif;white-space:nowrap">Dolmuş</span>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:10px;padding:14px 20px 0">
+<sc-for list="{{ products }}" as="p" hint-placeholder-count="5">
+<div style="padding:14px 16px;border-radius:20px;background:rgba(255,255,255,.66);backdrop-filter:blur(18px) saturate(170%);-webkit-backdrop-filter:blur(18px) saturate(170%);border:.5px solid rgba(255,255,255,.85);box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 6px 16px rgba(28,28,26,.05)">
+<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px">
+<div style="min-width:0"><div style="font:600 16px/1.25 -apple-system,system-ui,sans-serif;letter-spacing:-.02em;color:#1c1c1a">{{ p.name }}</div><div style="margin-top:2px;font:400 13px/1.3 -apple-system,system-ui,sans-serif;color:#8a8a80">{{ p.meta }}</div></div>
+<div style="flex:none;font:600 15px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums;letter-spacing:-.02em;white-space:nowrap;color:{{ p.c }}">{{ p.short }}</div>
+</div>
+<div style="margin-top:12px;height:6px;border-radius:999px;overflow:hidden;background:{{ p.soft }}"><div style="height:100%;border-radius:999px;background:{{ p.c }};width:{{ p.pct }}%"></div></div>
+</div>
+</sc-for>
+</div>
+</div>
+
+<div style="position:absolute;left:12px;right:12px;bottom:22px;height:66px;border-radius:33px;background:rgba(255,255,255,.6);backdrop-filter:blur({{blurNav}}px) saturate(200%);-webkit-backdrop-filter:blur({{blurNav}}px) saturate(200%);border:.5px solid rgba(255,255,255,.9);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(28,28,26,.04),0 10px 30px rgba(28,28,26,.13);display:flex;align-items:center;justify-content:space-around;padding:0 10px;z-index:45">
+<div style="display:flex;flex-direction:column;align-items:center;gap:4px;color:#24413f"><div style="display:flex;flex-direction:column;gap:2.5px;width:19px"><span style="height:3.5px;border-radius:2px;background:currentColor"></span><span style="height:3.5px;border-radius:2px;background:currentColor"></span><span style="height:3.5px;border-radius:2px;background:currentColor"></span></div><span style="font:600 10.5px/1 -apple-system,system-ui,sans-serif">Ürünler</span></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:4px;color:#8a8a80"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" style="width:21px;height:21px"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg><span style="font:500 10.5px/1 -apple-system,system-ui,sans-serif">Ara</span></div>
+<div style="display:flex;align-items:center;justify-content:center;width:50px;height:50px;border-radius:25px;background:linear-gradient(180deg,#2e514e,#24413f);box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 6px 16px rgba(36,65,63,.4)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" style="width:23px;height:23px"><path d="M12 5v14M5 12h14"></path></svg></div>
+</div>
+<div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:140px;height:5px;border-radius:3px;background:rgba(28,28,26,.3);z-index:50"></div>
+</div></div>
+<div class="dv-cap" style="margin-top:10px">Ürünler</div>
+</div>
+
+<div>
+<div style="width:414px;padding:11px;background:linear-gradient(155deg,#48484a,#1c1c1e 45%,#3a3a3c);border-radius:64px;box-shadow:0 22px 50px rgba(28,28,26,.24)">
+<div style="position:relative;width:392px;height:812px;border-radius:53px;overflow:hidden;background:#f7f7f5">
+<div style="position:absolute;inset:0;background:radial-gradient(520px 340px at 20% -8%, rgba(162,118,27,.16), transparent 70%)"></div>
+<div style="position:absolute;top:0;left:0;right:0;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;z-index:40;font:600 15px/1 -apple-system,system-ui,sans-serif;color:#1c1c1a"><span>9:41</span><span style="width:23px;height:12px;border:1px solid currentColor;border-radius:3.5px;padding:1.5px;display:block;opacity:.5"><span style="display:block;width:70%;height:100%;background:currentColor;border-radius:1.5px"></span></span></div>
+
+<div style="position:absolute;top:52px;left:0;right:0;height:48px;display:flex;align-items:center;gap:4px;padding:0 14px;z-index:35;background:rgba(247,247,245,.72);backdrop-filter:blur({{blurNav}}px) saturate(180%);-webkit-backdrop-filter:blur({{blurNav}}px) saturate(180%);border-bottom:.5px solid rgba(28,28,26,.09)">
+<svg viewBox="0 0 24 24" fill="none" stroke="#24413f" stroke-width="2.2" stroke-linecap="round" style="width:20px;height:20px"><path d="m14 6-6 6 6 6"></path></svg>
+<span style="font:400 17px/1 -apple-system,system-ui,sans-serif;color:#24413f;letter-spacing:-.02em">Ürünler</span>
+<span style="flex:1"></span>
+<span style="font:400 17px/1 -apple-system,system-ui,sans-serif;color:#24413f">Düzenle</span>
+</div>
+
+<div style="position:absolute;top:100px;left:0;right:0;bottom:0;padding:20px 20px 0">
+<div style="display:flex;gap:8px;align-items:center"><span style="padding:4px 10px;border-radius:999px;background:#f8efdc;color:#a2761b;font:600 12px/1 -apple-system,system-ui,sans-serif">Yaklaşıyor</span></div>
+<div style="margin-top:10px;font:700 28px/1.15 -apple-system,system-ui,sans-serif;letter-spacing:-.03em;color:#1c1c1a">iPhone 15 Pro</div>
+<div style="margin-top:4px;font:400 14px/1.3 -apple-system,system-ui,sans-serif;color:#8a8a80">Apple · Apple Store</div>
+
+<div style="margin-top:18px;padding:18px;border-radius:22px;background:rgba(255,255,255,.62);backdrop-filter:blur({{blur}}px) saturate(180%);-webkit-backdrop-filter:blur({{blur}}px) saturate(180%);border:.5px solid rgba(255,255,255,.9);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 12px 28px rgba(28,28,26,.08)">
+<div style="display:flex;align-items:baseline;gap:8px"><span style="font:600 44px/1 ui-monospace,SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums;letter-spacing:-.04em;color:#a2761b">47</span><span style="font:500 17px/1 -apple-system,system-ui,sans-serif;color:#a2761b">gün kaldı</span></div>
+<div style="margin-top:14px;height:8px;border-radius:999px;background:#f8efdc;overflow:hidden"><div style="width:94%;height:100%;border-radius:999px;background:#a2761b"></div></div>
+<div style="margin-top:8px;display:flex;justify-content:space-between;font:500 12px/1 ui-monospace,SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums"><span style="color:#8a8a80">22.09.2024</span><span style="color:#a2761b">22.09.2026</span></div>
+</div>
+
+<div style="margin-top:14px;border-radius:22px;overflow:hidden;background:rgba(255,255,255,.66);backdrop-filter:blur(18px) saturate(170%);-webkit-backdrop-filter:blur(18px) saturate(170%);border:.5px solid rgba(255,255,255,.9);box-shadow:0 8px 20px rgba(28,28,26,.05)">
+<div style="display:flex;justify-content:space-between;gap:16px;padding:13px 16px;border-bottom:.5px solid rgba(28,28,26,.07)"><span style="font:400 14px/1.3 -apple-system,system-ui,sans-serif;color:#8a8a80">Satın alma</span><span style="font:500 14px/1.3 ui-monospace,SFMono-Regular,Menlo,monospace;color:#1c1c1a">22 Eylül 2024</span></div>
+<div style="display:flex;justify-content:space-between;gap:16px;padding:13px 16px;border-bottom:.5px solid rgba(28,28,26,.07)"><span style="font:400 14px/1.3 -apple-system,system-ui,sans-serif;color:#8a8a80">Garanti</span><span style="font:500 15px/1.3 -apple-system,system-ui,sans-serif;color:#1c1c1a">2 yıl</span></div>
+<div style="display:flex;justify-content:space-between;gap:16px;padding:13px 16px;border-bottom:.5px solid rgba(28,28,26,.07)"><span style="font:400 14px/1.3 -apple-system,system-ui,sans-serif;color:#8a8a80">Fiyat</span><span style="font:500 14px/1.3 ui-monospace,SFMono-Regular,Menlo,monospace;color:#1c1c1a">₺64.999,00</span></div>
+<div style="display:flex;justify-content:space-between;gap:16px;padding:13px 16px"><span style="font:400 14px/1.3 -apple-system,system-ui,sans-serif;color:#8a8a80">Seri no</span><span style="font:500 14px/1.3 ui-monospace,SFMono-Regular,Menlo,monospace;color:#1c1c1a">F17GQ2X3K9L</span></div>
+</div>
+
+<div style="margin-top:14px;display:flex;gap:10px">
+<div style="flex:1;height:50px;border-radius:16px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.7);backdrop-filter:blur(16px);border:.5px solid rgba(255,255,255,.9);box-shadow:0 4px 12px rgba(28,28,26,.06);font:500 15px/1 -apple-system,system-ui,sans-serif;color:#1c1c1a">Fişi gör</div>
+<div style="flex:1;height:50px;border-radius:16px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#2e514e,#24413f);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 6px 16px rgba(36,65,63,.3);font:600 15px/1 -apple-system,system-ui,sans-serif;color:#fff">Düzenle</div>
+</div>
+</div>
+<div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:140px;height:5px;border-radius:3px;background:rgba(28,28,26,.3);z-index:50"></div>
+</div></div>
+<div class="dv-cap" style="margin-top:10px">Ürün detayı</div>
+</div>
+
+<div>
+<div style="width:414px;padding:11px;background:linear-gradient(155deg,#48484a,#1c1c1e 45%,#3a3a3c);border-radius:64px;box-shadow:0 22px 50px rgba(28,28,26,.24)">
+<div style="position:relative;width:392px;height:812px;border-radius:53px;overflow:hidden;background:#f7f7f5">
+<div style="position:absolute;inset:0;background:radial-gradient(520px 320px at 12% -6%, {{tintA}}, transparent 70%)"></div>
+<div style="position:absolute;top:0;left:0;right:0;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;z-index:40;font:600 15px/1 -apple-system,system-ui,sans-serif;color:#1c1c1a"><span>9:41</span><span style="width:23px;height:12px;border:1px solid currentColor;border-radius:3.5px;padding:1.5px;display:block;opacity:.5"><span style="display:block;width:70%;height:100%;background:currentColor;border-radius:1.5px"></span></span></div>
+
+<div style="position:absolute;top:52px;left:0;right:0;bottom:0;padding:6px 20px 0;filter:blur(1.5px);opacity:.55">
+<div style="font:700 34px/1.1 -apple-system,system-ui,sans-serif;letter-spacing:-.032em;color:#1c1c1a">Garantiler</div>
+<div style="margin-top:16px;display:flex;flex-direction:column;gap:10px">
+<div style="height:86px;border-radius:20px;background:rgba(255,255,255,.7)"></div>
+<div style="height:86px;border-radius:20px;background:rgba(255,255,255,.7)"></div>
+<div style="height:86px;border-radius:20px;background:rgba(255,255,255,.7)"></div>
+<div style="height:86px;border-radius:20px;background:rgba(255,255,255,.7)"></div>
+</div>
+</div>
+<div style="position:absolute;inset:0;background:rgba(28,28,26,.22);z-index:44"></div>
+
+<div style="position:absolute;left:10px;right:10px;bottom:14px;z-index:46;display:flex;flex-direction:column;gap:10px">
+<div style="border-radius:26px;overflow:hidden;background:rgba(255,255,255,.72);backdrop-filter:blur({{blurNav}}px) saturate(200%);-webkit-backdrop-filter:blur({{blurNav}}px) saturate(200%);border:.5px solid rgba(255,255,255,.9);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 18px 40px rgba(28,28,26,.18)">
+<div style="padding:14px 20px 10px;font:600 13px/1 -apple-system,system-ui,sans-serif;color:#8a8a80;text-align:center">Fiş ekle</div>
+<div style="display:flex;align-items:center;gap:12px;padding:15px 20px;border-top:.5px solid rgba(28,28,26,.08);font:400 17px/1 -apple-system,system-ui,sans-serif;color:#1c1c1a"><span style="width:26px;height:26px;border-radius:8px;background:#e6eceb;display:flex;align-items:center;justify-content:center"><span style="width:11px;height:9px;border:1.6px solid #24413f;border-radius:2px;display:block"></span></span>Fotoğraf çek</div>
+<div style="display:flex;align-items:center;gap:12px;padding:15px 20px;border-top:.5px solid rgba(28,28,26,.08);font:400 17px/1 -apple-system,system-ui,sans-serif;color:#1c1c1a"><span style="width:26px;height:26px;border-radius:8px;background:#e6eceb;display:flex;align-items:center;justify-content:center"><span style="width:10px;height:10px;border:1.6px solid #24413f;border-radius:2px;display:block"></span></span>Galeriden seç</div>
+<div style="display:flex;align-items:center;gap:12px;padding:15px 20px;border-top:.5px solid rgba(28,28,26,.08);font:400 17px/1 -apple-system,system-ui,sans-serif;color:#1c1c1a"><span style="width:26px;height:26px;border-radius:8px;background:#e6eceb;display:flex;align-items:center;justify-content:center"><span style="width:9px;height:11px;border:1.6px solid #24413f;border-radius:1.5px;display:block"></span></span>Dosya seç (PDF)</div>
+<div style="display:flex;align-items:center;gap:12px;padding:15px 20px;border-top:.5px solid rgba(28,28,26,.08);font:400 17px/1 -apple-system,system-ui,sans-serif;color:#1c1c1a"><span style="width:26px;height:26px;border-radius:8px;background:#e6eceb;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" fill="none" stroke="#24413f" stroke-width="2.4" stroke-linecap="round" style="width:13px;height:13px"><path d="M12 5v14M5 12h14"></path></svg></span>Elle ekle</div>
+</div>
+<div style="height:56px;border-radius:22px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.9);backdrop-filter:blur(24px);border:.5px solid rgba(255,255,255,.95);box-shadow:0 12px 30px rgba(28,28,26,.16);font:600 17px/1 -apple-system,system-ui,sans-serif;color:#1c1c1a">İptal</div>
+</div>
+<div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:140px;height:5px;border-radius:3px;background:rgba(255,255,255,.7);z-index:50"></div>
+</div></div>
+<div class="dv-cap" style="margin-top:10px">Fiş ekle — alt sheet</div>
+</div>
+
+</div>
+</div>
+
+<div class="dv-opt" id="1b">
+<div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a>Sağlık Panosu — Apple Health mantığı: üstte özet halkası, altında gruplanmış cam listeler, renk kodlu satırlar.</div>
+<div class="dv-row">
+
+<div>
+<div style="width:414px;padding:11px;background:linear-gradient(155deg,#48484a,#1c1c1e 45%,#3a3a3c);border-radius:64px;box-shadow:0 22px 50px rgba(28,28,26,.24)">
+<div style="position:relative;width:392px;height:812px;border-radius:53px;overflow:hidden;background:#f4f3f0">
+<div style="position:absolute;inset:0;background:radial-gradient(560px 340px at 88% -4%, rgba(192,28,40,.14), transparent 68%), radial-gradient(520px 320px at 6% 12%, rgba(31,122,90,.13), transparent 70%)"></div>
+<div style="position:absolute;top:0;left:0;right:0;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;z-index:40;font:600 15px/1 -apple-system,system-ui,sans-serif;color:#1c1c1a"><span>9:41</span><span style="width:23px;height:12px;border:1px solid currentColor;border-radius:3.5px;padding:1.5px;display:block;opacity:.5"><span style="display:block;width:70%;height:100%;background:currentColor;border-radius:1.5px"></span></span></div>
+
+<div style="position:absolute;top:52px;left:0;right:0;bottom:0;overflow:hidden">
+<div style="display:flex;align-items:flex-end;justify-content:space-between;padding:8px 20px 0">
+<div><div style="font:600 13px/1 -apple-system,system-ui,sans-serif;color:#8a8a80;letter-spacing:.02em">ÖZET</div><div style="margin-top:6px;font:700 32px/1.1 -apple-system,system-ui,sans-serif;letter-spacing:-.03em;color:#1c1c1a">Bugün</div></div>
+<div style="width:38px;height:38px;border-radius:19px;background:rgba(255,255,255,.75);backdrop-filter:blur(14px);border:.5px solid rgba(255,255,255,.9);box-shadow:0 4px 12px rgba(28,28,26,.08);display:flex;align-items:center;justify-content:center;font:600 13px/1 -apple-system,system-ui,sans-serif;color:#24413f">SC</div>
+</div>
+
+<div style="margin:16px 20px 0;padding:20px;border-radius:24px;background:rgba(255,255,255,.6);backdrop-filter:blur({{blur}}px) saturate(190%);-webkit-backdrop-filter:blur({{blur}}px) saturate(190%);border:.5px solid rgba(255,255,255,.9);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 14px 32px rgba(28,28,26,.08);display:flex;align-items:center;gap:20px">
+<div style="position:relative;width:104px;height:104px;flex:none">
+<svg viewBox="0 0 120 120" style="width:104px;height:104px;transform:rotate(-90deg)">
+<circle cx="60" cy="60" r="52" fill="none" stroke="rgba(28,28,26,.07)" stroke-width="13"></circle>
+<circle cx="60" cy="60" r="52" fill="none" stroke="#1f7a5a" stroke-width="13" stroke-linecap="round" stroke-dasharray="187 327" stroke-dashoffset="0"></circle>
+<circle cx="60" cy="60" r="52" fill="none" stroke="#a2761b" stroke-width="13" stroke-linecap="round" stroke-dasharray="47 327" stroke-dashoffset="-192"></circle>
+<circle cx="60" cy="60" r="52" fill="none" stroke="#c01c28" stroke-width="13" stroke-linecap="round" stroke-dasharray="31 327" stroke-dashoffset="-244"></circle>
+</svg>
+<div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center"><span style="font:600 30px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:-.04em;color:#1c1c1a">7</span><span style="font:500 10px/1 -apple-system,system-ui,sans-serif;color:#8a8a80;letter-spacing:.04em">ÜRÜN</span></div>
+</div>
+<div style="min-width:0;display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;align-items:center;gap:8px"><span style="width:8px;height:8px;border-radius:50%;background:#1f7a5a"></span><span style="font:600 14px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:#1c1c1a">3</span><span style="font:400 13px/1 -apple-system,system-ui,sans-serif;color:#55554e">sürüyor</span></div>
+<div style="display:flex;align-items:center;gap:8px"><span style="width:8px;height:8px;border-radius:50%;background:#a2761b"></span><span style="font:600 14px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:#1c1c1a">1</span><span style="font:400 13px/1 -apple-system,system-ui,sans-serif;color:#55554e">yaklaşıyor</span></div>
+<div style="display:flex;align-items:center;gap:8px"><span style="width:8px;height:8px;border-radius:50%;background:#c01c28"></span><span style="font:600 14px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:#1c1c1a">2</span><span style="font:400 13px/1 -apple-system,system-ui,sans-serif;color:#55554e">kritik / az kaldı</span></div>
+<div style="display:flex;align-items:center;gap:8px"><span style="width:8px;height:8px;border-radius:50%;background:#8a8a80"></span><span style="font:600 14px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:#1c1c1a">1</span><span style="font:400 13px/1 -apple-system,system-ui,sans-serif;color:#55554e">doldu</span></div>
+</div>
+</div>
+
+<div style="padding:22px 20px 0"><div style="font:600 13px/1 -apple-system,system-ui,sans-serif;color:#8a8a80;letter-spacing:.02em">DİKKAT GEREKTİRENLER</div></div>
+<div style="margin:10px 20px 0;border-radius:22px;overflow:hidden;background:rgba(255,255,255,.62);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:.5px solid rgba(255,255,255,.9);box-shadow:0 10px 24px rgba(28,28,26,.06)">
+<sc-for list="{{ soon }}" as="p" hint-placeholder-count="3">
+<div style="display:flex;align-items:center;gap:13px;padding:13px 16px;border-top:.5px solid rgba(28,28,26,.07)">
+<span style="flex:none;width:34px;height:34px;border-radius:11px;display:flex;align-items:center;justify-content:center;font:700 14px/1 -apple-system,system-ui,sans-serif;background:{{ p.soft }};color:{{ p.c }}">{{ p.initial }}</span>
+<div style="min-width:0;flex:1"><div style="font:500 15.5px/1.25 -apple-system,system-ui,sans-serif;letter-spacing:-.015em;color:#1c1c1a">{{ p.name }}</div><div style="margin-top:1px;font:400 12.5px/1.3 -apple-system,system-ui,sans-serif;color:#8a8a80">{{ p.end }} · {{ p.meta }}</div></div>
+<div style="flex:none;text-align:right"><div style="font:600 17px/1 ui-monospace,SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums;letter-spacing:-.03em;color:{{ p.c }}">{{ p.days }}</div><div style="font:500 10px/1.4 -apple-system,system-ui,sans-serif;color:#8a8a80;letter-spacing:.03em">GÜN</div></div>
+<svg viewBox="0 0 24 24" fill="none" stroke="#c7c6be" stroke-width="2.2" stroke-linecap="round" style="width:14px;height:14px;flex:none"><path d="m9 6 6 6-6 6"></path></svg>
+</div>
+</sc-for>
+</div>
+
+<div style="padding:22px 20px 0"><div style="font:600 13px/1 -apple-system,system-ui,sans-serif;color:#8a8a80;letter-spacing:.02em">TÜM ÜRÜNLER</div></div>
+<div style="margin:10px 20px 0;border-radius:22px;overflow:hidden;background:rgba(255,255,255,.62);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:.5px solid rgba(255,255,255,.9);box-shadow:0 10px 24px rgba(28,28,26,.06)">
+<sc-for list="{{ rest }}" as="p" hint-placeholder-count="3">
+<div style="display:flex;align-items:center;gap:13px;padding:13px 16px;border-top:.5px solid rgba(28,28,26,.07)">
+<span style="flex:none;width:34px;height:34px;border-radius:11px;display:flex;align-items:center;justify-content:center;font:700 14px/1 -apple-system,system-ui,sans-serif;background:{{ p.soft }};color:{{ p.c }}">{{ p.initial }}</span>
+<div style="min-width:0;flex:1"><div style="font:500 15.5px/1.25 -apple-system,system-ui,sans-serif;letter-spacing:-.015em;color:#1c1c1a">{{ p.name }}</div><div style="margin-top:5px;height:4px;width:120px;border-radius:999px;background:{{ p.soft }}"><div style="height:100%;border-radius:999px;background:{{ p.c }};width:{{ p.pct }}%"></div></div></div>
+<div style="flex:none;font:600 14px/1 ui-monospace,SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums;color:{{ p.c }}">{{ p.short }}</div>
+</div>
+</sc-for>
+</div>
+</div>
+
+<div style="position:absolute;left:12px;right:12px;bottom:22px;height:66px;border-radius:33px;background:rgba(255,255,255,.6);backdrop-filter:blur({{blurNav}}px) saturate(200%);-webkit-backdrop-filter:blur({{blurNav}}px) saturate(200%);border:.5px solid rgba(255,255,255,.9);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 10px 30px rgba(28,28,26,.13);display:flex;align-items:center;justify-content:space-around;padding:0 10px;z-index:45">
+<div style="display:flex;flex-direction:column;align-items:center;gap:4px;color:#24413f"><div style="width:20px;height:20px;border-radius:50%;border:2.2px solid currentColor"></div><span style="font:600 10.5px/1 -apple-system,system-ui,sans-serif">Özet</span></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:4px;color:#8a8a80"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" style="width:21px;height:21px"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg><span style="font:500 10.5px/1 -apple-system,system-ui,sans-serif">Ara</span></div>
+<div style="display:flex;align-items:center;justify-content:center;width:50px;height:50px;border-radius:25px;background:linear-gradient(180deg,#2e514e,#24413f);box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 6px 16px rgba(36,65,63,.4)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" style="width:23px;height:23px"><path d="M12 5v14M5 12h14"></path></svg></div>
+</div>
+<div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:140px;height:5px;border-radius:3px;background:rgba(28,28,26,.3);z-index:50"></div>
+</div></div>
+<div class="dv-cap" style="margin-top:10px">Özet</div>
+</div>
+
+<div>
+<div style="width:414px;padding:11px;background:linear-gradient(155deg,#48484a,#1c1c1e 45%,#3a3a3c);border-radius:64px;box-shadow:0 22px 50px rgba(28,28,26,.24)">
+<div style="position:relative;width:392px;height:812px;border-radius:53px;overflow:hidden;background:#f4f3f0">
+<div style="position:absolute;inset:0;background:radial-gradient(560px 360px at 50% -10%, rgba(162,118,27,.2), transparent 66%)"></div>
+<div style="position:absolute;top:0;left:0;right:0;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;z-index:40;font:600 15px/1 -apple-system,system-ui,sans-serif;color:#1c1c1a"><span>9:41</span><span style="width:23px;height:12px;border:1px solid currentColor;border-radius:3.5px;padding:1.5px;display:block;opacity:.5"><span style="display:block;width:70%;height:100%;background:currentColor;border-radius:1.5px"></span></span></div>
+<div style="position:absolute;top:52px;left:0;right:0;height:48px;display:flex;align-items:center;gap:6px;padding:0 16px;z-index:35"><svg viewBox="0 0 24 24" fill="none" stroke="#24413f" stroke-width="2.2" stroke-linecap="round" style="width:20px;height:20px"><path d="m14 6-6 6 6 6"></path></svg><span style="font:400 17px/1 -apple-system,system-ui,sans-serif;color:#24413f">Özet</span></div>
+
+<div style="position:absolute;top:100px;left:0;right:0;bottom:0;padding:8px 20px 0">
+<div style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:4px 0 0">
+<span style="width:56px;height:56px;border-radius:18px;background:#f8efdc;color:#a2761b;display:flex;align-items:center;justify-content:center;font:700 22px/1 -apple-system,system-ui,sans-serif">A</span>
+<div style="margin-top:12px;font:700 26px/1.15 -apple-system,system-ui,sans-serif;letter-spacing:-.03em;color:#1c1c1a">iPhone 15 Pro</div>
+<div style="margin-top:3px;font:400 14px/1.3 -apple-system,system-ui,sans-serif;color:#8a8a80">Apple · Apple Store</div>
+</div>
+
+<div style="margin-top:20px;padding:22px 20px;border-radius:26px;text-align:center;background:rgba(255,255,255,.6);backdrop-filter:blur({{blur}}px) saturate(190%);-webkit-backdrop-filter:blur({{blur}}px) saturate(190%);border:.5px solid rgba(255,255,255,.9);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 14px 34px rgba(28,28,26,.09)">
+<div style="font:600 12px/1 -apple-system,system-ui,sans-serif;color:#a2761b;letter-spacing:.06em">GARANTİ BİTİMİNE</div>
+<div style="margin-top:8px;display:flex;align-items:baseline;justify-content:center;gap:8px"><span style="font:600 68px/1 ui-monospace,SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums;letter-spacing:-.05em;color:#1c1c1a">47</span><span style="font:500 20px/1 -apple-system,system-ui,sans-serif;color:#8a8a80">gün</span></div>
+<div style="margin-top:16px;height:10px;border-radius:999px;background:rgba(28,28,26,.07);overflow:hidden"><div style="width:94%;height:100%;border-radius:999px;background:linear-gradient(90deg,#1f7a5a,#a2761b)"></div></div>
+<div style="margin-top:8px;display:flex;justify-content:space-between;font:500 11.5px/1 ui-monospace,SFMono-Regular,Menlo,monospace"><span style="color:#8a8a80">22.09.2024</span><span style="color:#a2761b">22.09.2026</span></div>
+</div>
+
+<div style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div style="padding:14px;border-radius:20px;background:rgba(255,255,255,.6);backdrop-filter:blur(18px);border:.5px solid rgba(255,255,255,.9);box-shadow:0 8px 20px rgba(28,28,26,.05)"><div style="font:500 11.5px/1 -apple-system,system-ui,sans-serif;color:#8a8a80;letter-spacing:.03em">GARANTİ</div><div style="margin-top:7px;font:600 20px/1 -apple-system,system-ui,sans-serif;letter-spacing:-.02em;color:#1c1c1a">2 yıl</div></div>
+<div style="padding:14px;border-radius:20px;background:rgba(255,255,255,.6);backdrop-filter:blur(18px);border:.5px solid rgba(255,255,255,.9);box-shadow:0 8px 20px rgba(28,28,26,.05)"><div style="font:500 11.5px/1 -apple-system,system-ui,sans-serif;color:#8a8a80;letter-spacing:.03em">FİYAT</div><div style="margin-top:7px;font:600 20px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:-.03em;color:#1c1c1a">₺64.999</div></div>
+</div>
+
+<div style="margin-top:10px;border-radius:20px;overflow:hidden;background:rgba(255,255,255,.6);backdrop-filter:blur(18px);border:.5px solid rgba(255,255,255,.9);box-shadow:0 8px 20px rgba(28,28,26,.05)">
+<div style="display:flex;justify-content:space-between;padding:13px 16px"><span style="font:400 14px/1.3 -apple-system,system-ui,sans-serif;color:#8a8a80">Seri no</span><span style="font:500 14px/1.3 ui-monospace,SFMono-Regular,Menlo,monospace;color:#1c1c1a">F17GQ2X3K9L</span></div>
+<div style="display:flex;justify-content:space-between;padding:13px 16px;border-top:.5px solid rgba(28,28,26,.07)"><span style="font:400 14px/1.3 -apple-system,system-ui,sans-serif;color:#8a8a80">Fiş</span><span style="font:500 15px/1.3 -apple-system,system-ui,sans-serif;color:#24413f">Görüntüle</span></div>
+</div>
+
+<div style="margin-top:14px;height:52px;border-radius:18px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#2e514e,#24413f);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 8px 20px rgba(36,65,63,.28);font:600 16px/1 -apple-system,system-ui,sans-serif;color:#fff">Hatırlatıcı kur</div>
+</div>
+<div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:140px;height:5px;border-radius:3px;background:rgba(28,28,26,.3);z-index:50"></div>
+</div></div>
+<div class="dv-cap" style="margin-top:10px">Ürün detayı</div>
+</div>
+
+<div>
+<div style="width:414px;padding:11px;background:linear-gradient(155deg,#48484a,#1c1c1e 45%,#3a3a3c);border-radius:64px;box-shadow:0 22px 50px rgba(28,28,26,.24)">
+<div style="position:relative;width:392px;height:812px;border-radius:53px;overflow:hidden;background:#f4f3f0">
+<div style="position:absolute;inset:0;background:radial-gradient(520px 320px at 12% -6%, {{tintA}}, transparent 70%)"></div>
+<div style="position:absolute;top:0;left:0;right:0;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;z-index:40;font:600 15px/1 -apple-system,system-ui,sans-serif;color:#1c1c1a"><span>9:41</span><span style="width:23px;height:12px;border:1px solid currentColor;border-radius:3.5px;padding:1.5px;display:block;opacity:.5"><span style="display:block;width:70%;height:100%;background:currentColor;border-radius:1.5px"></span></span></div>
+
+<div style="position:absolute;top:52px;left:0;right:0;bottom:0;padding:8px 20px 0">
+<div style="font:700 32px/1.1 -apple-system,system-ui,sans-serif;letter-spacing:-.03em;color:#1c1c1a">Ara</div>
+<div style="margin-top:14px;display:flex;align-items:center;gap:9px;height:44px;padding:0 14px;border-radius:15px;background:rgba(255,255,255,.66);backdrop-filter:blur({{blur}}px) saturate(180%);-webkit-backdrop-filter:blur({{blur}}px) saturate(180%);border:.5px solid rgba(255,255,255,.9);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 6px 16px rgba(28,28,26,.05)">
+<svg viewBox="0 0 24 24" fill="none" stroke="#8a8a80" stroke-width="2" stroke-linecap="round" style="width:17px;height:17px"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+<span style="font:400 17px/1 -apple-system,system-ui,sans-serif;color:#1c1c1a">kombi</span><span style="width:1.5px;height:19px;background:#24413f"></span>
+</div>
+<div style="margin-top:16px;font:500 12.5px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:#8a8a80">1 SONUÇ</div>
+<div style="margin-top:10px;border-radius:22px;overflow:hidden;background:rgba(255,255,255,.62);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border:.5px solid rgba(255,255,255,.9);box-shadow:0 10px 24px rgba(28,28,26,.06)">
+<div style="display:flex;align-items:center;gap:13px;padding:14px 16px">
+<span style="flex:none;width:34px;height:34px;border-radius:11px;display:flex;align-items:center;justify-content:center;font:700 14px/1 -apple-system,system-ui,sans-serif;background:#fbebdf;color:#c2570c">B</span>
+<div style="min-width:0;flex:1"><div style="font:500 15.5px/1.25 -apple-system,system-ui,sans-serif;color:#1c1c1a">Baymak Kombi Duo-tec</div><div style="margin-top:1px;font:400 12.5px/1.3 -apple-system,system-ui,sans-serif;color:#8a8a80">Baymak · Doğalgaz Servisi</div></div>
+<div style="flex:none;text-align:right"><div style="font:600 17px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:#c2570c">14</div><div style="font:500 10px/1.4 -apple-system,system-ui,sans-serif;color:#8a8a80">GÜN</div></div>
+</div>
+</div>
+<div style="margin-top:22px;font:600 13px/1 -apple-system,system-ui,sans-serif;color:#8a8a80;letter-spacing:.02em">SON ARAMALAR</div>
+<div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:8px">
+<span style="padding:8px 13px;border-radius:999px;background:rgba(255,255,255,.7);backdrop-filter:blur(12px);border:.5px solid rgba(255,255,255,.85);font:500 13px/1 -apple-system,system-ui,sans-serif;color:#55554e">buzdolabı</span>
+<span style="padding:8px 13px;border-radius:999px;background:rgba(255,255,255,.7);backdrop-filter:blur(12px);border:.5px solid rgba(255,255,255,.85);font:500 13px/1 -apple-system,system-ui,sans-serif;color:#55554e">Teknosa</span>
+<span style="padding:8px 13px;border-radius:999px;background:rgba(255,255,255,.7);backdrop-filter:blur(12px);border:.5px solid rgba(255,255,255,.85);font:500 13px/1 -apple-system,system-ui,sans-serif;color:#55554e">F17GQ</span>
+</div>
+</div>
+
+<div style="position:absolute;left:12px;right:12px;bottom:22px;height:66px;border-radius:33px;background:rgba(255,255,255,.6);backdrop-filter:blur({{blurNav}}px) saturate(200%);-webkit-backdrop-filter:blur({{blurNav}}px) saturate(200%);border:.5px solid rgba(255,255,255,.9);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 10px 30px rgba(28,28,26,.13);display:flex;align-items:center;justify-content:space-around;padding:0 10px;z-index:45">
+<div style="display:flex;flex-direction:column;align-items:center;gap:4px;color:#8a8a80"><div style="width:20px;height:20px;border-radius:50%;border:2.2px solid currentColor"></div><span style="font:500 10.5px/1 -apple-system,system-ui,sans-serif">Özet</span></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:4px;color:#24413f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" style="width:21px;height:21px"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg><span style="font:600 10.5px/1 -apple-system,system-ui,sans-serif">Ara</span></div>
+<div style="display:flex;align-items:center;justify-content:center;width:50px;height:50px;border-radius:25px;background:linear-gradient(180deg,#2e514e,#24413f);box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 6px 16px rgba(36,65,63,.4)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" style="width:23px;height:23px"><path d="M12 5v14M5 12h14"></path></svg></div>
+</div>
+<div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:140px;height:5px;border-radius:3px;background:rgba(28,28,26,.3);z-index:50"></div>
+</div></div>
+<div class="dv-cap" style="margin-top:10px">Ara</div>
+</div>
+
+</div>
+</div>
+
+<div class="dv-opt" id="1c">
+<div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a>Skorbord — Apple Sports cesurluğu: dev tabular sayılar, renkli cam kutucuklar, canlı geri sayım ritmi.</div>
+<div class="dv-row">
+
+<div>
+<div style="width:414px;padding:11px;background:linear-gradient(155deg,#48484a,#1c1c1e 45%,#3a3a3c);border-radius:64px;box-shadow:0 22px 50px rgba(28,28,26,.24)">
+<div style="position:relative;width:392px;height:812px;border-radius:53px;overflow:hidden;background:#f2f1ed">
+<div style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(192,28,40,.16), transparent 38%), radial-gradient(480px 300px at 100% 30%, rgba(31,122,90,.14), transparent 70%)"></div>
+<div style="position:absolute;top:0;left:0;right:0;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;z-index:40;font:600 15px/1 -apple-system,system-ui,sans-serif;color:#1c1c1a"><span>9:41</span><span style="width:23px;height:12px;border:1px solid currentColor;border-radius:3.5px;padding:1.5px;display:block;opacity:.5"><span style="display:block;width:70%;height:100%;background:currentColor;border-radius:1.5px"></span></span></div>
+
+<div style="position:absolute;top:52px;left:0;right:0;bottom:0;overflow:hidden">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 18px 0">
+<div style="font:800 30px/1.05 -apple-system,system-ui,sans-serif;letter-spacing:-.04em;color:#1c1c1a">GARANTİ</div>
+<div style="display:flex;align-items:center;gap:6px;padding:6px 11px;border-radius:999px;background:rgba(192,28,40,.12);border:.5px solid rgba(192,28,40,.25)"><span style="width:7px;height:7px;border-radius:50%;background:#c01c28"></span><span style="font:700 11px/1 -apple-system,system-ui,sans-serif;color:#c01c28;letter-spacing:.06em">3 ACİL</span></div>
+</div>
+
+<div style="display:flex;gap:10px;padding:14px 18px 0;overflow:hidden">
+<div style="flex:none;width:150px;padding:14px;border-radius:20px;background:linear-gradient(165deg, rgba(255,255,255,.8), rgba(251,230,231,.75));backdrop-filter:blur({{blur}}px) saturate(190%);-webkit-backdrop-filter:blur({{blur}}px) saturate(190%);border:.5px solid rgba(255,255,255,.9);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 12px 26px rgba(192,28,40,.12)">
+<div style="display:flex;align-items:center;justify-content:space-between"><span style="width:30px;height:30px;border-radius:10px;background:#fbe6e7;color:#c01c28;display:flex;align-items:center;justify-content:center;font:800 13px/1 -apple-system,system-ui,sans-serif">D</span><span style="font:700 10px/1 -apple-system,system-ui,sans-serif;color:#c01c28;letter-spacing:.08em">KRİTİK</span></div>
+<div style="margin-top:14px;display:flex;align-items:baseline;gap:5px"><span style="font:700 46px/1 ui-monospace,SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums;letter-spacing:-.06em;color:#c01c28">3</span><span style="font:600 13px/1 -apple-system,system-ui,sans-serif;color:#c01c28">gün</span></div>
+<div style="margin-top:8px;font:600 13.5px/1.25 -apple-system,system-ui,sans-serif;letter-spacing:-.015em;color:#1c1c1a">Dyson V15 Detect</div>
+<div style="margin-top:2px;font:400 11.5px/1.2 -apple-system,system-ui,sans-serif;color:#8a8a80">09.08.2026</div>
+</div>
+<div style="flex:none;width:150px;padding:14px;border-radius:20px;background:linear-gradient(165deg, rgba(255,255,255,.8), rgba(251,235,223,.75));backdrop-filter:blur({{blur}}px) saturate(190%);-webkit-backdrop-filter:blur({{blur}}px) saturate(190%);border:.5px solid rgba(255,255,255,.9);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 12px 26px rgba(194,87,12,.1)">
+<div style="display:flex;align-items:center;justify-content:space-between"><span style="width:30px;height:30px;border-radius:10px;background:#fbebdf;color:#c2570c;display:flex;align-items:center;justify-content:center;font:800 13px/1 -apple-system,system-ui,sans-serif">B</span><span style="font:700 10px/1 -apple-system,system-ui,sans-serif;color:#c2570c;letter-spacing:.08em">AZ KALDI</span></div>
+<div style="margin-top:14px;display:flex;align-items:baseline;gap:5px"><span style="font:700 46px/1 ui-monospace,SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums;letter-spacing:-.06em;color:#c2570c">14</span><span style="font:600 13px/1 -apple-system,system-ui,sans-serif;color:#c2570c">gün</span></div>
+<div style="margin-top:8px;font:600 13.5px/1.25 -apple-system,system-ui,sans-serif;letter-spacing:-.015em;color:#1c1c1a">Baymak Kombi</div>
+<div style="margin-top:2px;font:400 11.5px/1.2 -apple-system,system-ui,sans-serif;color:#8a8a80">20.08.2026</div>
+</div>
+<div style="flex:none;width:70px;border-radius:20px;background:rgba(255,255,255,.5);border:.5px dashed rgba(28,28,26,.16)"></div>
+</div>
+
+<div style="display:flex;gap:6px;padding:20px 18px 0">
+<span style="flex:1;text-align:center;padding:9px 0;border-radius:12px;background:#1c1c1a;color:#f7f7f5;font:700 12.5px/1 -apple-system,system-ui,sans-serif;letter-spacing:.01em">HEPSİ</span>
+<span style="flex:1;text-align:center;padding:9px 0;border-radius:12px;background:rgba(255,255,255,.68);border:.5px solid rgba(255,255,255,.85);color:#55554e;font:600 12.5px/1 -apple-system,system-ui,sans-serif">SÜRÜYOR</span>
+<span style="flex:1;text-align:center;padding:9px 0;border-radius:12px;background:rgba(255,255,255,.68);border:.5px solid rgba(255,255,255,.85);color:#55554e;font:600 12.5px/1 -apple-system,system-ui,sans-serif">YAKLAŞAN</span>
+<span style="flex:1;text-align:center;padding:9px 0;border-radius:12px;background:rgba(255,255,255,.68);border:.5px solid rgba(255,255,255,.85);color:#55554e;font:600 12.5px/1 -apple-system,system-ui,sans-serif">DOLMUŞ</span>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:8px;padding:16px 18px 0">
+<sc-for list="{{ products }}" as="p" hint-placeholder-count="5">
+<div style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:18px;background:rgba(255,255,255,.62);backdrop-filter:blur(18px) saturate(180%);-webkit-backdrop-filter:blur(18px) saturate(180%);border:.5px solid rgba(255,255,255,.85);box-shadow:0 6px 16px rgba(28,28,26,.05)">
+<span style="flex:none;width:5px;height:38px;border-radius:3px;background:{{ p.c }}"></span>
+<div style="min-width:0;flex:1"><div style="font:700 15px/1.2 -apple-system,system-ui,sans-serif;letter-spacing:-.02em;color:#1c1c1a">{{ p.name }}</div><div style="margin-top:2px;font:500 11.5px/1.2 -apple-system,system-ui,sans-serif;color:#8a8a80;letter-spacing:.02em">{{ p.metaUp }}</div></div>
+<div style="flex:none;text-align:right"><div style="font:700 24px/1 ui-monospace,SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums;letter-spacing:-.05em;color:{{ p.c }}">{{ p.big }}</div><div style="font:600 9.5px/1.5 -apple-system,system-ui,sans-serif;color:#8a8a80;letter-spacing:.08em">{{ p.unit }}</div></div>
+</div>
+</sc-for>
+</div>
+</div>
+
+<div style="position:absolute;left:12px;right:12px;bottom:22px;height:64px;border-radius:24px;background:rgba(28,28,26,.82);backdrop-filter:blur({{blurNav}}px) saturate(200%);-webkit-backdrop-filter:blur({{blurNav}}px) saturate(200%);border:.5px solid rgba(255,255,255,.14);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 12px 30px rgba(28,28,26,.3);display:flex;align-items:center;justify-content:space-around;padding:0 10px;z-index:45">
+<div style="display:flex;flex-direction:column;align-items:center;gap:4px;color:#fff"><div style="display:flex;flex-direction:column;gap:2.5px;width:19px"><span style="height:3.5px;border-radius:2px;background:currentColor"></span><span style="height:3.5px;border-radius:2px;background:currentColor"></span><span style="height:3.5px;border-radius:2px;background:currentColor"></span></div><span style="font:700 10px/1 -apple-system,system-ui,sans-serif;letter-spacing:.04em">LİSTE</span></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:4px;color:rgba(255,255,255,.5)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" style="width:21px;height:21px"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg><span style="font:600 10px/1 -apple-system,system-ui,sans-serif;letter-spacing:.04em">ARA</span></div>
+<div style="display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:16px;background:#f7f7f5;box-shadow:0 6px 16px rgba(0,0,0,.3)"><svg viewBox="0 0 24 24" fill="none" stroke="#1c1c1a" stroke-width="2.4" stroke-linecap="round" style="width:23px;height:23px"><path d="M12 5v14M5 12h14"></path></svg></div>
+</div>
+<div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:140px;height:5px;border-radius:3px;background:rgba(28,28,26,.3);z-index:50"></div>
+</div></div>
+<div class="dv-cap" style="margin-top:10px">Liste</div>
+</div>
+
+<div>
+<div style="width:414px;padding:11px;background:linear-gradient(155deg,#48484a,#1c1c1e 45%,#3a3a3c);border-radius:64px;box-shadow:0 22px 50px rgba(28,28,26,.24)">
+<div style="position:relative;width:392px;height:812px;border-radius:53px;overflow:hidden;background:#f2f1ed">
+<div style="position:absolute;top:0;left:0;right:0;height:330px;background:linear-gradient(170deg,#a2761b,#6d4d10)"></div>
+<div style="position:absolute;top:0;left:0;right:0;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;z-index:40;font:600 15px/1 -apple-system,system-ui,sans-serif;color:#fff"><span>9:41</span><span style="width:23px;height:12px;border:1px solid currentColor;border-radius:3.5px;padding:1.5px;display:block;opacity:.6"><span style="display:block;width:70%;height:100%;background:currentColor;border-radius:1.5px"></span></span></div>
+<div style="position:absolute;top:52px;left:0;right:0;height:46px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;z-index:35"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" style="width:21px;height:21px"><path d="m14 6-6 6 6 6"></path></svg><span style="font:700 11px/1 -apple-system,system-ui,sans-serif;color:rgba(255,255,255,.75);letter-spacing:.1em">ÜRÜN</span><span style="font:600 15px/1 -apple-system,system-ui,sans-serif;color:#fff">Düzenle</span></div>
+
+<div style="position:absolute;top:104px;left:0;right:0;padding:0 20px;text-align:center;z-index:36">
+<div style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.2);border:.5px solid rgba(255,255,255,.35)"><span style="width:7px;height:7px;border-radius:50%;background:#fff"></span><span style="font:700 10.5px/1 -apple-system,system-ui,sans-serif;color:#fff;letter-spacing:.1em">YAKLAŞIYOR</span></div>
+<div style="margin-top:14px;font:700 27px/1.12 -apple-system,system-ui,sans-serif;letter-spacing:-.03em;color:#fff">iPhone 15 Pro</div>
+<div style="margin-top:4px;font:500 13px/1.2 -apple-system,system-ui,sans-serif;color:rgba(255,255,255,.7);letter-spacing:.03em">APPLE · APPLE STORE</div>
+<div style="margin-top:18px;display:flex;align-items:baseline;justify-content:center;gap:10px"><span style="font:700 92px/.9 ui-monospace,SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums;letter-spacing:-.07em;color:#fff">47</span><span style="font:700 16px/1 -apple-system,system-ui,sans-serif;color:rgba(255,255,255,.8);letter-spacing:.08em">GÜN</span></div>
+</div>
+
+<div style="position:absolute;top:352px;left:14px;right:14px;bottom:100px;padding:18px;border-radius:26px;background:rgba(255,255,255,.72);backdrop-filter:blur({{blur}}px) saturate(190%);-webkit-backdrop-filter:blur({{blur}}px) saturate(190%);border:.5px solid rgba(255,255,255,.9);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 -6px 30px rgba(28,28,26,.1)">
+<div style="display:flex;justify-content:space-between;font:700 10.5px/1 -apple-system,system-ui,sans-serif;color:#8a8a80;letter-spacing:.1em"><span>ALIŞ</span><span>BİTİŞ</span></div>
+<div style="margin-top:8px;display:flex;justify-content:space-between;font:600 15px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:#1c1c1a"><span>22.09.2024</span><span style="color:#a2761b">22.09.2026</span></div>
+<div style="margin-top:12px;position:relative;height:12px;border-radius:999px;background:rgba(28,28,26,.08);overflow:hidden"><div style="width:94%;height:100%;border-radius:999px;background:linear-gradient(90deg,#1f7a5a,#a2761b)"></div></div>
+<div style="margin-top:6px;font:600 11px/1 -apple-system,system-ui,sans-serif;color:#8a8a80;letter-spacing:.04em">SÜRENİN %94'Ü GEÇTİ</div>
+
+<div style="margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(28,28,26,.08);border-radius:16px;overflow:hidden">
+<div style="background:rgba(255,255,255,.85);padding:13px 14px"><div style="font:700 10px/1 -apple-system,system-ui,sans-serif;color:#8a8a80;letter-spacing:.09em">GARANTİ</div><div style="margin-top:6px;font:700 18px/1 -apple-system,system-ui,sans-serif;letter-spacing:-.02em;color:#1c1c1a">2 YIL</div></div>
+<div style="background:rgba(255,255,255,.85);padding:13px 14px"><div style="font:700 10px/1 -apple-system,system-ui,sans-serif;color:#8a8a80;letter-spacing:.09em">FİYAT</div><div style="margin-top:6px;font:700 18px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:-.04em;color:#1c1c1a">₺64.999</div></div>
+<div style="background:rgba(255,255,255,.85);padding:13px 14px"><div style="font:700 10px/1 -apple-system,system-ui,sans-serif;color:#8a8a80;letter-spacing:.09em">SERİ NO</div><div style="margin-top:6px;font:600 14px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:#1c1c1a">F17GQ2X3K9L</div></div>
+<div style="background:rgba(255,255,255,.85);padding:13px 14px"><div style="font:700 10px/1 -apple-system,system-ui,sans-serif;color:#8a8a80;letter-spacing:.09em">FİŞ</div><div style="margin-top:6px;font:700 14px/1 -apple-system,system-ui,sans-serif;color:#24413f">GÖRÜNTÜLE</div></div>
+</div>
+</div>
+
+<div style="position:absolute;left:14px;right:14px;bottom:34px;display:flex;gap:10px;z-index:46">
+<div style="flex:1;height:54px;border-radius:18px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.85);backdrop-filter:blur(20px);border:.5px solid rgba(255,255,255,.95);box-shadow:0 8px 20px rgba(28,28,26,.1);font:700 14px/1 -apple-system,system-ui,sans-serif;color:#1c1c1a;letter-spacing:.02em">HATIRLAT</div>
+<div style="flex:1;height:54px;border-radius:18px;display:flex;align-items:center;justify-content:center;background:#1c1c1a;box-shadow:0 8px 20px rgba(28,28,26,.28);font:700 14px/1 -apple-system,system-ui,sans-serif;color:#f7f7f5;letter-spacing:.02em">FİŞİ GÖR</div>
+</div>
+<div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:140px;height:5px;border-radius:3px;background:rgba(28,28,26,.3);z-index:50"></div>
+</div></div>
+<div class="dv-cap" style="margin-top:10px">Ürün detayı</div>
+</div>
+
+<div>
+<div style="width:414px;padding:11px;background:linear-gradient(155deg,#48484a,#1c1c1e 45%,#3a3a3c);border-radius:64px;box-shadow:0 22px 50px rgba(28,28,26,.24)">
+<div style="position:relative;width:392px;height:812px;border-radius:53px;overflow:hidden;background:#f2f1ed">
+<div style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(162,118,27,.18), transparent 40%)"></div>
+<div style="position:absolute;top:0;left:0;right:0;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;z-index:40;font:600 15px/1 -apple-system,system-ui,sans-serif;color:#1c1c1a"><span>9:41</span><span style="width:23px;height:12px;border:1px solid currentColor;border-radius:3.5px;padding:1.5px;display:block;opacity:.5"><span style="display:block;width:70%;height:100%;background:currentColor;border-radius:1.5px"></span></span></div>
+<div style="position:absolute;top:52px;left:0;right:0;height:46px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;z-index:35"><span style="font:600 15px/1 -apple-system,system-ui,sans-serif;color:#a2761b">İptal</span><span style="font:700 11px/1 -apple-system,system-ui,sans-serif;color:#8a8a80;letter-spacing:.1em">FİŞ ONAYI</span><span style="font:700 11px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:#8a8a80">1/2</span></div>
+
+<div style="position:absolute;top:100px;left:0;right:0;bottom:0;padding:8px 18px 0">
+<div style="display:flex;align-items:center;gap:12px;padding:14px;border-radius:20px;background:rgba(255,255,255,.66);backdrop-filter:blur({{blur}}px) saturate(190%);-webkit-backdrop-filter:blur({{blur}}px) saturate(190%);border:.5px solid rgba(255,255,255,.9);box-shadow:0 10px 24px rgba(28,28,26,.07)">
+<div style="flex:none;width:56px;height:70px;border-radius:10px;background:repeating-linear-gradient(135deg,#efeee9,#efeee9 6px,#e3e2dc 6px,#e3e2dc 12px);border:.5px solid #e3e2dc"></div>
+<div style="min-width:0"><div style="font:700 15px/1.2 -apple-system,system-ui,sans-serif;color:#1c1c1a">Media Markt</div><div style="margin-top:3px;font:500 12px/1.3 -apple-system,system-ui,sans-serif;color:#8a8a80">06.08.2026 · 2 ürün okundu</div><div style="margin-top:7px;display:inline-flex;align-items:center;gap:6px;padding:4px 9px;border-radius:999px;background:#f8efdc"><span style="width:6px;height:6px;border-radius:50%;background:#a2761b"></span><span style="font:700 10px/1 -apple-system,system-ui,sans-serif;color:#a2761b;letter-spacing:.06em">ONAY BEKLİYOR</span></div></div>
+</div>
+
+<div style="margin-top:14px;padding:16px;border-radius:20px;background:rgba(255,255,255,.72);backdrop-filter:blur(20px);border:.5px solid rgba(255,255,255,.9);box-shadow:0 8px 20px rgba(28,28,26,.06)">
+<div style="font:700 10.5px/1 -apple-system,system-ui,sans-serif;color:#8a8a80;letter-spacing:.1em">ÜRÜN ADI</div>
+<div style="margin-top:8px;height:48px;border-radius:14px;background:#fff;border:.5px solid #e3e2dc;display:flex;align-items:center;padding:0 14px;font:500 16px/1 -apple-system,system-ui,sans-serif;color:#1c1c1a">Xiaomi Robot Süpürge S20</div>
+<div style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div><div style="font:700 10.5px/1 -apple-system,system-ui,sans-serif;color:#8a8a80;letter-spacing:.1em">ALIŞ TARİHİ</div><div style="margin-top:8px;height:48px;border-radius:14px;background:#fff;border:.5px solid #e3e2dc;display:flex;align-items:center;padding:0 14px;font:500 15px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:#1c1c1a">06.08.2026</div></div>
+<div><div style="font:700 10.5px/1 -apple-system,system-ui,sans-serif;color:#8a8a80;letter-spacing:.1em">FİYAT</div><div style="margin-top:8px;height:48px;border-radius:14px;background:#fff;border:.5px solid #e3e2dc;display:flex;align-items:center;padding:0 14px;font:500 15px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:#1c1c1a">₺12.499,00</div></div>
+</div>
+<div style="margin-top:14px;font:700 10.5px/1 -apple-system,system-ui,sans-serif;color:#8a8a80;letter-spacing:.1em">GARANTİ SÜRESİ</div>
+<div style="margin-top:8px;display:flex;gap:6px">
+<span style="flex:1;text-align:center;padding:12px 0;border-radius:13px;background:rgba(255,255,255,.9);border:.5px solid #e3e2dc;font:600 14px/1 -apple-system,system-ui,sans-serif;color:#55554e">1 yıl</span>
+<span style="flex:1;text-align:center;padding:12px 0;border-radius:13px;background:#1c1c1a;color:#f7f7f5;font:700 14px/1 -apple-system,system-ui,sans-serif">2 yıl</span>
+<span style="flex:1;text-align:center;padding:12px 0;border-radius:13px;background:rgba(255,255,255,.9);border:.5px solid #e3e2dc;font:600 14px/1 -apple-system,system-ui,sans-serif;color:#55554e">3 yıl</span>
+<span style="flex:1;text-align:center;padding:12px 0;border-radius:13px;background:rgba(255,255,255,.9);border:.5px solid #e3e2dc;font:600 14px/1 -apple-system,system-ui,sans-serif;color:#55554e">Diğer</span>
+</div>
+<div style="margin-top:14px;padding:12px 14px;border-radius:14px;background:#e4f1ea;display:flex;align-items:baseline;justify-content:space-between"><span style="font:600 12px/1 -apple-system,system-ui,sans-serif;color:#1f7a5a;letter-spacing:.03em">GARANTİ BİTİŞİ</span><span style="font:700 15px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:#1f7a5a">06.08.2028</span></div>
+</div>
+</div>
+
+<div style="position:absolute;left:14px;right:14px;bottom:30px;display:flex;gap:10px;z-index:46">
+<div style="flex:none;width:96px;height:54px;border-radius:18px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.85);backdrop-filter:blur(20px);border:.5px solid rgba(255,255,255,.95);box-shadow:0 8px 20px rgba(28,28,26,.1);font:700 13.5px/1 -apple-system,system-ui,sans-serif;color:#8a8a80;letter-spacing:.03em">ATLA</div>
+<div style="flex:1;height:54px;border-radius:18px;display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(180deg,#2e514e,#24413f);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 10px 24px rgba(36,65,63,.3);font:700 14.5px/1 -apple-system,system-ui,sans-serif;color:#fff;letter-spacing:.03em">SONRAKİ ÜRÜN<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" style="width:15px;height:15px"><path d="m9 6 6 6-6 6"></path></svg></div>
+</div>
+<div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:140px;height:5px;border-radius:3px;background:rgba(28,28,26,.3);z-index:50"></div>
+</div></div>
+<div class="dv-cap" style="margin-top:10px">Fiş onayı</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<p class="dv-next">Sırada denenebilir: “<a class="dv-oid" href="#1b">1b</a>'yi seç, ama kartlar <a class="dv-oid" href="#1a">1a</a>'daki gibi olsun” · “<a class="dv-oid" href="#1c">1c</a>'nin geri sayımını <a class="dv-oid" href="#1b">1b</a>'nin listesine koy” · “seçtiğim yönü tüm ekranlara uygula (giriş, form, arama)” · “koyu tema da ekle”</p>
+</section>
+
+<section class="dv-turn" id="t0">
+<div class="dv-thd"><a class="dv-tid" href="#t0">0</a><span class="dv-tname">Bugünkü hâli — koddan birebir</span></div>
+<p class="dv-note">Karşılaştırma için referans: <code>AppShell</code> + <code>DashboardPage</code> + <code>ProductDetailPage</code> + <code>SearchPage</code> dosyalarındaki ölçüler, renkler (<code>index.css</code> @theme) ve tipografi (Space Grotesk / Inter / JetBrains Mono) aynen alındı. “HTML sayfası” hissini yaratan üç şey burada görünüyor: web tipografisi, sticky üst çubuk + sağ altta yüzen düğme, ve tamamen mat yüzeyler.</p>
+<div class="dv-opts">
+
+<div class="dv-opt" id="0a">
+<div class="dv-olabel"><a class="dv-oid" href="#0a">0a</a>Mevcut: ana sayfa · ürün detayı · arama</div>
+<div class="dv-row">
+
+<div>
+<div style="width:414px;padding:11px;background:linear-gradient(155deg,#48484a,#1c1c1e 45%,#3a3a3c);border-radius:64px;box-shadow:0 22px 50px rgba(28,28,26,.24)">
+<div style="position:relative;width:392px;height:812px;border-radius:53px;overflow:hidden;background:#f7f7f5;font-family:Inter,ui-sans-serif,system-ui,sans-serif">
+<div style="position:absolute;top:0;left:0;right:0;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;z-index:40;font:600 15px/1 -apple-system,system-ui,sans-serif;color:#1c1c1a"><span>9:41</span><span style="width:23px;height:12px;border:1px solid currentColor;border-radius:3.5px;padding:1.5px;display:block;opacity:.5"><span style="display:block;width:70%;height:100%;background:currentColor;border-radius:1.5px"></span></span></div>
+
+<div style="position:absolute;top:52px;left:0;right:0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:rgba(247,247,245,.9);border-bottom:1px solid #e3e2dc;z-index:30">
+<div style="min-width:0;line-height:1"><div style="font:700 17px/1 'Space Grotesk',sans-serif;letter-spacing:-.02em;color:#1c1c1a">Garanti<span style="color:#8a8a80">Takip</span></div><div style="margin-top:4px;font:500 10px/1 Inter,sans-serif;letter-spacing:.03em;color:#8a8a80">Created By Süleyman Coşkun</div></div>
+<div style="display:flex;align-items:center;gap:4px">
+<div style="display:inline-flex;align-items:center;border-radius:999px;background:#f0efeb;padding:2px;margin-right:4px"><span style="min-height:36px;display:flex;align-items:center;padding:0 10px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.06);font:600 12px/1 'JetBrains Mono',monospace;color:#1c1c1a">TR</span><span style="min-height:36px;display:flex;align-items:center;padding:0 10px;font:600 12px/1 'JetBrains Mono',monospace;color:#8a8a80">EN</span></div>
+<div style="width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#8a8a80"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" style="width:20px;height:20px"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg></div>
+<div style="width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#8a8a80"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px"><path d="M15 17l5-5-5-5"></path><path d="M20 12H9"></path><path d="M12 20H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h6"></path></svg></div>
+</div>
+</div>
+
+<div style="position:absolute;top:116px;left:0;right:0;bottom:0;padding:20px 16px 0;overflow:hidden">
+<div style="margin-bottom:28px">
+<div style="margin-bottom:12px;display:flex;align-items:baseline;gap:8px"><span style="font:600 13px/1 'Space Grotesk',sans-serif;text-transform:uppercase;letter-spacing:.08em;color:#1c1c1a">Onay bekliyor</span><span style="font:400 13px/1 'JetBrains Mono',monospace;color:#8a8a80">1</span></div>
+<div style="border-radius:14px;border:1px solid rgba(162,118,27,.4);background:rgba(248,239,220,.4);padding:16px">
+<div style="font:600 15px/1.3 'Space Grotesk',sans-serif;color:#1c1c1a">Media Markt</div>
+<div style="margin-top:4px;font:400 13px/1.6 Inter,sans-serif;color:#55554e">Fişten 2 ürün okundu. Bilgileri kontrol edip onayla.</div>
+<div style="margin-top:12px;display:flex;flex-direction:column;gap:4px;font:400 14px/1.4 Inter,sans-serif;color:#1c1c1a"><span>· Xiaomi Robot Süpürge S20</span><span>· Anker 20000 mAh Powerbank</span></div>
+<div style="margin-top:16px;height:44px;border-radius:12px;background:#24413f;color:#fff;display:flex;align-items:center;justify-content:center;font:500 15px/1 Inter,sans-serif">Kontrol et ve onayla</div>
+</div>
+</div>
+
+<div style="margin-bottom:28px">
+<div style="margin-bottom:12px;display:flex;align-items:baseline;gap:8px"><span style="font:600 13px/1 'Space Grotesk',sans-serif;text-transform:uppercase;letter-spacing:.08em;color:#8a8a80">Süresi yaklaşanlar</span><span style="font:400 13px/1 'JetBrains Mono',monospace;color:#8a8a80">3</span></div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<sc-for list="{{ soon }}" as="p" hint-placeholder-count="3">
+<div style="border-radius:14px;border:1px solid #e3e2dc;background:#fff;padding:16px">
+<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px">
+<div style="min-width:0"><div style="font:600 15px/1.375 'Space Grotesk',sans-serif;color:#1c1c1a">{{ p.name }}</div><div style="margin-top:2px;font:400 13px/1.5 Inter,sans-serif;color:#8a8a80">{{ p.meta }}</div></div>
+<div style="flex:none;font:600 15px/1.4 'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;color:{{ p.c }}">{{ p.short }}</div>
+</div>
+<div style="margin-top:12px;height:6px;border-radius:999px;overflow:hidden;background:{{ p.soft }}"><div style="height:100%;border-radius:999px;background:{{ p.c }};width:{{ p.pct }}%"></div></div>
+<div style="margin-top:8px;font:400 13px/1.5 Inter,sans-serif;color:#55554e">{{ p.remain }}</div>
+</div>
+</sc-for>
+</div>
+</div>
+
+<div>
+<div style="margin-bottom:12px;display:flex;align-items:baseline;gap:8px"><span style="font:600 13px/1 'Space Grotesk',sans-serif;text-transform:uppercase;letter-spacing:.08em;color:#8a8a80">Tüm ürünler</span><span style="font:400 13px/1 'JetBrains Mono',monospace;color:#8a8a80">7</span></div>
+<div style="margin-bottom:12px;display:flex;flex-wrap:wrap;gap:6px">
+<span style="min-height:44px;display:inline-flex;align-items:center;border-radius:999px;padding:0 14px;background:#1c1c1a;color:#f7f7f5;font:500 13px/1 Inter,sans-serif">Hepsi</span>
+<span style="min-height:44px;display:inline-flex;align-items:center;border-radius:999px;padding:0 14px;background:#f0efeb;color:#55554e;font:500 13px/1 Inter,sans-serif">Sürüyor</span>
+<span style="min-height:44px;display:inline-flex;align-items:center;border-radius:999px;padding:0 14px;background:#f0efeb;color:#55554e;font:500 13px/1 Inter,sans-serif">Yaklaşan</span>
+<span style="min-height:44px;display:inline-flex;align-items:center;border-radius:999px;padding:0 14px;background:#f0efeb;color:#55554e;font:500 13px/1 Inter,sans-serif">Dolmuş</span>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<sc-for list="{{ products }}" as="p" hint-placeholder-count="3">
+<div style="border-radius:14px;border:1px solid #e3e2dc;background:#fff;padding:14px">
+<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px">
+<div style="min-width:0"><div style="font:600 15px/1.375 'Space Grotesk',sans-serif;color:#1c1c1a">{{ p.name }}</div><div style="margin-top:2px;font:400 13px/1.5 Inter,sans-serif;color:#8a8a80">{{ p.meta }}</div></div>
+<div style="flex:none;font:600 15px/1.4 'JetBrains Mono',monospace;font-variant-numeric:tabular-nums;color:{{ p.c }}">{{ p.short }}</div>
+</div>
+<div style="margin-top:12px;height:6px;border-radius:999px;overflow:hidden;background:{{ p.soft }}"><div style="height:100%;border-radius:999px;background:{{ p.c }};width:{{ p.pct }}%"></div></div>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+
+<div style="position:absolute;right:16px;bottom:26px;width:56px;height:56px;border-radius:28px;background:#24413f;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 15px rgba(28,28,26,.14);z-index:45"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" style="width:24px;height:24px"><path d="M12 5v14M5 12h14"></path></svg></div>
+<div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:140px;height:5px;border-radius:3px;background:rgba(28,28,26,.28);z-index:50"></div>
+</div></div>
+<div class="dv-cap" style="margin-top:10px">DashboardPage</div>
+</div>
+
+<div>
+<div style="width:414px;padding:11px;background:linear-gradient(155deg,#48484a,#1c1c1e 45%,#3a3a3c);border-radius:64px;box-shadow:0 22px 50px rgba(28,28,26,.24)">
+<div style="position:relative;width:392px;height:812px;border-radius:53px;overflow:hidden;background:#f7f7f5;font-family:Inter,ui-sans-serif,system-ui,sans-serif">
+<div style="position:absolute;top:0;left:0;right:0;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;z-index:40;font:600 15px/1 -apple-system,system-ui,sans-serif;color:#1c1c1a"><span>9:41</span><span style="width:23px;height:12px;border:1px solid currentColor;border-radius:3.5px;padding:1.5px;display:block;opacity:.5"><span style="display:block;width:70%;height:100%;background:currentColor;border-radius:1.5px"></span></span></div>
+<div style="position:absolute;top:52px;left:0;right:0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:rgba(247,247,245,.9);border-bottom:1px solid #e3e2dc;z-index:30">
+<div style="min-width:0;line-height:1"><div style="font:700 17px/1 'Space Grotesk',sans-serif;letter-spacing:-.02em;color:#1c1c1a">Garanti<span style="color:#8a8a80">Takip</span></div><div style="margin-top:4px;font:500 10px/1 Inter,sans-serif;letter-spacing:.03em;color:#8a8a80">Created By Süleyman Coşkun</div></div>
+<div style="display:flex;align-items:center;gap:4px"><div style="width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#8a8a80"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" style="width:20px;height:20px"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg></div></div>
+</div>
+
+<div style="position:absolute;top:116px;left:0;right:0;bottom:0;padding:20px 16px 0;display:flex;flex-direction:column;gap:20px">
+<div>
+<div style="margin-bottom:8px;display:flex;align-items:center;gap:8px"><span style="display:inline-flex;align-items:center;border-radius:999px;padding:2px 8px;background:#f8efdc;color:#a2761b;font:500 12px/1.5 Inter,sans-serif">Yaklaşıyor</span></div>
+<div style="font:700 24px/1.2 'Space Grotesk',sans-serif;letter-spacing:-.02em;color:#1c1c1a">iPhone 15 Pro</div>
+<div style="margin-top:4px;font:400 14px/1.4 Inter,sans-serif;color:#8a8a80">Apple · Apple Store</div>
+</div>
+<div style="border-radius:14px;border:1px solid #e3e2dc;background:#fff;padding:16px">
+<div style="font:600 19px/1.3 'Space Grotesk',sans-serif;color:#a2761b">47 gün kaldı</div>
+<div style="margin-top:12px;height:6px;border-radius:999px;background:#f8efdc;overflow:hidden"><div style="width:94%;height:100%;border-radius:999px;background:#a2761b"></div></div>
+<div style="margin-top:6px;display:flex;justify-content:space-between;font:400 12px/1.4 'JetBrains Mono',monospace"><span style="color:#8a8a80">22.09.2024</span><span style="color:#a2761b">22.09.2026</span></div>
+</div>
+<div style="border-radius:14px;border:1px solid #e3e2dc;background:#fff">
+<div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:12px 16px;border-bottom:1px solid #e3e2dc"><span style="font:400 14px/1.4 Inter,sans-serif;color:#8a8a80">Satın alma</span><span style="font:400 14px/1.4 'JetBrains Mono',monospace;color:#1c1c1a">22 Eylül 2024</span></div>
+<div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:12px 16px;border-bottom:1px solid #e3e2dc"><span style="font:400 14px/1.4 Inter,sans-serif;color:#8a8a80">Garanti</span><span style="font:400 15px/1.4 Inter,sans-serif;color:#1c1c1a">2 yıl</span></div>
+<div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:12px 16px;border-bottom:1px solid #e3e2dc"><span style="font:400 14px/1.4 Inter,sans-serif;color:#8a8a80">Garanti bitişi</span><span style="font:400 14px/1.4 'JetBrains Mono',monospace;color:#1c1c1a">22 Eylül 2026</span></div>
+<div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:12px 16px;border-bottom:1px solid #e3e2dc"><span style="font:400 14px/1.4 Inter,sans-serif;color:#8a8a80">Fiyat</span><span style="font:400 14px/1.4 'JetBrains Mono',monospace;color:#1c1c1a">₺64.999,00</span></div>
+<div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:12px 16px"><span style="font:400 14px/1.4 Inter,sans-serif;color:#8a8a80">Seri no</span><span style="font:400 14px/1.4 'JetBrains Mono',monospace;color:#1c1c1a">F17GQ2X3K9L</span></div>
+</div>
+<div>
+<div style="margin-bottom:8px;font:500 13px/1.4 Inter,sans-serif;color:#8a8a80">Fiş</div>
+<div style="height:132px;border-radius:14px;border:1px solid #e3e2dc;background:repeating-linear-gradient(135deg,#f4f3ef,#f4f3ef 8px,#e9e8e2 8px,#e9e8e2 16px);display:flex;align-items:center;justify-content:center;font:400 12px/1 'JetBrains Mono',monospace;color:#8a8a80">fiş görseli</div>
+</div>
+<div style="display:flex;gap:8px">
+<div style="flex:1;min-height:44px;border-radius:12px;border:1px solid #cfcec6;background:#fff;display:flex;align-items:center;justify-content:center;font:500 15px/1 Inter,sans-serif;color:#1c1c1a">Düzenle</div>
+<div style="flex:1;min-height:44px;border-radius:12px;border:1px solid #cfcec6;background:#fff;display:flex;align-items:center;justify-content:center;font:500 15px/1 Inter,sans-serif;color:#1c1c1a">Fişi indir</div>
+<div style="min-height:44px;padding:0 16px;border-radius:12px;border:1px solid rgba(192,28,40,.3);background:#fff;display:flex;align-items:center;justify-content:center;font:500 15px/1 Inter,sans-serif;color:#c01c28">Sil</div>
+</div>
+</div>
+<div style="position:absolute;right:16px;bottom:26px;width:56px;height:56px;border-radius:28px;background:#24413f;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 15px rgba(28,28,26,.14);z-index:45"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" style="width:24px;height:24px"><path d="M12 5v14M5 12h14"></path></svg></div>
+<div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:140px;height:5px;border-radius:3px;background:rgba(28,28,26,.28);z-index:50"></div>
+</div></div>
+<div class="dv-cap" style="margin-top:10px">ProductDetailPage</div>
+</div>
+
+<div>
+<div style="width:414px;padding:11px;background:linear-gradient(155deg,#48484a,#1c1c1e 45%,#3a3a3c);border-radius:64px;box-shadow:0 22px 50px rgba(28,28,26,.24)">
+<div style="position:relative;width:392px;height:812px;border-radius:53px;overflow:hidden;background:#f7f7f5;font-family:Inter,ui-sans-serif,system-ui,sans-serif">
+<div style="position:absolute;top:0;left:0;right:0;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;z-index:40;font:600 15px/1 -apple-system,system-ui,sans-serif;color:#1c1c1a"><span>9:41</span><span style="width:23px;height:12px;border:1px solid currentColor;border-radius:3.5px;padding:1.5px;display:block;opacity:.5"><span style="display:block;width:70%;height:100%;background:currentColor;border-radius:1.5px"></span></span></div>
+<div style="position:absolute;top:52px;left:0;right:0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:rgba(247,247,245,.9);border-bottom:1px solid #e3e2dc;z-index:30">
+<div style="min-width:0;line-height:1"><div style="font:700 17px/1 'Space Grotesk',sans-serif;letter-spacing:-.02em;color:#1c1c1a">Garanti<span style="color:#8a8a80">Takip</span></div><div style="margin-top:4px;font:500 10px/1 Inter,sans-serif;letter-spacing:.03em;color:#8a8a80">Created By Süleyman Coşkun</div></div>
+<div style="display:flex;align-items:center;gap:4px"><div style="width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:#f0efeb;color:#1c1c1a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" style="width:20px;height:20px"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg></div></div>
+</div>
+
+<div style="position:absolute;top:116px;left:0;right:0;bottom:0;padding:20px 16px 0">
+<div style="min-height:52px;border-radius:12px;border:1px solid #cfcec6;background:#fff;display:flex;align-items:center;padding:0 16px;font:400 16px/1 Inter,sans-serif;color:#8a8a80">Ürün, marka, satıcı ya da seri no</div>
+<div style="margin-top:20px;border-radius:14px;border:1px dashed #cfcec6;background:rgba(255,255,255,.6);padding:40px 20px;text-align:center">
+<div style="font:600 17px/1.3 'Space Grotesk',sans-serif;color:#1c1c1a">Ne arıyorsun?</div>
+<div style="margin:6px auto 0;max-width:260px;font:400 14px/1.6 Inter,sans-serif;color:#55554e">Ürün adı, marka, satıcı ya da seri numarasıyla ara. Türkçe karakter farkı gözetmez.</div>
+</div>
+</div>
+<div style="position:absolute;right:16px;bottom:26px;width:56px;height:56px;border-radius:28px;background:#24413f;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 15px rgba(28,28,26,.14);z-index:45"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" style="width:24px;height:24px"><path d="M12 5v14M5 12h14"></path></svg></div>
+<div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:140px;height:5px;border-radius:3px;background:rgba(28,28,26,.28);z-index:50"></div>
+</div></div>
+<div class="dv-cap" style="margin-top:10px">SearchPage</div>
+</div>
+
+</div>
+</div>
+
+</div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;glassStrength&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:5,&quot;min&quot;:1,&quot;max&quot;:10,&quot;step&quot;:1,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Cam&quot;},&quot;tint&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;rgba(192,28,40,.14)&quot;,&quot;options&quot;:[&quot;rgba(162,118,27,.16)&quot;,&quot;rgba(31,122,90,.16)&quot;,&quot;rgba(90,110,180,.16)&quot;,&quot;rgba(192,28,40,.14)&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Cam&quot;},&quot;palette&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Mevcut&quot;,&quot;iOS&quot;],&quot;default&quot;:&quot;iOS&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Renk&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const iOS = (this.props.palette ?? 'Mevcut') === 'iOS'
+    const S = iOS
+      ? { active: ['#248a3d', '#e3f4e7'], soon: ['#b25000', '#fdeee0'], warning: ['#c93400', '#fdeae4'], critical: ['#d70015', '#fde8ea'], expired: ['#8e8e93', '#ececee'] }
+      : { active: ['#1f7a5a', '#e4f1ea'], soon: ['#a2761b', '#f8efdc'], warning: ['#c2570c', '#fbebdf'], critical: ['#c01c28', '#fbe6e7'], expired: ['#8a8a80', '#ececeb'] }
+
+    const raw = [
+      { name: 'Dyson V15 Detect', meta: 'Dyson · Media Markt', st: 'critical', short: '3 gün', remain: '3 gün kaldı', days: '3', big: '3', unit: 'GÜN', pct: 100, end: '09.08.2026', initial: 'D' },
+      { name: 'Baymak Kombi Duo-tec', meta: 'Baymak · Doğalgaz Servisi', st: 'warning', short: '14 gün', remain: '14 gün kaldı', days: '14', big: '14', unit: 'GÜN', pct: 98, end: '20.08.2026', initial: 'B' },
+      { name: 'iPhone 15 Pro', meta: 'Apple · Apple Store', st: 'soon', short: '47 gün', remain: '47 gün kaldı', days: '47', big: '47', unit: 'GÜN', pct: 94, end: '22.09.2026', initial: 'A' },
+      { name: 'Bosch Serie 6 Buzdolabı', meta: 'Bosch · Vatan Bilgisayar', st: 'active', short: '3 ay', remain: '3 ay kaldı', days: '100', big: '3', unit: 'AY', pct: 86, end: '14.11.2026', initial: 'B' },
+      { name: 'Philips Airfryer XXL', meta: 'Philips · Trendyol', st: 'active', short: '1 yıl+', remain: '1 yıl 4 ay kaldı', days: '482', big: '16', unit: 'AY', pct: 34, end: '01.12.2027', initial: 'P' },
+      { name: 'Arçelik Çamaşır Makinesi', meta: 'Arçelik · Arçelik Bayi', st: 'active', short: '1 yıl+', remain: '1 yıl 7 ay kaldı', days: '583', big: '19', unit: 'AY', pct: 47, end: '11.03.2028', initial: 'A' },
+      { name: 'LG OLED C4 55"', meta: 'LG · Teknosa', st: 'expired', short: 'doldu', remain: '2 ay önce doldu', days: '—', big: '0', unit: 'DOLDU', pct: 100, end: '02.06.2026', initial: 'L' },
+    ]
+
+    const products = raw.map((p) => ({
+      ...p,
+      c: S[p.st][0],
+      soft: S[p.st][1],
+      metaUp: p.meta.toLocaleUpperCase('tr'),
+    }))
+
+    const g = Math.max(1, Math.min(10, this.props.glassStrength ?? 7))
+    return {
+      products,
+      soon: products.slice(0, 3),
+      rest: products.slice(3),
+      blur: Math.round(6 + g * 2.2),
+      blurNav: Math.round(10 + g * 3),
+      tintA: this.props.tint ?? 'rgba(162,118,27,.16)',
+    }
+  }
+}
+</script>
+</body>
+</html>

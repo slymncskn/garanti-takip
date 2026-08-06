@@ -1,20 +1,27 @@
-import { TextAreaField, TextField } from '@/components/ui/Field'
+import { ListField, ListTextArea } from '@/components/ui/ListField'
+import { ListGroup, ListRow } from '@/components/ui/List'
 import { WarrantyPicker } from './WarrantyPicker'
 import { useI18n } from '@/i18n'
 import { formatDate } from '@/lib/format'
+import type { DictKey } from '@/i18n'
 import type { ProductDraft } from '@/types/app'
 
-/** Hem onay ekranı hem ürün formu bu alan setini kullanır. */
+/**
+ * Hem onay ekranı hem ürün formu bu alan setini kullanır.
+ * Alanlar iOS'un gruplanmış liste satırlarına oturur: etiket solda,
+ * değer sağda.
+ */
 export function ProductFields({
   draft,
   onChange,
-  showMerchant = false,
   merchant,
+  errorKey,
 }: {
   draft: ProductDraft
   onChange: (next: ProductDraft) => void
-  showMerchant?: boolean
   merchant?: string | null
+  /** Doğrulama hatası — ilgili satırın altında gösterilir. */
+  errorKey?: DictKey | null
 }) {
   const { t } = useI18n()
 
@@ -25,79 +32,81 @@ export function ProductFields({
 
   return (
     <div className="flex flex-col gap-4">
-      <TextField
-        label={t('fields.name')}
-        required
-        value={draft.name}
-        onChange={(e) => set('name', e.target.value)}
-        placeholder={t('fields.namePlaceholder')}
-      />
-
-      <div className="grid grid-cols-2 gap-3">
-        <TextField
+      <ListGroup>
+        <ListField
+          label={t('fields.name')}
+          required
+          value={draft.name}
+          onChange={(e) => set('name', e.target.value)}
+          placeholder={t('fields.namePlaceholder')}
+          error={errorKey === 'form.nameRequired' ? t(errorKey) : undefined}
+        />
+        <ListField
           label={t('fields.brand')}
           value={draft.brand}
           onChange={(e) => set('brand', e.target.value)}
+          placeholder={t('fields.optional')}
         />
-        <TextField
+        <ListField
           label={t('fields.category')}
           value={draft.category}
           onChange={(e) => set('category', e.target.value)}
+          placeholder={t('fields.optional')}
         />
-      </div>
+        {merchant && (
+          <ListRow label={t('fields.merchant')} value={merchant} />
+        )}
+      </ListGroup>
 
-      {showMerchant && merchant && (
-        <p className="text-[13px] text-ink-faint">
-          {t('fields.merchant')}:{' '}
-          <span className="text-ink-soft">{merchant}</span>
-        </p>
-      )}
-
-      <div className="grid grid-cols-2 gap-3">
-        <TextField
+      <ListGroup>
+        <ListField
           label={t('fields.purchaseDate')}
           type="date"
-          numeric
+          mono
           required
           value={draft.purchase_date}
           onChange={(e) => set('purchase_date', e.target.value)}
+          error={errorKey === 'form.dateRequired' ? t(errorKey) : undefined}
         />
-        <TextField
+        <ListField
           label={t('fields.price')}
           inputMode="decimal"
-          numeric
+          mono
           placeholder="0,00"
           value={draft.price}
           onChange={(e) => set('price', e.target.value)}
         />
-      </div>
+        <WarrantyPicker
+          value={draft.warranty_months}
+          onChange={(months) => set('warranty_months', months)}
+        />
+        {warrantyEnd && (
+          <div className="mx-4 mb-3 flex items-center justify-between rounded-field bg-active-soft px-3 py-2.5">
+            <span className="text-[13px] font-medium text-active">
+              {t('fields.warrantyEndPreview')}
+            </span>
+            <span className="tabular text-[14px] font-semibold text-active">
+              {formatDate(warrantyEnd)}
+            </span>
+          </div>
+        )}
+      </ListGroup>
 
-      <WarrantyPicker
-        value={draft.warranty_months}
-        onChange={(months) => set('warranty_months', months)}
-      />
-
-      {warrantyEnd && (
-        <p className="rounded-xl bg-sunken px-3 py-2.5 text-[13px] text-ink-soft">
-          {t('fields.warrantyEndPreview')}{' '}
-          <span className="tabular font-medium text-ink">
-            {formatDate(warrantyEnd)}
-          </span>
-        </p>
-      )}
-
-      <TextField
-        label={t('fields.serial')}
-        value={draft.serial_number}
-        onChange={(e) => set('serial_number', e.target.value)}
-      />
-
-      <TextAreaField
-        label={t('fields.notes')}
-        value={draft.notes}
-        onChange={(e) => set('notes', e.target.value)}
-        placeholder={t('fields.notesPlaceholder')}
-      />
+      <ListGroup>
+        <ListField
+          label={t('fields.serial')}
+          mono
+          value={draft.serial_number}
+          onChange={(e) => set('serial_number', e.target.value)}
+          placeholder={t('fields.optional')}
+        />
+        <ListTextArea
+          label={t('fields.notes')}
+          value={draft.notes}
+          onChange={(e) => set('notes', e.target.value)}
+          placeholder={t('fields.notesPlaceholder')}
+        />
+      </ListGroup>
     </div>
   )
 }

@@ -11,9 +11,11 @@ export function EmptyState({
   action?: ReactNode
 }) {
   return (
-    <div className="rounded-card border border-dashed border-line-strong bg-surface/60 px-5 py-10 text-center">
-      <p className="font-display text-[17px] font-semibold text-ink">{title}</p>
-      <p className="mx-auto mt-1.5 max-w-xs text-[14px] leading-relaxed text-ink-soft">
+    <div className="px-4 py-10 text-center">
+      <p className="text-[20px] font-bold tracking-[-0.02em] text-ink">
+        {title}
+      </p>
+      <p className="mx-auto mt-2 max-w-[280px] text-[15px] leading-relaxed text-ink-soft">
         {description}
       </p>
       {action && <div className="mt-5 flex justify-center">{action}</div>}
@@ -22,18 +24,26 @@ export function EmptyState({
 }
 
 export function ErrorNote({
-  title = 'Bir şeyler ters gitti',
+  title,
   description,
   action,
 }: {
-  title?: string
+  title: string
   description: string
   action?: ReactNode
 }) {
   return (
-    <div className="rounded-card border border-critical/25 bg-critical-soft/60 px-4 py-4">
-      <p className="font-medium text-ink">{title}</p>
-      <p className="mt-1 text-[14px] text-ink-soft">{description}</p>
+    <div
+      className="rounded-card px-4 py-4 backdrop-blur-[17px]"
+      style={{
+        background: 'rgba(253,232,234,0.62)',
+        border: '0.5px solid rgba(215,0,21,0.22)',
+      }}
+    >
+      <p className="text-[15.5px] font-semibold text-ink">{title}</p>
+      <p className="mt-1 text-[14px] leading-relaxed text-ink-soft">
+        {description}
+      </p>
       {action && <div className="mt-3">{action}</div>}
     </div>
   )

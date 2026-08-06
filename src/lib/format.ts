@@ -96,6 +96,22 @@ export function remainingText(daysLeft: number): string {
   return s('time.yearsMonthsLeft', { y: years, m: months })
 }
 
+/**
+ * Dev geri sayım için sayı ve birimi ayrı verir.
+ * 68 px'lik rakamın yanına birim ayrı puntoyla yazıldığı için tek parça
+ * cümle işe yaramıyor.
+ */
+export function remainingParts(daysLeft: number): {
+  value: number
+  unit: 'time.dayUnit' | 'time.monthUnit' | 'time.yearUnit'
+} {
+  if (daysLeft <= 0) return { value: 0, unit: 'time.dayUnit' }
+  if (daysLeft < 45) return { value: daysLeft, unit: 'time.dayUnit' }
+  if (daysLeft < 365)
+    return { value: Math.round(daysLeft / 30), unit: 'time.monthUnit' }
+  return { value: Math.floor(daysLeft / 365), unit: 'time.yearUnit' }
+}
+
 /** Kısa rozet metni — kart üstünde tek bakışta okunur. */
 export function remainingShort(daysLeft: number): string {
   if (daysLeft < 0) return s('time.shortExpired')

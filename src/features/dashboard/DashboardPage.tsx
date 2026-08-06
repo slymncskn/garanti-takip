@@ -2,14 +2,17 @@ import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useI18n, type DictKey } from '@/i18n'
 import { splitProducts, useProducts } from '@/hooks/useProducts'
-import { ProductCard } from '@/components/ProductCard'
-import { PendingReceipts } from './PendingReceipts'
-import { Button } from '@/components/ui/Button'
-import { Card, SectionTitle } from '@/components/ui/Card'
-import { EmptyState, ErrorNote } from '@/components/ui/EmptyState'
+import { useAuth } from '@/hooks/useAuth'
+import { ProductRow, initial } from '@/components/ProductRow'
+import { EmptyRing, StatusRing } from '@/components/StatusRing'
+import { ProcessingSection } from './ProcessingSection'
+import { useAddReceipt } from '@/components/AppShell'
+import { ListGroup, SectionLabel } from '@/components/ui/List'
 import { Skeleton } from '@/components/ui/Spinner'
+import { ErrorNote } from '@/components/ui/EmptyState'
 import { cn } from '@/lib/cn'
-import type { ProductRow } from '@/types/app'
+import { statusStyles } from '@/lib/status'
+import type { ProductRow as Product, WarrantyStatus } from '@/types/app'
 
 type Filter = 'all' | 'active' | 'soon' | 'expired'
 
@@ -18,6 +21,14 @@ const filters: Array<{ id: Filter; label: DictKey }> = [
   { id: 'active', label: 'dash.filter.active' },
   { id: 'soon', label: 'dash.filter.soon' },
   { id: 'expired', label: 'dash.filter.expired' },
+]
+
+/** Kırılım listesinde gösterilen dört satır. */
+const BREAKDOWN: Array<{ status: WarrantyStatus; label: DictKey }> = [
+  { status: 'active', label: 'dash.count.active' },
+  { status: 'soon', label: 'dash.count.soon' },
+  { status: 'critical', label: 'dash.count.critical' },
+  { status: 'expired', label: 'dash.count.expired' },
 ]
 
 export function DashboardPage() {
@@ -30,12 +41,13 @@ export function DashboardPage() {
     [data],
   )
 
+  const counts = useMemo(() => tally(all), [all])
   const filtered = useMemo(() => applyFilter(all, filter), [all, filter])
 
   if (isLoading) {
     return (
-      <div className="flex flex-col gap-3">
-        <Skeleton className="h-24" />
+      <div className="flex flex-col gap-3 pt-6">
+        <Skeleton className="h-36" />
         <Skeleton className="h-24" />
         <Skeleton className="h-24" />
       </div>
@@ -44,79 +56,84 @@ export function DashboardPage() {
 
   if (isError) {
     return (
-      <ErrorNote
-        title={t('common.error')}
-        description={t('dash.loadError')}
-        action={
-          <Button size="sm" variant="secondary" onClick={() => void refetch()}>
-            {t('dash.retry')}
-          </Button>
-        }
-      />
+      <div className="pt-6">
+        <ErrorNote
+          title={t('common.error')}
+          description={t('dash.loadError')}
+          action={
+            <button
+              type="button"
+              onClick={() => void refetch()}
+              className="press glass-chip min-h-11 rounded-field px-4 text-[14px] font-medium text-ink"
+            >
+              {t('dash.retry')}
+            </button>
+          }
+        />
+      </div>
     )
   }
 
   const hasAnything = (data ?? []).length > 0
 
   return (
-    <div>
-      <PendingReceipts />
+    <div className="pt-4">
+      <Header />
+
+      {all.length > 0 && (
+        <section className="glass-surface mb-[22px] flex items-center gap-5 rounded-card p-5">
+          <StatusRing counts={counts} total={all.length} />
+          <ul className="flex min-w-0 flex-col gap-2">
+            {BREAKDOWN.map(({ status, label }) => (
+              <li key={status} className="flex items-center gap-2">
+                <span
+                  className="size-2 shrink-0 rounded-full"
+                  style={{ backgroundColor: statusStyles[status].hex }}
+                />
+                <span className="tabular text-[14px] font-semibold text-ink">
+                  {counts[status]}
+                </span>
+                <span className="truncate text-[13px] text-ink-soft">
+                  {t(label)}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {expiringSoon.length > 0 && (
+        <section className="mb-[22px]">
+          <SectionLabel>{t('dash.attention')}</SectionLabel>
+          <ListGroup>
+            {expiringSoon.map((product) => (
+              <ProductRow key={product.id} product={product} />
+            ))}
+          </ListGroup>
+        </section>
+      )}
 
       {awaitingConfirmation.length > 0 && (
-        <section className="mb-8">
-          <SectionTitle tone="attention" count={awaitingConfirmation.length}>
-            {t('dash.awaiting')}
-          </SectionTitle>
-          <div className="flex flex-col gap-2">
+        <section className="mb-[22px]">
+          <SectionLabel>{t('dash.awaiting')}</SectionLabel>
+          <div className="flex flex-col gap-2.5">
             {groupByReceipt(awaitingConfirmation).map(
               ([receiptId, products]) => (
-                <Card
+                <AwaitingCard
                   key={receiptId}
-                  className="border-soon/40 bg-soon-soft/40 p-4"
-                >
-                  <p className="font-display text-[15px] font-semibold text-ink">
-                    {products[0]?.merchant ?? t('dash.newReceipt')}
-                  </p>
-                  <p className="mt-1 text-[13px] leading-relaxed text-ink-soft">
-                    {t('dash.awaitingBody', { count: products.length })}
-                  </p>
-                  <ul className="mt-3 flex flex-col gap-1">
-                    {products.slice(0, 3).map((p) => (
-                      <li key={p.id} className="truncate text-[14px] text-ink">
-                        · {p.name}
-                      </li>
-                    ))}
-                    {products.length > 3 && (
-                      <li className="text-[13px] text-ink-faint">
-                        {t('dash.andMore', { count: products.length - 3 })}
-                      </li>
-                    )}
-                  </ul>
-                  <Link to={`/onay/${receiptId}`} className="mt-4 block">
-                    <Button full>{t('dash.review')}</Button>
-                  </Link>
-                </Card>
+                  receiptId={receiptId}
+                  products={products}
+                />
               ),
             )}
           </div>
         </section>
       )}
 
-      {expiringSoon.length > 0 && (
-        <section className="mb-8">
-          <SectionTitle count={expiringSoon.length}>
-            {t('dash.expiring')}
-          </SectionTitle>
-          <div className="flex flex-col gap-2">
-            {expiringSoon.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        </section>
-      )}
+      <ProcessingSection />
 
       <section>
-        <SectionTitle count={filtered.length}>{t('dash.all')}</SectionTitle>
+        <SectionLabel>{t('dash.all')}</SectionLabel>
 
         {all.length > 0 && (
           <div className="mb-3 flex flex-wrap gap-1.5">
@@ -127,10 +144,10 @@ export function DashboardPage() {
                 onClick={() => setFilter(f.id)}
                 aria-pressed={filter === f.id}
                 className={cn(
-                  'min-h-11 rounded-full px-3.5 text-[13px] font-medium transition-colors',
+                  'press min-h-11 rounded-full px-3.5 text-[13.5px] font-medium transition-colors',
                   filter === f.id
                     ? 'bg-ink text-paper'
-                    : 'bg-sunken text-ink-soft hover:text-ink',
+                    : 'glass-chip text-ink-soft',
                 )}
               >
                 {t(f.label)}
@@ -140,27 +157,166 @@ export function DashboardPage() {
         )}
 
         {filtered.length === 0 ? (
-          <EmptyState
-            title={
-              hasAnything ? t('dash.emptyFilterTitle') : t('dash.emptyTitle')
-            }
-            description={
-              hasAnything ? t('dash.emptyFilterBody') : t('dash.emptyBody')
-            }
-          />
+          hasAnything ? (
+            <p className="px-1 py-6 text-center text-[14px] text-ink-faint">
+              {t('dash.emptyFilterBody')}
+            </p>
+          ) : (
+            <EmptyDashboard />
+          )
         ) : (
-          <div className="flex flex-col gap-2">
+          <ListGroup>
             {filtered.map((product) => (
-              <ProductCard key={product.id} product={product} compact />
+              <ProductRow key={product.id} product={product} variant="bar" />
             ))}
-          </div>
+          </ListGroup>
         )}
       </section>
     </div>
   )
 }
 
-function applyFilter(products: ProductRow[], filter: Filter): ProductRow[] {
+function Header() {
+  const { t } = useI18n()
+  const { user } = useAuth()
+
+  const label = (user?.email ?? '?').trim().slice(0, 2).toLocaleUpperCase('tr')
+
+  return (
+    <header className="mb-5 flex items-start justify-between gap-4">
+      <div className="min-w-0">
+        <p className="text-[13px] font-semibold uppercase leading-none tracking-[0.02em] text-ink-faint">
+          {t('dash.eyebrow')}
+        </p>
+        <h1 className="mt-1.5 text-[32px] font-bold leading-[1.1] tracking-[-0.03em] text-ink">
+          {t('dash.today')}
+        </h1>
+      </div>
+
+      <Link
+        to="/hesap"
+        aria-label={t('nav.account')}
+        className="press glass-chip flex size-[38px] shrink-0 items-center justify-center rounded-full text-[13px] font-semibold text-accent"
+      >
+        {label}
+      </Link>
+    </header>
+  )
+}
+
+function AwaitingCard({
+  receiptId,
+  products,
+}: {
+  receiptId: string
+  products: Product[]
+}) {
+  const { t } = useI18n()
+  const merchant = products[0]?.merchant ?? t('dash.newReceipt')
+
+  return (
+    <div
+      className="rounded-card p-4 backdrop-blur-[17px]"
+      style={{
+        background: 'rgba(253,238,224,0.62)',
+        border: '0.5px solid rgba(178,80,0,0.28)',
+        boxShadow: '0 12px 28px rgba(178,80,0,0.10)',
+      }}
+    >
+      <div className="flex items-center gap-3">
+        <span className="flex size-[34px] shrink-0 items-center justify-center rounded-[11px] bg-soon-soft text-[14px] font-bold text-soon">
+          {initial(merchant)}
+        </span>
+        <div className="min-w-0">
+          <p className="truncate text-[15.5px] font-medium leading-tight text-ink">
+            {merchant}
+          </p>
+          <p className="mt-0.5 text-[12.5px] text-ink-soft">
+            {t('dash.awaitingBody', { count: products.length })}
+          </p>
+        </div>
+      </div>
+
+      <ul className="mt-3 flex flex-col gap-1.5">
+        {products.slice(0, 3).map((p) => (
+          <li key={p.id} className="flex items-center gap-2">
+            <span className="size-1 shrink-0 rounded-full bg-soon" />
+            <span className="truncate text-[14px] text-ink">{p.name}</span>
+          </li>
+        ))}
+        {products.length > 3 && (
+          <li className="pl-3 text-[13px] text-ink-faint">
+            {t('dash.andMore', { count: products.length - 3 })}
+          </li>
+        )}
+      </ul>
+
+      <Link
+        to={`/onay/${receiptId}`}
+        className="press fill-action mt-4 flex h-12 w-full items-center justify-center rounded-[15px] text-[15.5px] font-semibold text-white"
+      >
+        {t('dash.review')}
+      </Link>
+    </div>
+  )
+}
+
+function EmptyDashboard() {
+  const { t } = useI18n()
+  const addReceipt = useAddReceipt()
+
+  return (
+    <div className="px-2 py-8 text-center">
+      <EmptyRing />
+      <h2 className="mt-6 text-[24px] font-bold tracking-[-0.02em] text-ink">
+        {t('dash.emptyTitle')}
+      </h2>
+      <p className="mx-auto mt-2 max-w-[280px] text-[15px] leading-relaxed text-ink-soft">
+        {t('dash.emptyBody')}
+      </p>
+
+      <button
+        type="button"
+        onClick={addReceipt}
+        className="press fill-action mx-auto mt-6 flex h-13 items-center gap-2 rounded-control px-6 text-[16px] font-semibold text-white"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+          className="size-5"
+          aria-hidden="true"
+        >
+          <path d="M12 5v14M5 12h14" />
+        </svg>
+        {t('upload.add')}
+      </button>
+
+      <Link
+        to="/yeni"
+        className="press mt-3 inline-flex min-h-11 items-center text-[15px] font-medium text-accent"
+      >
+        {t('dash.emptyManual')}
+      </Link>
+    </div>
+  )
+}
+
+function tally(products: Product[]): Record<WarrantyStatus, number> {
+  const counts: Record<WarrantyStatus, number> = {
+    active: 0,
+    soon: 0,
+    warning: 0,
+    critical: 0,
+    expired: 0,
+  }
+  for (const product of products) counts[product.warranty_status] += 1
+  return counts
+}
+
+function applyFilter(products: Product[], filter: Filter): Product[] {
   switch (filter) {
     case 'active':
       return products.filter((p) => p.days_left > 90)
@@ -173,8 +329,8 @@ function applyFilter(products: ProductRow[], filter: Filter): ProductRow[] {
   }
 }
 
-function groupByReceipt(products: ProductRow[]): Array<[string, ProductRow[]]> {
-  const groups = new Map<string, ProductRow[]>()
+function groupByReceipt(products: Product[]): Array<[string, Product[]]> {
+  const groups = new Map<string, Product[]>()
   for (const product of products) {
     const key = product.receipt_id ?? product.id
     const list = groups.get(key)
