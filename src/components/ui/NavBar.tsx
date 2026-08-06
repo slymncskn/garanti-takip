@@ -27,11 +27,17 @@ export function NavBar({
   return (
     <header
       className={cn(
-        'glass-bar safe-top sticky top-0 z-30 transition-colors duration-200',
-        scrolled && 'border-b-[0.5px] border-ink/[0.09]',
+        // `-mx-5` sayfanın yan boşluğunu iptal ediyor: çubuk ekranın iki
+        // kenarına kadar uzanır. Boşluk içinde kalırsa keskin köşeli,
+        // havada duran bir kutu gibi görünüyor — iOS'ta nav bar kenara
+        // yaslanır ve köşesi olmaz.
+        '-mx-5 glass-bar safe-top sticky top-0 z-30 transition-colors duration-200',
+        scrolled
+          ? 'border-b-[0.5px] border-ink/[0.09]'
+          : 'border-b-[0.5px] border-transparent',
       )}
     >
-      <div className="mx-auto flex h-12 max-w-2xl items-center gap-2 px-3">
+      <div className="mx-auto flex h-12 max-w-2xl items-center gap-2 px-5">
         <div className="flex min-w-0 flex-1 items-center justify-start">
           {left}
         </div>

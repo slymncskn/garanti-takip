@@ -10,10 +10,13 @@ permissions:
   pages: write
   id-token: write
 
-# Aynı anda tek yayın; üst üste gelen push'larda sonuncusu kazanır.
+# Aynı anda tek yayın, ama bekleyeni iptal etme — sıraya al.
+# İptal açıkken şu yaşandı: GitHub bir push'un tetiklemesini yarım saat
+# geciktirdi, gecikmiş çalıştırma daha yeni commit'in yayınını iptal etti.
+# Yayın işlerinde iptalden kazanılan bir şey yok.
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
