@@ -67,7 +67,7 @@ function TabBar({
   return (
     <nav
       aria-label={t('nav.tabs')}
-      className="glass-chrome fixed inset-x-3 z-40 flex h-[66px] items-center justify-around rounded-[33px] px-2"
+      className="glass-tabbar fixed inset-x-3 z-40 flex h-[66px] items-center justify-around rounded-[33px] px-2"
       style={{ bottom: 'calc(env(safe-area-inset-bottom, 0px) + 14px)' }}
     >
       <TabItem to="/" label={t('nav.summary')} badge={working}>
